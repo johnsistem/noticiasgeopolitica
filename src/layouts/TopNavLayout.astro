@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geopolítica War Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+  <header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+    <div class="w-full bg-surface-container-low px-gutter py-1 flex items-center justify-between overflow-x-auto text-nowrap">
+      <div class="flex items-center gap-space-md">
+        <div class="flex items-center gap-space-xs">
+          <span class="inline-block w-2 h-2 rounded-full bg-tertiary-container animate-ping"></span>
+          <span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-1.5 py-0.5 font-bold uppercase">DEFCON 3</span>
+        </div>
+        <div class="flex items-center gap-space-sm font-label-sm text-label-sm text-on-surface-variant">
+          <span class="text-primary">SITREP ACTIVO:</span>
+          <span>Estrecho de Bab el-Mandeb bajo vigilancia</span>
+          <span class="text-outline">|</span>
+          <span class="text-tertiary">Mar Rojo Alerta Naranja</span>
+          <span class="text-outline">|</span>
+          <span>Estrecho de Taiwán: Tránsito naval monitorizado</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-md pl-gutter">
+        <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+          <span class="font-label-sm text-label-sm text-primary font-bold">ZULU TIME: 14:42:09Z</span>
+        </div>
+        <div class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+          <span class="w-1.5 h-1.5 bg-primary rounded-full"></span><span>SEC-NET ACTIVE</span>
+        </div>
+      </div>
+    </div>
+    <div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-md">
+        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface leading-none">NOTICIAS GEOPOLÍTICA</span>
+          <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">INTEL & STRATEGIC WAR ROOM</span>
+        </div>
+      </div>
+      <nav class="hidden xl:flex items-center gap-space-xs">
+        <a class="uppercase px-3 py-2 transition-all bg-primary-container text-on-primary-container font-semibold rounded" href="/">Central de Operaciones</a>
+        <a class="font-label-md text-label-md uppercase px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" href="/mapas">Mapas de Conflicto</a>
+        <a class="font-label-md text-label-md uppercase px-3 py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" href="/informes">Informes de Inteligencia</a>
+      </nav>
+      <div class="flex items-center gap-space-md">
+        <div class="hidden md:flex items-center bg-surface-container px-space-sm py-1.5 rounded">
+          <span class="material-symbols-outlined text-outline text-[18px] mr-2">search</span>
+          <input class="bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-48" placeholder="HOTSPOTS / TEATROS / OSINT..." type="text" />
+        </div>
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-20 bg-background">
+    <slot />
+  </main>
+  
+  <footer class="w-full bg-surface-container-lowest text-on-surface-variant py-space-xl mt-space-xl shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+    <div class="max-w-7xl mx-auto px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl mb-space-xl">
+      <div class="flex flex-col gap-space-sm">
+        <div class="flex items-center gap-space-sm">
+          <img alt="Noticias Geopolítica Tactical Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
+          <span class="font-headline-sm text-headline-sm uppercase text-on-surface">NOTICIAS GEOPOLÍTICA</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-outline mt-space-xs">Terminal independiente de monitoreo geoestratégico, análisis de vector bélico y telemetría de crisis internacionales basada en fuentes abiertas y SIGINT analítico.</p>
+      </div>
+      <!-- ... -->
+    </div>
+    <div class="max-w-7xl mx-auto px-margin pt-space-md border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-outline">
+      <p>© 2024 NOTICIAS GEOPOLÍTICA. OPERATIONAL CONTROL ALL RIGHTS RESERVED.</p>
+      <p class="text-primary">SYS POSTURE: NOMINAL // ZERO LOGS DISPATCH</p>
+    </div>
+  </footer>
+</body>
+</html>

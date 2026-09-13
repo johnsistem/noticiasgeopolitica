@@ -1,0 +1,79 @@
+---
+import SidebarLayout from '../layouts/SidebarLayout.astro';
+
+// Supabase Newsletter simulation logic
+let message = '';
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    const email = data.get('email');
+    // Simulated delay and success response
+    await new Promise(resolve => setTimeout(resolve, 500));
+    console.log(`Subscribed: ${email}`);
+    message = 'ENLACE REGISTRADO CON ÉXITO: Recibirás confirmación encriptada en los próximos 2 minutos.';
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<SidebarLayout>
+  <div class="flex flex-col w-full">
+    <!-- Top Telemetry Micro-Bar -->
+    <div class="flex items-center justify-between py-space-xs mb-space-sm font-label-sm text-label-sm text-outline">
+      <div class="flex items-center gap-space-sm">
+        <span class="inline-flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded text-primary">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          GEO-FEED SYNC: ONLINE
+        </span>
+        <span class="text-outline-variant">/</span>
+        <span>RECON SAT: SENTINEL-2B OSINT</span>
+        <span class="text-outline-variant">/</span>
+        <span class="text-on-surface-variant">GRID RES: 0.5M/PX</span>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <span class="text-secondary font-mono">LAT 12.6534° N // LON 43.4182° E</span>
+        <span class="bg-surface-container px-2 py-0.5 rounded text-tertiary">DATUM WGS-84</span>
+      </div>
+    </div>
+    
+    <section class="mb-space-lg">
+      <div class="bg-surface-container-low p-space-lg rounded-lg shadow-xl relative overflow-hidden">
+        <div class="absolute -right-8 -top-8 w-48 h-48 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md relative z-10 mb-space-md">
+          <div>
+            <div class="flex items-center gap-2 text-primary font-label-sm text-label-sm mb-1 uppercase tracking-widest">
+              <span class="material-symbols-outlined text-[16px]">satellite_alt</span>
+              <span>Módulo de Reconocimiento Estratégico Multiespectral</span>
+            </div>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase">
+              Centro Cartográfico de Teatros de Conflicto
+            </h1>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-1">
+              Explora interactivamente fronteras en disputa, rutas marítimas estratégicas (chokepoints), despliegue de activos militares de alta precisión y análisis geopolítico en tiempo real derivado de telemetría OSINT y satelital.
+            </p>
+          </div>
+          <div class="flex items-center gap-space-sm bg-surface-container px-space-md py-2 rounded self-start lg:self-auto">
+            <div class="flex flex-col text-right">
+              <span class="font-label-sm text-label-sm text-outline">POSTURA OPERATIVA</span>
+              <span class="font-label-md text-label-md text-tertiary font-bold">VIGILANCIA ELEVADA</span>
+            </div>
+            <div class="w-2 h-8 bg-tertiary rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-space-xl text-center p-12 bg-surface-container-low rounded">
+        <h2 class="text-2xl text-primary font-headline-md mb-4">SUSCRIPCIÓN TÁCTICA</h2>
+        <form method="POST" class="max-w-md mx-auto flex flex-col gap-4">
+            <input type="email" name="email" required placeholder="analista@organizacion.com" class="w-full pl-4 pr-4 py-3 bg-surface-container-lowest text-on-surface placeholder:text-outline font-label-md text-label-md rounded focus:outline-none focus:bg-surface-container transition-colors" />
+            <button type="submit" class="w-full bg-primary text-on-primary font-label-md text-label-md uppercase px-space-md py-3 rounded font-bold hover:bg-primary-fixed transition-all flex items-center justify-center gap-space-xs shadow-md">UNIRSE A LA RED</button>
+        </form>
+        {message && <div class="mt-4 p-4 bg-primary-container text-on-primary-container rounded">{message}</div>}
+    </section>
+
+  </div>
+</SidebarLayout>

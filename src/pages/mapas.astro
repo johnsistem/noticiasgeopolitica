@@ -1,0 +1,48 @@
+---
+import TopNavLayout from '../layouts/TopNavLayout.astro';
+---
+
+<TopNavLayout>
+  <div class="flex flex-col w-full">
+    <!-- SECTION 1: HERO & WAR ROOM HUD CONSOLE -->
+    <section class="relative w-full bg-surface-container-lowest px-margin py-space-xl overflow-hidden">
+      <!-- Optical Grid Scanline & Coordinate Reticle Ambient Background -->
+      <div class="absolute inset-0 pointer-events-none opacity-20">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern height="48" id="tactical-grid" patternunits="userSpaceOnUse" width="48">
+              <path class="text-outline-variant" d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="0.75"></path>
+              <circle class="text-primary" cx="24" cy="24" fill="currentColor" r="1"></circle>
+            </pattern>
+          </defs>
+          <rect fill="url(#tactical-grid)" height="100%" width="100%"></rect>
+        </svg>
+      </div>
+      <div class="absolute top-1/4 right-1/10 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative max-w-7xl mx-auto flex flex-col gap-space-lg">
+        <!-- Terminal Header Line & Badges -->
+        <div class="flex flex-wrap items-center justify-between gap-space-sm">
+          <div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">LIVE INTEL FEED</span>
+          </div>
+        </div>
+        
+        <!-- Main Tactical Title & Subtitle -->
+        <div class="flex flex-col gap-space-sm max-w-4xl">
+          <h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
+            EL TABLERO GLOBAL <span class="text-primary underline decoration-primary-container decoration-4 underline-offset-8">EN TIEMPO REAL</span>
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Análisis geopolítico independiente, telemetría de fuentes abiertas (OSINT) y monitoreo satelital continuo de teatros operativos, cuellos de botella marítimos y escaladas bélicas en desarrollo.
+          </p>
+        </div>
+        
+      </div>
+    </section>
+  </div>
+</TopNavLayout>
