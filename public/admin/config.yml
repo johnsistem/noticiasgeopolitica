@@ -2,8 +2,6 @@ backend:
   name: github
   repo: johnsistem/noticiasgeopolitica
   branch: main
-  base_url: https://decap-cms-oauth-pkgs.vercel.app
-  auth_endpoint: auth
 
 local_backend: true
 
