@@ -1,5 +1,15 @@
 ---
 import TopNavLayout from '../layouts/TopNavLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Obtener y ordenar los cables por fecha (más reciente primero)
+const allCables = await getCollection('cables');
+const sortedCables = allCables.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+
+// El cable más reciente será la noticia principal
+const leadCable = sortedCables[0];
+// Los siguientes 3 serán las noticias secundarias en la barra lateral
+const secondaryCables = sortedCables.slice(1, 4);
 
 // Supabase Newsletter simulation logic
 let message = '';
@@ -161,110 +171,92 @@ if (Astro.request.method === 'POST') {
 </div>
 <!-- Bento Grid / Asymmetric News Layout -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
-<!-- Lead Critical Dispatch: Bab el-Mandeb & Perim Island -->
-<article class="lg:col-span-8 bg-surface-container-low rounded-lg overflow-hidden flex flex-col shadow-lg">
-<div class="relative w-full h-80 sm:h-96">
-<img class="w-full h-full object-cover" data-alt="High-resolution reconnaissance satellite image of Perim Island Mayyun in the Bab el-Mandeb strait showing coastal radar emplacements, naval runways, and maritime choke points with tactical grid overlays, infrared surveillance style, dark cyan and amber contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8ai9uX6HWi4C2rxvBGWLspk0lnCZrwJf_loypcxMZeo4AKrXFnf68OXRDKCGsr3bPh6W8d0JJLl55FHvOyHqbG_cE16BNxHgmTQT1_b9NOhTkXZc3pT8Uz5xysflofrCp_3X1ThkKy4EbEwlpbxEbcUzt6JK0YyFA_WwYLmLvcZDs0QCs7FSQTS3ON2mx7yidEpzHOy7Ib6-FViRp59v-ZLX8az5nZTbg11grUDZScBskihwOqDG_ZA"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+
+<!-- Lead Critical Dispatch -->
+{leadCable && (
+<article class="lg:col-span-8 bg-surface-container-low rounded-lg overflow-hidden flex flex-col shadow-lg relative group">
+<a href={`/cables/${leadCable.slug}`} class="absolute inset-0 z-10" aria-label={`Leer cable: ${leadCable.data.title}`}></a>
+<div class="relative w-full h-80 sm:h-96 bg-surface-container">
+<!-- Fallback/placeholder map background for aesthetic -->
+<div class="w-full h-full object-cover opacity-60 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8ai9uX6HWi4C2rxvBGWLspk0lnCZrwJf_loypcxMZeo4AKrXFnf68OXRDKCGsr3bPh6W8d0JJLl55FHvOyHqbG_cE16BNxHgmTQT1_b9NOhTkXZc3pT8Uz5xysflofrCp_3X1ThkKy4EbEwlpbxEbcUzt6JK0YyFA_WwYLmLvcZDs0QCs7FSQTS3ON2mx7yidEpzHOy7Ib6-FViRp59v-ZLX8az5nZTbg11grUDZScBskihwOqDG_ZA')] bg-cover bg-center mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/60 to-transparent"></div>
 <!-- Floating Tactical Coordinates HUD on Image -->
 <div class="absolute top-4 left-4 flex flex-wrap items-center gap-space-xs">
 <span class="bg-error text-on-error font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase flex items-center gap-1">
 <span class="w-1.5 h-1.5 rounded-full bg-surface"></span>
-                AMENAZA: NIVEL 4 / SEVERO
+                AMENAZA: {leadCable.data.threat_level?.toUpperCase()}
               </span>
 <span class="bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-0.5 rounded">
                 OSINT VERIFIED
               </span>
 </div>
-<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded">
+<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded border border-surface-container-highest">
 <div class="flex items-center gap-space-sm">
-<span class="text-primary font-bold">COORD: 12°39'24"N 43°24'54"E</span>
+{leadCable.data.coordinates && (
+<span class="text-primary font-bold">COORD: {Math.abs(leadCable.data.coordinates.lat)}°{leadCable.data.coordinates.lat >= 0 ? 'N' : 'S'} {Math.abs(leadCable.data.coordinates.lon)}°{leadCable.data.coordinates.lon >= 0 ? 'E' : 'W'}</span>
+)}
 <span class="text-outline">|</span>
-<span>SECTOR: MAR ROJO MERIDIONAL</span>
+<span class="uppercase">SECTOR: {leadCable.data.region}</span>
 </div>
-<span class="hidden sm:inline text-tertiary">3 MIN LECTURA MILITAR</span>
+<span class="hidden sm:inline text-tertiary">{leadCable.data.readingTime}</span>
 </div>
 </div>
-<div class="p-space-lg flex flex-col justify-between flex-1 gap-space-md">
+<div class="p-space-lg flex flex-col justify-between flex-1 gap-space-md z-20 pointer-events-none">
 <div class="flex flex-col gap-space-xs">
 <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
-<span class="text-primary font-semibold">INTEL REPORT #2024-884</span>
+<span class="text-primary font-semibold">CABLE RELÁMPAGO</span>
 <span>•</span>
-<span>DESPACHADO HACE 22 MINUTOS</span>
+<span>{new Date(leadCable.data.date).toLocaleDateString('es-ES', {day: '2-digit', month: 'short', year: 'numeric'})}</span>
 </div>
-<h3 class="font-headline-md text-headline-md text-on-surface uppercase hover:text-primary transition-colors cursor-pointer">
-                Operación en la Isla de Perim: El nuevo cerco hutí al estrecho de Bab el-Mandeb
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase group-hover:text-primary transition-colors">
+                {leadCable.data.title.replace(/🚨/g, '')}
               </h3>
 <p class="font-body-md text-body-md text-on-surface-variant">
-                Imágenes de radar de apertura sintética (SAR) confirman la construcción apresurada de fortificaciones en la pista de aterrizaje de la isla de Mayyun (Perim), junto a nuevos emplazamientos de misiles de crucero antibuque Quds-Z0. Esta maniobra proyecta interdicción total sobre el paso comercial de petroleros hacia el Canal de Suez.
+                {leadCable.data.description}
               </p>
 </div>
 <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-sm">
 <div class="flex items-center gap-space-xs">
-<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">CONFIABILIDAD: A-1 GEOINT</span>
-<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-secondary">TELEMETRÍA AIS EN VIVO</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">FUENTE: {leadCable.data.source_channel}</span>
 </div>
-<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-md text-label-md px-4 py-2 rounded transition-all flex items-center gap-space-xs font-semibold" type="button">
-<span>DESGLOSE ESTRATÉGICO COMPLETO</span>
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-4 py-2 rounded flex items-center gap-space-xs font-semibold group-hover:bg-primary group-hover:text-on-primary transition-colors pointer-events-auto cursor-pointer relative z-20">
+<span>VER CABLE COMPLETO</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</button>
+</span>
 </div>
 </div>
 </article>
-<!-- Right Side Stack: 3 Secondary Intelligence Flashes -->
+)}
+
+<!-- Right Side Stack: Secondary Intelligence Flashes -->
 <div class="lg:col-span-4 flex flex-col gap-space-md">
-<!-- Dispatch Card A: Indo-Pacífico -->
-<article class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs shadow-sm hover:bg-surface-container transition-colors group cursor-pointer">
-<div class="flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-secondary font-bold uppercase tracking-wider">TEATRO INDO-PACÍFICO</span>
-<span class="text-outline">HACE 48M</span>
+{secondaryCables.map((cable, index) => {
+  // Use alternating accent colors based on index for the region tag
+  const accentColors = ['text-secondary', 'text-primary', 'text-tertiary'];
+  const accentClass = accentColors[index % accentColors.length];
+  
+  return (
+    <article class="relative bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs shadow-sm hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-surface-container-highest">
+      <a href={`/cables/${cable.slug}`} class="absolute inset-0 z-10" aria-label={`Leer cable: ${cable.data.title}`}></a>
+      <div class="flex items-center justify-between font-label-sm text-label-sm z-20 pointer-events-none">
+        <span class={`${accentClass} font-bold uppercase tracking-wider`}>{cable.data.region}</span>
+        <span class="text-outline">{new Date(cable.data.date).toLocaleDateString('es-ES')}</span>
+      </div>
+      <h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors z-20 pointer-events-none">
+        {cable.data.title.replace(/🚨/g, '')}
+      </h4>
+      <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 z-20 pointer-events-none">
+        {cable.data.description}
+      </p>
+      <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-outline z-20 pointer-events-none">
+        <span class={`${cable.data.threat_level === 'Crítica' ? 'text-error' : 'text-secondary'} font-semibold uppercase`}>AMENAZA {cable.data.threat_level}</span>
+        <span class="truncate max-w-[120px]" title={cable.data.source_channel}>SRC: {cable.data.source_channel}</span>
+      </div>
+    </article>
+  );
+})}
 </div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">
-              Eje Indo-Pacífico: Despliegue de radares AESA en el Mar del Sur de China
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Nuevas instalaciones en arrecifes artificiales amplían la cobertura de alerta temprana y vector de misiles hipersónicos YJ-21 a 900 millas náuticas.
-            </p>
-<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-outline">
-<span class="text-tertiary font-semibold">ALERTA MEDIA</span>
-<span>SRC: SIGINT PACIFIC</span>
-</div>
-</article>
-<!-- Dispatch Card B: Corredor Suwalki -->
-<article class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs shadow-sm hover:bg-surface-container transition-colors group cursor-pointer">
-<div class="flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-primary font-bold uppercase tracking-wider">EUROPA ORIENTAL</span>
-<span class="text-outline">HACE 1H 15M</span>
-</div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">
-              Corredor de Suwalki: Maniobras y simulacros de guerra electrónica
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Perturbación masiva de señales GPS civiles en el Báltico meridional coincide con el reposicionamiento de brigadas mecanizadas en Bielorrusia.
-            </p>
-<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-outline">
-<span class="text-error font-semibold">AMENAZA ALTA</span>
-<span>SRC: OSINT BALTIC</span>
-</div>
-</article>
-<!-- Dispatch Card C: Litio & Geoeconomía -->
-<article class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs shadow-sm hover:bg-surface-container transition-colors group cursor-pointer">
-<div class="flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-tertiary font-bold uppercase tracking-wider">GEOECONOMÍA // LATAM</span>
-<span class="text-outline">HACE 2H 40M</span>
-</div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">
-              Suministro Global de Litio: Nuevos acuerdos de soberanía en Sudamérica
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Consorcios de Beijing y Berlín disputan licitaciones clave en el Triángulo del Litio mientras los gobiernos endurecen los requisitos de procesamiento local.
-            </p>
-<div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-outline">
-<span class="text-secondary font-semibold">ESTRATÉGICO</span>
-<span>SRC: COMMODITIES INTEL</span>
-</div>
-</article>
-</div>
+
 </div>
 <!-- DEFENSE TECH MONETIZATION BANNER -->
 <aside class="relative w-full bg-surface-container-high rounded-lg overflow-hidden p-space-md flex flex-col md:flex-row items-center justify-between gap-space-md shadow-md">

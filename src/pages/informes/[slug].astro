@@ -52,8 +52,28 @@ const { Content } = await entry.render();
       </div>
     </header>
 
-    <!-- Main Hero Section: Live Leaflet Interactive Map or Hero Image -->
-    {entry.data.coordinates ? (
+    <!-- Main Hero Section: Facebook Video, YouTube Video, Live Leaflet Map, or Hero Image -->
+    {entry.data.facebook_url ? (
+      <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/40 shadow-2xl bg-black aspect-video relative">
+        <iframe 
+          src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(entry.data.facebook_url)}&show_text=false&t=0`} 
+          class="w-full h-full border-none overflow-hidden" 
+          scrolling="no" 
+          frameborder="0" 
+          allowfullscreen="true" 
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>
+    ) : entry.data.youtube_id ? (
+      <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/40 shadow-2xl bg-black aspect-video relative">
+        <iframe 
+          src={`https://www.youtube.com/embed/${entry.data.youtube_id}`} 
+          class="w-full h-full border-none overflow-hidden" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    ) : entry.data.coordinates ? (
       <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl bg-[#0b0e14] relative group">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
