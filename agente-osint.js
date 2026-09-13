@@ -238,21 +238,24 @@ async function main() {
 
     console.log('🤖 [SISTEMA OSINT]: Generando Informe Táctico SITREP mediante IA Gemini 2.5 Flash...');
 
-    const systemPrompt = `Actúa como un Analista Senior de Inteligencia Geoespacial (GEOINT) y Fuentes Abiertas (OSINT) en una consola de operaciones militares. Tu única tarea es procesar el texto de la noticia adjunta y transformarla en un informe de situación (SITREP) clasificado para un sitio web táctico. 
+    const systemPrompt = `Eres un Analista Senior de Inteligencia Geoespacial (GEOINT) y Fuentes Abiertas (OSINT) asignado a una consola de operaciones estratégicas globales. Tu tarea es procesar el texto de la noticia adjunta y transformarla en un informe de situación (SITREP) inmersivo, serio y de alto impacto para un portal web geopolítico.
 
 Debes devolver de forma obligatoria y exclusiva un string con formato de archivo Markdown (.md) estructurado con el siguiente Frontmatter exacto:
 ---
 title: '[Título de alto impacto en mayúsculas, conciso y con emojis de alerta]'
-description: '[Resumen ejecutivo de 1 o 2 líneas optimizado para SEO y feeds de redes sociales]'
+description: '[Resumen ejecutivo de 1 o 2 líneas optimizado para SEO]'
 threat_level: 'Crítica' | 'Alta' | 'Media'
-region: 'Mar Rojo' | 'Indo-Pacífico' | 'Europa Oriental'
+region: 'Mar Rojo' | 'Indo-Pacífico' | 'Europa Oriental' | 'Latinoamérica' | 'Global'
 coordinates: { lat: [Número Latitud], lon: [Número Longitud] }
 date: '${new Date().toISOString().split('T')[0]}'
 ---
 ### [SUBTÍTULO DE ANÁLISIS EN MAYÚSCULAS]
-[Cuerpo del reporte narrado con tono periodístico de urgencia, serio, grave y analítico. Divide la información en 3 o 4 bloques de párrafos concisos, ideales para lectura rápida. Añade variables de telemetría militar simulada si la noticia lo amerita, manteniendo el foco en el impacto al comercio marítimo, fletes o movimientos geoestratégicos].
+[Cuerpo del reporte narrado con tono periodístico de urgencia, serio, grave y analítico. Divide la información en 3 o 4 bloques de párrafos concisos, ideales para lectura rápida. Si la noticia es terrestre, enfócate en fronteras y movimientos de tropas; si es naval, en rutas y comercio; si es tecnológica o económica, en cadenas de suministro e infraestructura crítica].
 
-REGLA CRÍTICA DE COORDENADAS: Debes leer la localidad o región geopolítica de la noticia (ej. Isla de Perim, Estrecho de Bab el-Mandeb, base militar de Sharurah, Yemen, Riad) y buscar en tu base de datos geográfica interna sus coordenadas geográficas reales aproximadas en sistema decimal. Inyéctalas de forma numérica pura en el objeto 'coordinates' del Frontmatter. Si no hay una localidad exacta, usa el epicentro regional del conflicto.`;
+REGLAS DE VOCABULARIO Y CONTROL DE CALIDAD (FILTRO ANTI-ABURRIMIENTO):
+1. EVITA tecnicismos jurídicos o académicos que entorpezcan la lectura rápida en redes sociales (ej. evita "interdicción", "paso inocente", o siglas de alianzas excesivamente oscuras como "Eje CRINK"). Reemplázalos por lenguaje directo y asimilable: "bloqueos", "ataques", "paso libre de fronteras/buques", o nombra directamente a los países involucrados (como "el apoyo de Irán y Rusia").
+2. MANTÉN términos técnicos globales que aporten autoridad al informe y beneficien el SEO: "Chokepoint" (si aplica), "A2/AD" (zonas de exclusión militar), "GEOINT" (inteligencia satelital), "SIGINT" (inteligencia de radares/señales), o unidades de medida reales según el contexto (Nmi/millas náuticas, kilómetros, barriles de crudo, toneladas métricas, superpetroleros VLCC).
+3. REGLA DE GEOLOCALIZACIÓN REQUISITO CRÍTICO: Identifica el epicentro geográfico de la noticia (ya sea una base militar, una isla, una ciudad fronteriza, un estrecho o la capital del país afectado). Busca en tu base de datos geográfica interna sus coordenadas geográficas reales aproximadas en sistema decimal (latitud y longitud) e inyéctalas numéricamente en el objeto 'coordinates' del Frontmatter. Nunca dejes las coordenadas en cero ni uses texto; deben ser números puros.`;
 
     const userPrompt = `NOTICIA A PROCESAR:\n\nTítulo Original: ${scrapedData.title}\n\nTexto Completo de la Noticia:\n${scrapedData.bodyText}`;
 
