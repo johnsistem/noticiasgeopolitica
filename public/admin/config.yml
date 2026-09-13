@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "informes"
+    label: "Informes OSINT"
+    folder: "src/content/informes"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Título del Informe", name: "title", widget: "string" }
+      - { label: "Descripción / Resumen Executivo", name: "description", widget: "text" }
+      - { label: "Fecha ZULU", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Categoría Táctica", name: "category", widget: "select", options: ["ANÁLISIS MARÍTIMO", "VECTORES AÉREOS", "CIBERINTELIGENCIA", "DRONES & SATÉLITES", "ENERGÍA & LOGÍSTICA"] }
+      - { label: "Nivel DEFCON", name: "defcon", widget: "select", options: ["DEFCON 1", "DEFCON 2", "DEFCON 3", "DEFCON 4", "DEFCON 5"] }
+      - { label: "Hotspots / Sectores", name: "hotspots", widget: "list" }
+      - { label: "Imagen Destacada", name: "image", widget: "image" }
+      - { label: "Autor / Unidad", name: "author", widget: "string", default: "Comando OSINT" }
+      - { label: "Tiempo de Lectura", name: "readingTime", widget: "string", default: "8 MIN READ" }
+      - { label: "Cuerpo del Artículo (MDX)", name: "body", widget: "markdown" }

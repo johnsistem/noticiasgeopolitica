@@ -1,0 +1,26 @@
+---
+interface Props {
+  location?: string;
+  coords?: string;
+}
+
+const { location = "ESTRECHO DE BAB EL-MANDEB", coords = "12.65° N / 43.41° E" } = Astro.props;
+---
+
+<div class="my-space-md border border-outline-variant bg-surface-container-lowest rounded overflow-hidden">
+  <div class="bg-surface-container-low px-space-md py-2 flex items-center justify-between font-mono text-xs text-outline">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+      <span class="text-primary font-bold">{location}</span>
+    </div>
+    <span>COORDS: {coords}</span>
+  </div>
+  <div class="p-space-md relative flex items-center justify-center bg-surface bg-[radial-gradient(#1c2620_1px,transparent_1px)] [background-size:16px_16px] min-h-[200px]">
+    <div class="absolute inset-0 border border-primary/20 rounded-full w-48 h-48 m-auto animate-pulse"></div>
+    <div class="text-center font-mono z-10">
+      <span class="material-symbols-outlined text-primary text-4xl animate-spin">radar</span>
+      <p class="text-xs text-primary font-bold mt-2 uppercase">TELEMETRÍA SATELITAL EN TIEMPO REAL</p>
+      <p class="text-outline text-[11px]"><slot>Tránsito marítimo monitorizado por SIGINT analítico.</slot></p>
+    </div>
+  </div>
+</div>

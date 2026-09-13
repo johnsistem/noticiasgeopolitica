@@ -1,0 +1,24 @@
+---
+interface Props {
+  level?: 'CRITICAL' | 'WARNING' | 'INFO';
+  title?: string;
+}
+
+const { level = 'CRITICAL', title = 'ALERTA INTEL DE CAMPO' } = Astro.props;
+
+const colorMap = {
+  CRITICAL: 'border-tertiary bg-tertiary-container/10 text-tertiary',
+  WARNING: 'border-amber-500 bg-amber-500/10 text-amber-500',
+  INFO: 'border-primary bg-primary-container/10 text-primary'
+};
+---
+
+<div class={`my- space-md p-space-md border-l-4 rounded-r ${colorMap[level]} flex flex-col gap-space-xs font-mono`}>
+  <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-widest">
+    <span class="material-symbols-outlined text-[18px]">warning</span>
+    <span>{title} [POSTURA: {level}]</span>
+  </div>
+  <div class="text-on-surface text-sm font-sans leading-relaxed">
+    <slot />
+  </div>
+</div>

@@ -1,5 +1,8 @@
 ---
 import TopNavLayout from '../layouts/TopNavLayout.astro';
+import { getCollection } from 'astro:content';
+
+const informesCollection = await getCollection('informes');
 ---
 
 <TopNavLayout>
@@ -542,6 +545,41 @@ import TopNavLayout from '../layouts/TopNavLayout.astro';
 </div>
 <!-- 3-Column Tactical Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+{informesCollection.map((informe) => (
+  <article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all border border-primary/20">
+    <div class="relative w-full h-48 overflow-hidden">
+      <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src={informe.data.image} alt={informe.data.title} />
+      <div class="absolute top-3 left-3">
+        <span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
+          <span class="material-symbols-outlined text-[14px]">article</span>
+          <span>{informe.data.category}</span>
+        </span>
+      </div>
+      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-primary font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold">
+        {informe.data.defcon}
+      </div>
+    </div>
+    <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+      <div class="flex flex-col gap-space-xs">
+        <div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+          <span>{informe.data.author}</span>
+          <span>•</span>
+          <span>ZULU: {informe.data.date}</span>
+        </div>
+        <h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+          <a href={`/informes/${informe.slug}`}>{informe.data.title}</a>
+        </h4>
+        <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+          {informe.data.description}
+        </p>
+      </div>
+      <a href={`/informes/${informe.slug}`} class="bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm uppercase px-space-md py-2 rounded font-bold transition-all text-center">
+        LEER DOSSIER COMPLETO →
+      </a>
+    </div>
+  </article>
+))}
+
 <!-- Card 1: Báltico -->
 <article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
 <div class="relative w-full h-48 overflow-hidden">

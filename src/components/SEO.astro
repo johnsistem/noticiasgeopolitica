@@ -1,0 +1,71 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  publishedTime?: string;
+  author?: string;
+}
+
+const {
+  title = "NOTICIAS GEOPOLÍTICA | Intel & Strategic War Room Console",
+  description = "Terminal de monitoreo geoestratégico, análisis de vector bélico y telemetría de crisis internacionales basada en fuentes abiertas y SIGINT analítico.",
+  image = "/og-default.jpg",
+  article = false,
+  publishedTime,
+  author = "War Room Command"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://geopolitica-war-room.vercel.app');
+const formattedTitle = title.includes("NOTICIAS GEOPOLÍTICA") ? title : `${title} | NOTICIAS GEOPOLÍTICA`;
+
+const schema = article ? {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": title,
+  "description": description,
+  "image": [new URL(image, canonicalURL).href],
+  "datePublished": publishedTime || new Date().toISOString(),
+  "author": [{
+    "@type": "Organization",
+    "name": author
+  }],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Noticias Geopolítica",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/logo.png", canonicalURL).href
+    }
+  }
+} : {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Noticias Geopolítica",
+  "url": canonicalURL.href
+};
+---
+
+<!-- Basic Meta Tags -->
+<title>{formattedTitle}</title>
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL.href} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:url" content={canonicalURL.href} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, canonicalURL).href} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL.href} />
+<meta property="twitter:title" content={formattedTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, canonicalURL).href} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
