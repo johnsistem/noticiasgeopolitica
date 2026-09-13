@@ -48,14 +48,87 @@ const { Content } = await entry.render();
       <div class="flex items-center gap-space-md pt-space-xs font-mono text-xs text-outline">
         <span class="text-primary font-bold">ANALISTA: {entry.data.author}</span>
         <span>|</span>
-        <span>SECTORES: {entry.data.hotspots.join(', ')}</span>
+        <span>SECTORES: {(entry.data.hotspots && entry.data.hotspots.length > 0) ? entry.data.hotspots.join(', ') : (entry.data.region || 'GLOBAL')}</span>
       </div>
     </header>
 
-    <!-- Main Hero Image -->
-    {entry.data.image && (
-      <div class="mb-space-xl rounded overflow-hidden border border-surface-container-high shadow-lg">
-        <img src={entry.data.image} alt={entry.data.title} class="w-full h-[400px] object-cover" />
+    <!-- Main Hero Section: Live Leaflet Interactive Map or Hero Image -->
+    {entry.data.coordinates ? (
+      <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl bg-[#0b0e14] relative group">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <!-- Leaflet Map Container -->
+        <div id="articleMap" class="w-full h-[420px] z-10"></div>
+
+        <!-- Military Telemetry HUD Overlay -->
+        <div class="absolute top-3 left-3 right-3 flex items-center justify-between font-mono text-xs z-20 pointer-events-none">
+          <div class="bg-surface-container-lowest/90 px-3 py-1 rounded backdrop-blur-md border border-primary/30 text-primary font-bold flex items-center gap-2 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+            <span>ZOOM TÁCTICO // COORDENADAS RECTIFICADAS</span>
+          </div>
+          <div class="bg-surface-container-lowest/90 px-3 py-1 rounded backdrop-blur-md border border-secondary/40 text-secondary font-bold shadow-lg">
+            <span>LAT {entry.data.coordinates.lat}° N // LON {entry.data.coordinates.lon}° E</span>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-xs z-20 pointer-events-none">
+          <div class="bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm text-outline border border-surface-container-high">
+            <span>NIVEL AMENAZA: <strong class="text-error">{entry.data.threat_level || 'ALTA'}</strong></span>
+          </div>
+          <div class="bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm text-primary border border-surface-container-high">
+            <span>REGIÓN: {entry.data.region || 'MAR ROJO'}</span>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Initialization Script -->
+        <script is:inline define:vars={{ lat: entry.data.coordinates.lat, lon: entry.data.coordinates.lon, title: entry.data.title }}>
+          function initArticleMap() {
+            if (typeof L !== 'undefined' && document.getElementById('articleMap')) {
+              const map = L.map('articleMap', {
+                center: [lat, lon],
+                zoom: 9,
+                zoomControl: true,
+                attributionControl: false
+              });
+
+              L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 16,
+                attribution: 'Tiles &copy; Esri'
+              }).addTo(map);
+
+              const pulseIcon = L.divIcon({
+                className: 'custom-pulse-marker',
+                html: `<div class="relative flex items-center justify-center w-8 h-8">
+                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                         <span class="relative inline-flex rounded-full h-4 w-4 bg-red-600 border-2 border-white shadow-xl"></span>
+                       </div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+              });
+
+              const marker = L.marker([lat, lon], { icon: pulseIcon }).addTo(map);
+              marker.bindPopup(`<div style="color: #10b981; font-family: monospace; font-weight: bold; font-size: 13px;">${title}</div><div style="color: #9ca3af; font-family: monospace; font-size: 11px; margin-top: 4px;">Ubicación: ${lat}° N, ${lon}° E</div>`).openPopup();
+            } else {
+              setTimeout(initArticleMap, 200);
+            }
+          }
+          if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initArticleMap();
+          } else {
+            document.addEventListener('DOMContentLoaded', initArticleMap);
+          }
+        </script>
+      </div>
+    ) : (
+      <div class="mb-space-xl rounded-xl overflow-hidden border border-surface-container-high shadow-2xl bg-surface-container-lowest relative group">
+        <div class="relative w-full h-[420px] overflow-hidden">
+          <img 
+            src={entry.data.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'} 
+            alt={entry.data.title} 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+          />
+        </div>
       </div>
     )}
 
