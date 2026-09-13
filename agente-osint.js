@@ -37,11 +37,13 @@ for (const envPath of envPaths) {
 }
 
 // 1. OBTENCIÓN Y VALIDACIÓN DE ARGUMENTOS & API KEY
-const targetUrl = process.argv[2];
+const targetUrl = process.argv.find(arg => arg.startsWith('http://') || arg.startsWith('https://'));
+const isCable = process.argv.includes('--type=cable') || process.argv.includes('--cable');
 
 if (!targetUrl) {
   console.error('\n❌ [ERROR CRÍTICO]: Debes proporcionar la URL de una noticia como argumento.');
-  console.log('   Uso: node agente-osint.js https://ejemplo.com/noticia-geopolitica\n');
+  console.log('   Uso Informes: node agente-osint.js https://ejemplo.com/noticia-geopolitica');
+  console.log('   Uso Cables:   node agente-osint.js https://ejemplo.com/noticia-geopolitica --type=cable\n');
   process.exit(1);
 }
 
@@ -278,25 +280,32 @@ REGLAS DE VOCABULARIO Y CONTROL DE CALIDAD (FILTRO ANTI-ABURRIMIENTO):
     const slug = createSlug(extractedTitle);
     const coords = parseCoordinates(markdownOutput);
 
-    // Guardar en src/content/blog/ y en src/content/informes/ para máxima compatibilidad
+    // Determinar colección de destino (src/content/cables/ vs src/content/informes/)
+    const targetFolder = isCable ? 'cables' : 'informes';
+    const targetDir = path.join(process.cwd(), 'src', 'content', targetFolder);
     const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-    const informesDir = path.join(process.cwd(), 'src', 'content', 'informes');
 
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
     if (!fs.existsSync(blogDir)) {
       fs.mkdirSync(blogDir, { recursive: true });
     }
-    if (!fs.existsSync(informesDir)) {
-      fs.mkdirSync(informesDir, { recursive: true });
+
+    // Formatear la etiqueta format en el frontmatter si no existe
+    if (!markdownOutput.includes('format:')) {
+      const formatType = isCable ? 'cable' : 'dossier';
+      markdownOutput = markdownOutput.replace(/^---\s*\n/, `---\nformat: '${formatType}'\n`);
     }
 
+    const targetFilePath = path.join(targetDir, `${slug}.md`);
     const blogFilePath = path.join(blogDir, `${slug}.md`);
-    const informesFilePath = path.join(informesDir, `${slug}.md`);
 
+    fs.writeFileSync(targetFilePath, markdownOutput, 'utf-8');
     fs.writeFileSync(blogFilePath, markdownOutput, 'utf-8');
-    fs.writeFileSync(informesFilePath, markdownOutput, 'utf-8');
 
-    console.log(`\n🎯 [SISTEMA OSINT]: Informe ${slug}.md generado con éxito en las coordenadas [${coords.lat}, ${coords.lon}].`);
-    console.log(`📄 Guardado en: ${blogFilePath}`);
+    console.log(`\n🎯 [SISTEMA OSINT]: Publicación [${targetFolder.toUpperCase()}] ${slug}.md generada con éxito en las coordenadas [${coords.lat}, ${coords.lon}].`);
+    console.log(`📄 Guardado en: ${targetFilePath}`);
 
   } catch (error) {
     console.error(`\n❌ [ERROR DEL AGENTE OSINT]: ${error.message}\n`);

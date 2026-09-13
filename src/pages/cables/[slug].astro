@@ -1,0 +1,114 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import TopNavLayout from '../../layouts/TopNavLayout.astro';
+
+export async function getStaticPaths() {
+  const cables = await getCollection('cables');
+  return cables.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<'cables'>;
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<TopNavLayout 
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.image}
+  article={true}
+  publishedTime={entry.data.date}
+>
+  <div class="max-w-3xl mx-auto px-margin pt-[98px] pb-space-lg text-on-surface">
+    <!-- Flash Cable Tactical Header -->
+    <div class="bg-error-container/20 border border-error/40 p-space-md rounded-xl shadow-2xl mb-space-lg relative overflow-hidden">
+      <div class="flex items-center justify-between font-mono text-xs mb-space-xs">
+        <span class="bg-error text-on-error font-bold px-2 py-0.5 rounded uppercase tracking-wider animate-pulse flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">bolt</span>
+          CABLE RELÁMPAGO // {entry.data.urgency || 'FLASH'}
+        </span>
+        <span class="text-error font-bold">{entry.data.date} ZULU</span>
+      </div>
+
+      <h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight leading-snug mt-2">
+        {entry.data.title}
+      </h1>
+
+      <p class="font-body-md text-body-md text-on-surface-variant mt-2 font-medium">
+        {entry.data.description}
+      </p>
+
+      {entry.data.coordinates && (
+        <div class="mt-space-md pt-space-xs border-t border-error/20 flex items-center justify-between font-mono text-xs text-outline">
+          <span class="text-secondary font-bold">POSICIÓN: LAT {entry.data.coordinates.lat}° // LON {entry.data.coordinates.lon}°</span>
+          <span class="text-primary font-bold">{entry.data.region}</span>
+        </div>
+      )}
+    </div>
+
+    <!-- Live Map Telemetry (Compact Flash Version) -->
+    {entry.data.coordinates && (
+      <div class="mb-space-lg rounded-xl overflow-hidden border border-primary/30 shadow-xl bg-[#0b0e14] relative">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <div id="cableMap" class="w-full h-[280px]"></div>
+
+        <script is:inline define:vars={{ lat: entry.data.coordinates.lat, lon: entry.data.coordinates.lon, title: entry.data.title }}>
+          function initCableMap() {
+            if (typeof L !== 'undefined' && document.getElementById('cableMap')) {
+              const map = L.map('cableMap', {
+                center: [lat, lon],
+                zoom: 10,
+                zoomControl: false,
+                attributionControl: false
+              });
+
+              L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 16
+              }).addTo(map);
+
+              const pulseIcon = L.divIcon({
+                className: 'custom-pulse-marker',
+                html: `<div class="relative flex items-center justify-center w-8 h-8">
+                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                         <span class="relative inline-flex rounded-full h-4 w-4 bg-error border-2 border-white shadow-xl"></span>
+                       </div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+              });
+
+              L.marker([lat, lon], { icon: pulseIcon }).addTo(map);
+            } else {
+              setTimeout(initCableMap, 200);
+            }
+          }
+          if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initCableMap();
+          } else {
+            document.addEventListener('DOMContentLoaded', initCableMap);
+          }
+        </script>
+      </div>
+    )}
+
+    <!-- Fast-Reading Content Body -->
+    <div class="bg-surface-container-low p-space-lg rounded-xl shadow-lg font-body-md text-on-surface leading-relaxed space-y-space-md border border-surface-container-high">
+      <Content />
+    </div>
+
+    <!-- Quick Actions Footer -->
+    <footer class="mt-space-lg flex items-center justify-between">
+      <a href="/informes" class="font-label-md text-label-md uppercase bg-surface-container hover:bg-surface-container-high text-primary px-4 py-2 rounded font-bold transition-colors flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        VOLVER A LA CENTRAL OSINT
+      </a>
+    </footer>
+  </div>
+</TopNavLayout>
