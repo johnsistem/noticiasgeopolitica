@@ -14,7 +14,7 @@ import '../styles/global.css';
 </head>
 <body class="bg-background font-body-md text-body-md text-on-surface min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
   
-  <aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
+  <aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 hidden lg:flex flex-col justify-between shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
     <div class="flex flex-col">
       <div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
         <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
@@ -64,9 +64,12 @@ import '../styles/global.css';
     </div>
   </aside>
 
-  <div class="pl-72">
-    <header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
-      <div class="flex items-center gap-space-md">
+  <div class="pl-0 lg:pl-72">
+    <header class="fixed top-0 left-0 lg:left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-md lg:px-space-lg shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+      <div class="flex items-center gap-space-sm md:gap-space-md">
+        <button class="lg:hidden text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
         <div class="flex items-center gap-space-xs font-label-sm text-label-sm">
           <span class="material-symbols-outlined text-primary text-[18px]">wifi_tethering</span>
           <span class="text-on-surface-variant">FEED SITREP:</span>
@@ -80,9 +83,9 @@ import '../styles/global.css';
       <div class="flex items-center gap-space-md">
         <div class="flex items-center bg-surface-container px-space-sm py-1 rounded">
           <span class="material-symbols-outlined text-outline text-[16px] mr-2">search</span>
-          <input class="bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-44" placeholder="RASTREAR DISPATCH..." type="text" />
+          <input class="hidden sm:block bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-44" placeholder="RASTREAR DISPATCH..." type="text" />
         </div>
-        <a class="font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-1.5 font-bold rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:bg-primary-fixed" href="#">DESPACHO CLASIFICADO</a>
+        <a class="hidden sm:inline-flex font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-1.5 font-bold rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:bg-primary-fixed" href="#">DESPACHO CLASIFICADO</a>
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </div>

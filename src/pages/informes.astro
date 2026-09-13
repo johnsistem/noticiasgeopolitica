@@ -3,20 +3,736 @@ import TopNavLayout from '../layouts/TopNavLayout.astro';
 ---
 
 <TopNavLayout>
-  <div class="flex flex-col w-full">
-    <section class="w-full bg-surface-container-lowest px-gutter py-space-xl">
-      <div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
-          <div class="max-w-3xl flex flex-col gap-space-xs">
-            <div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider">
-              <span class="material-symbols-outlined text-[18px]">terminal</span>
-              <span>CENTRAL DE INTELIGENCIA DE FUENTES ABIERTAS</span>
+<div class="flex flex-col w-full">
+<!-- SECTION: SUB-HEADER / TAXONOMY & SEO CONTROL DECK -->
+<section class="w-full bg-surface-container-lowest px-gutter py-space-xl">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<!-- Operational Telemetry Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase bg-primary-container text-on-primary-container px-2 py-0.5 font-bold">OSINT REPO ACTIVE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">INDEXADOR SEMÁNTICO V4.2 // MULTI-PLATFORM SYNC</span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> YT FEED: LIVE SYNC</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> META API: VERIFIED</span>
+<span class="text-outline">REG: SHA-256 SECURED</span>
+</div>
+</div>
+<!-- Main Section Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="max-w-3xl flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>CENTRAL DE INTELIGENCIA DE FUENTES ABIERTAS</span>
+</div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface uppercase tracking-tight">INFORMES DE INTELIGENCIA &amp; ANÁLISIS ESTRATÉGICO</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Dossiers desclasificados, investigaciones OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas con IA para indexación global y análisis predictivo.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md uppercase px-4 py-2.5 rounded transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">rss_feed</span>
+<span>WIRE OSINT RSS</span>
+</button>
+<button class="bg-primary text-on-primary hover:bg-primary-fixed font-label-md text-label-md uppercase font-bold px-5 py-2.5 rounded transition-all shadow-[0_0_16px_rgba(16,185,129,0.3)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>DESCARGAS CLASIFICADAS</span>
+</button>
+</div>
+</div>
+<!-- Tactical Tabs / Category Filters -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-sm overflow-x-auto">
+<button class="bg-primary text-on-primary font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 font-bold shadow-sm">
+<span>Oriente Medio</span>
+<span class="bg-on-primary text-primary text-[10px] px-1.5 py-0.2 rounded font-label-sm">48</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
+<span>Asia-Pacífico</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">34</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
+<span>Reservas Militares &amp; Balística</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">29</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
+<span>Occidente vs. Oriente (Geoeconomía)</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">52</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
+<span>Ciberguerra &amp; Espacio</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">17</span>
+</button>
+</div>
+<!-- Advanced Filter & Search Console -->
+<div class="bg-surface-container p-space-md rounded-lg shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="Filtrar por vector, tecnología balística, coordenadas o entidad..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase mr-2">PERIODO:</span>
+<select class="bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none cursor-pointer">
+<option class="bg-surface-container-lowest">Últimas 72 Horas</option>
+<option class="bg-surface-container-lowest">Último Mes (30D)</option>
+<option class="bg-surface-container-lowest">Trimestre Q3-Q4</option>
+<option class="bg-surface-container-lowest">Archivo Histórico 2024</option>
+</select>
+</div>
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase mr-2">NIVEL INTEL:</span>
+<select class="bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none cursor-pointer">
+<option class="bg-surface-container-lowest">Todos los Niveles</option>
+<option class="bg-surface-container-lowest">Nivel 1: Flash Sitrep</option>
+<option class="bg-surface-container-lowest">Nivel 2: In-Depth OSINT</option>
+<option class="bg-surface-container-lowest">Nivel 3: GEOINT Dossier</option>
+</select>
+</div>
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded">
+<span class="font-label-sm text-label-sm text-outline uppercase mr-2">FORMATO:</span>
+<select class="bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none cursor-pointer">
+<option class="bg-surface-container-lowest">Todos (Video, Audio, Texto)</option>
+<option class="bg-surface-container-lowest">Video + Transcripción IA</option>
+<option class="bg-surface-container-lowest">Solo Texto Técnico</option>
+<option class="bg-surface-container-lowest">Audio Broadcast / Podcast</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: FEATURED IN-STREAM DOSSIER (VIDEO + AI TRANSCRIPTION CASE STUDY) -->
+<section class="w-full bg-background px-gutter py-space-xl">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Breadcrumb & Incident Metadata Header -->
+<div class="flex flex-col gap-space-sm">
+<nav class="flex items-center gap-2 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Inicio</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Informes</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Oriente Medio</a>
+<span>/</span>
+<span class="text-primary font-bold">Informe SITREP-2024-09</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="max-w-4xl flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-0.5 rounded font-bold uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                CHOKEPOINT CRÍTICO
+              </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">GEOINT VECTOR ID: 12.65°N, 43.41°E</span>
+<span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-2 py-0.5 rounded font-bold">ALERTA NAVAL NIVEL 4</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight mt-1 leading-tight">
+              Análisis Exhaustivo: ¿Por qué la Isla de Perim define el futuro del comercio entre Asia y Europa?
+            </h2>
+</div>
+<!-- Quick Metrics Bar -->
+<div class="flex flex-wrap items-center gap-space-md bg-surface-container-low px-space-md py-2.5 rounded shrink-0">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">PUBLICADO ZULU</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">24-OCT-2024 11:20Z</span>
+</div>
+<div class="w-px h-8 bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">TIEMPO LECTURA</span>
+<span class="font-label-md text-label-md text-primary font-bold">18 MIN // AUDIO 24:15</span>
+</div>
+<div class="w-px h-8 bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">CLASIFICACIÓN</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">OSINT PUBLIC / UNCLAS</span>
+</div>
+</div>
+</div>
+<!-- Author / Credentials Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container p-space-sm rounded">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center text-primary font-label-md font-bold">
+              OS
             </div>
-            <h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">INFORMES DE INTELIGENCIA & ANÁLISIS ESTRATÉGICO</h1>
-            <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Dossiers desclasificados, investigaciones OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas con IA para indexación global y análisis predictivo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-none">Comandante (R) Marc Segarra &amp; Equipo OSINT-Echo</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Ex-Analista SIGINT OTAN // Director Técnico de Dossiers en Noticias Geopolítica</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface text-label-sm font-label-sm uppercase px-3 py-1.5 rounded transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>VERIFICADO POR SAT-DATA</span>
+</button>
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface text-label-sm font-label-sm uppercase px-3 py-1.5 rounded transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>COMPARTIR</span>
+</button>
+</div>
+</div>
+</div>
+<!-- TACTICAL IN-STREAM VIDEO PLAYER -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-2xl flex flex-col gap-space-md">
+<!-- Player Container (16:9 Aspect Ratio with Military Telemetry UI) -->
+<div class="relative w-full aspect-video bg-surface-container-lowest rounded-lg overflow-hidden flex items-center justify-center group shadow-xl">
+<!-- Video Thumbnail Image -->
+<img class="w-full h-full object-cover opacity-75 group-hover:opacity-60 transition-opacity" data-alt="Satellite imagery and military tactical view of the Perim Island in the Bab-el-Mandeb strait with radar circles, naval routes, vector lines in neon green and amber, cinematic dark defense atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU226KW9QAyadU70orWKCvzvNOMdBj0Z8z1GGVrPo5v1UiHCoAZLS3neZG25Zaf79woYJkkCfToIzNHdk8z3A6yIHsPH0NGWrWXdSMpWkV0912TrdirlIvCkTo-AA6bzdmLFSbF-xgIUPUUHxOgz1gnDW6I36Q_wij3yaHc5DNMQ10epeZMhGFJIofp1N7bb5BbGlTkYp5Gy5HewXbYEOGUs-LCcu-I4G7R0AlWr_eBRR_7y8CSLMxQQ"/>
+<!-- Tactical HUD Reticle & Crosshair Overlays -->
+<div class="absolute inset-0 pointer-events-none p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-primary font-label-sm text-label-sm">
+<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span>REC // STREAM SYNC: BAB-EL-MANDEB SECTOR 4</span>
+</div>
+<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm">
+<span>GEO-LOC: 12°39'24"N 43°24'54"E</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
+<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm">
+<span>FPS: 60.00 // BITRATE: 14.8 MBPS // H.265</span>
+</div>
+<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm text-primary">
+<span>OPTICAL SENSOR: FLIR-SAT MK IX</span>
+</div>
+</div>
+</div>
+<!-- Play Button (Big Tactical Trigger) -->
+<button class="absolute z-10 w-20 h-20 rounded-full bg-primary/90 text-on-primary hover:bg-primary-fixed flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-transform hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-[42px] ml-1">play_arrow</span>
+</button>
+<!-- Bottom Control Bar (In-Stream Simulation) -->
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent p-space-md flex flex-col gap-2 z-20">
+<!-- Timeline / Chapters -->
+<div class="relative w-full h-2 bg-surface-container-highest rounded-full cursor-pointer overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[38%]"></div>
+<!-- Chapter markers -->
+<div class="absolute top-0 bottom-0 left-[18%] w-0.5 bg-on-surface/60" title="04:30 Imágenes Satélite"></div>
+<div class="absolute top-0 bottom-0 left-[46%] w-0.5 bg-on-surface/60" title="11:15 Capacidades Antibuque"></div>
+<div class="absolute top-0 bottom-0 left-[77%] w-0.5 bg-on-surface/60" title="18:40 Impacto Brent"></div>
+</div>
+<!-- Controls row -->
+<div class="flex items-center justify-between text-on-surface font-label-md text-label-md">
+<div class="flex items-center gap-space-md">
+<button class="hover:text-primary transition-colors flex items-center">
+<span class="material-symbols-outlined text-[24px]">play_arrow</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">09:12 / 24:15</span>
+</div>
+<!-- Chapter current title -->
+<div class="hidden md:flex items-center gap-2 font-label-sm text-label-sm bg-surface-container-low/90 px-3 py-1 rounded">
+<span class="text-tertiary font-bold">CAPÍTULO 2:</span>
+<span class="text-on-surface">Imágenes de satélite de la pista de aterrizaje construida en Perim</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-primary text-[10px] font-bold">1080p 60HD</span>
+<button class="hover:text-primary font-label-sm text-label-sm px-1.5 py-0.5 rounded hover:bg-surface-container-high">1.25x</button>
+<button class="hover:text-primary font-label-sm text-label-sm px-1.5 py-0.5 rounded hover:bg-surface-container-high">1.5x</button>
+<button class="hover:text-primary transition-colors flex items-center ml-2">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Channel Social Sync / Conversion Actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline">ORIGEN DEL TRANSMISOR:</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CANAL OFICIAL NOTICIAS GEOPOLÍTICA</span>
+</div>
+<span class="text-outline">|</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">142K VISUALIZACIONES MULTIPLATAFORMA</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- YouTube CTA -->
+<a class="bg-error hover:bg-error-container text-on-error hover:text-on-error-container font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">smart_display</span>
+<span>SUSCRIBIRSE EN YOUTUBE</span>
+</a>
+<!-- Facebook Watch CTA -->
+<a class="bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px]">thumb_up</span>
+<span>SEGUIR EN FACEBOOK</span>
+</a>
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-3 py-2 rounded flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-tertiary">bookmark</span>
+<span>GUARDAR DOSSIER</span>
+</button>
+</div>
+</div>
+<!-- Interactive Chapter Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold">00:00</span>
+<span class="font-label-sm text-label-sm text-outline">PARTE I</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Introducción al Estrecho de Bab el-Mandeb</p>
+<span class="font-label-sm text-label-sm text-outline">Geografía y vulnerabilidad de pasos</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded cursor-pointer flex flex-col gap-1 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary font-bold">04:30</span>
+<span class="font-label-sm text-label-sm text-tertiary uppercase">EN REPRODUCCIÓN</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Imágenes de satélite de la nueva base</p>
+<span class="font-label-sm text-label-sm text-outline">Pista de 1.800m y hangares protegidos</span>
+</div>
+<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold">11:15</span>
+<span class="font-label-sm text-label-sm text-outline">PARTE III</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Capacidades antibuque de los arsenales</p>
+<span class="font-label-sm text-label-sm text-outline">Misiles Noor, Al-Mandab y drones UAV</span>
+</div>
+<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-bold">18:40</span>
+<span class="font-label-sm text-label-sm text-outline">PARTE IV</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">El impacto en el precio del barril Brent</p>
+<span class="font-label-sm text-label-sm text-outline">Desvío por Cabo de Buena Esperanza</span>
+</div>
+</div>
+</div>
+<!-- SECTION 3: AI EXTENDED TRANSCRIPTION & SEO INDEXING ENGINE -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-lg shadow-xl flex flex-col gap-space-lg">
+<!-- AI Banner & SEO Badge -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase">Transcripción Extendida Generada por IA Táctica</span>
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">SEO INDEXED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Transcripción completa procesada mediante modelos de lenguaje táctico con marcas temporales para consulta rápida, citas académicas y optimización de indexación orgánica en motores de búsqueda.
+              </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary">content_copy</span>
+<span>COPIAR TRANSCRIPCIÓN</span>
+</button>
+<button class="bg-primary text-on-primary hover:bg-primary-fixed font-label-sm text-label-sm uppercase px-4 py-2 rounded font-bold flex items-center gap-2 transition-all shadow-md">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span>DESCARGAR INFORME EN PDF</span>
+</button>
+</div>
+</div>
+<!-- Layout: 2 Columns (Main Transcription Accordion / Stream + Tactical Glossary Side Rail) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Transcription Feed (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- In-Transcript Keyword Filter -->
+<div class="flex items-center justify-between bg-surface-container-lowest px-space-md py-2.5 rounded shadow-inner">
+<div class="flex items-center gap-2 flex-1">
+<span class="material-symbols-outlined text-outline text-[18px]">find_in_page</span>
+<input class="w-full bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none placeholder:text-outline" placeholder="Buscar entidades en el texto (ej: Bab-el-Mandeb, Maersk, A2/AD, Harpoon)..." type="text"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline shrink-0 ml-2">4 COINCIDENCIAS</span>
+</div>
+<!-- Block 1: 00:00 - 04:29 -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+<span>00:00 - 04:30</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface font-bold">1. La encrucijada del Mar Rojo y la geografía de estrangulamiento</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">CONFIANZA IA: 99.4%</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex flex-col gap-2">
+<p>
+                  El estrecho de <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Bab el-Mandeb</strong>, con apenas 29 kilómetros de ancho en su punto más angosto, constituye uno de los <strong class="text-primary font-bold">puntos de estrangulamiento (chokepoints)</strong> más vulnerables de la geoeconomía global. En su epicentro se sitúa la <strong class="text-on-surface font-bold">Isla de Perim</strong> (también conocida como Mayyun), una masa volcánica de 13 kilómetros cuadrados que divide el estrecho en dos canales navegables: el Canal Pequeño (Bab Iskender) al este, y el Canal Grande (Dact-el-Mayyun) al oeste.
+                </p>
+<p>
+                  A través de este corredor transita anualmente más del <span class="text-primary font-bold">12% del comercio marítimo mundial</span> y cerca de 6 millones de barriles diarios de crudo y derivados del petróleo. Cuando navieras como <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Maersk</strong> y <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Hapag-Lloyd</strong> notificaron la suspensión preventiva de rutas por el estrecho, el tonelaje diario cayó un 67% en comparación con la media histórica monitorizada bajo el tratado internacional <strong class="text-on-surface font-bold">UNCLOS (Convención de las Naciones Unidas sobre el Derecho del Mar)</strong>.
+                </p>
+</div>
+</div>
+<!-- Block 2: 04:30 - 11:14 -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+<span>04:30 - 11:15</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface font-bold">2. Desglose satelital: Pista aérea y fortificación militar en Perim</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">CAPÍTULO SELECCIONADO</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex flex-col gap-2">
+<p>
+                  El análisis de imágenes de satélite de resolución submétrica (GEOINT) captadas en las coordenadas <strong class="text-primary font-bold">12.6534° N, 43.4158° E</strong> revela la consolidación de una pista de aterrizaje de aproximadamente 1.850 metros de longitud. Esta infraestructura, inicialmente paralizada en 2016 y reactivada mediante movimientos de tierras a gran escala, permite el despliegue no sólo de aviones de transporte táctico C-130 Hércules, sino de plataformas de vigilancia no tripuladas (UAVs) MALE de patrulla marítima constante.
+                </p>
+<p>
+                  La colocación de sensores electroópticos de largo alcance y radares de descubierta de superficie proporciona una burbuja de conocimiento de la situación marítima (<strong class="text-on-surface font-bold">Maritime Domain Awareness</strong>) ininterrumpida, permitiendo rastrear las emisiones de los transpondedores <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">AIS (Automatic Identification System)</strong> de buques mercantes y detectar embarcaciones furtivas en un radio superior a las 80 millas náuticas.
+                </p>
+</div>
+</div>
+<!-- Block 3: 11:15 - 18:39 -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+<span>11:15 - 18:40</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface font-bold">3. Doctrina A2/AD y vectores antibuque en el teatro costero</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">CONFIANZA IA: 98.9%</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex flex-col gap-2">
+<p>
+                  El emplazamiento de baterías costeras dotadas de vectores antibuque derivados del modelo C-801/C-802 (como el misil <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Al-Mandab 1</strong> y el supersónico <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Noor</strong>) modifica radicalmente el cálculo táctico. Bajo una doctrina de <strong class="text-tertiary font-bold">Anti-Access/Area Denial (A2/AD)</strong>, una fuerza que controle la elevación orográfica de la isla puede paralizar el tráfico de petroleros clase <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">VLCC (Very Large Crude Carrier)</strong> con un gasto logístico ínfimo en comparación con el despliegue de escoltas navales tipo Aegis de destructores Arleigh Burke de la US Navy.
+                </p>
+</div>
+</div>
+<!-- Block 4: 18:40 - 24:15 -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+<span>18:40 - 24:15</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface font-bold">4. Proyecciones geoeconómicas: Fletes y el shock en el Brent</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">CONFIANZA IA: 99.1%</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex flex-col gap-2">
+<p>
+                  La alteración forzada hacia la ruta del Cabo de Buena Esperanza añade entre 10 y 14 días adicionales de navegación por trayecto Rotterdam-Singapur, incrementando el consumo de combustible búnker en más de 400 toneladas por rotación y disparando las tarifas de flete de contenedores (SCFI) de 1.200 a más de 3.800 USD por TEU. Este vector logístico proyecta una prima de riesgo estructural en el barril <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Brent</strong> de entre 4 y 7 dólares, retroalimentando la presión inflacionaria europea.
+                </p>
+</div>
+</div>
+<!-- End of Transcript / SEO Metadata Footnote -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>METADATOS SCHEMA.ORG / TECHARTICLE INDEXADOS POR GOOGLE CRAWLER</span>
+</div>
+<div class="flex items-center gap-2">
+<span>HASH DOCUMENTO: 8F2A-E41B-9021</span>
+</div>
+</div>
+</div>
+<!-- Tactical Glossary Side Rail (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">Glosario Táctico</span>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold">5 TÉRMINOS CLAVE</span>
+</div>
+<div class="flex flex-col gap-space-sm divide-y-0">
+<!-- Term 1 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">OSINT</span>
+<span class="font-label-sm text-label-sm text-outline">DISCIPLINA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<em>Open Source Intelligence</em>. Inteligencia obtenida a través de la recopilación y análisis sistemático de datos públicos (satélites comerciales, registros marítimos, fuentes locales).
+                  </p>
+</div>
+<!-- Term 2 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">Chokepoint</span>
+<span class="font-label-sm text-label-sm text-outline">ESTRATEGIA NAVAL</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Estrecho geográfico obligatorio para el comercio o el despliegue militar con alta vulnerabilidad a bloqueos o interdicción hostil.
+                  </p>
+</div>
+<!-- Term 3 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">A2/AD</span>
+<span class="font-label-sm text-label-sm text-outline">DOCTRINA BÉLICA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<em>Anti-Access / Area Denial</em>. Despliegue de capacidades (misiles, minas, radares) para impedir que una potencia adversaria entre o maniobre libremente en un teatro de operaciones.
+                  </p>
+</div>
+<!-- Term 4 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">AIS Transponder</span>
+<span class="font-label-sm text-label-sm text-outline">TELEMETRÍA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<em>Automatic Identification System</em>. Sistema de radiocomunicación en VHF para seguimiento marítimo en tiempo real. Su apagado suele indicar maniobras de evasión o zonas de peligro bélico.
+                  </p>
+</div>
+<!-- Term 5 -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">Buques VLCC</span>
+<span class="font-label-sm text-label-sm text-outline">LOGÍSTICA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<em>Very Large Crude Carrier</em>. Superpetroleros con capacidad de carga entre 200.000 y 320.000 toneladas de peso muerto indispensables para la seguridad energética global.
+                  </p>
+</div>
+</div>
+<!-- Media Dossier Download Box -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col gap-space-sm mt-space-xs">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">folder_zip</span>
+<span class="font-label-md text-label-md uppercase font-bold">KIT DE PRENSA Y DOSSIER OSINT</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+                  Descargue el archivo de imágenes satelitales en alta resolución (TIFF), shapes GIS de Perim y el dataset de tráfico AIS anonimizado.
+                </p>
+<button class="w-full bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md uppercase py-2.5 rounded font-bold transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>DESCARGAR PAQUETE COMPLETO (68 MB)</span>
+</button>
+</div>
+</div>
+<!-- Satellite Sensor Card -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase">TELEMETRÍA ORBITAL ASOCIADA</span>
+<div class="w-full h-40 rounded overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Satellite thermal heat map of the Bab-el-Mandeb strait showing vessel density tracks and military patrol ships in high-contrast cyan and emerald tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-U2c79ePuYTcLyoY9ZxWFriW0wxXpaRf6y8KpSTTMAc2018iosIzcH0cmuK9bOIsRZaephOwBx1R2SVEMZ-XuzD9wGNsDJolZbyGUybTDCp5eI3ajvHgrU9Sy4wU7dzFlJ2beLWXrWAkUeSLHj2YM586zwruhFl9whAw938CQlNKsI5nC0aJ5C6p3Ya0phJxNrJAAP950Sm6K8Hk_wiIgpq6aO4JfOycgep2HOmCZ_hZ8ckkdw9h50Q"/>
+<div class="absolute bottom-2 left-2 bg-surface-container-lowest/80 px-2 py-0.5 rounded font-label-sm text-label-sm text-primary backdrop-blur-sm">
+                  ORBIT: SENTINEL-2 / PASS 412
+                </div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>RESOLUCIÓN: 0.5M/PX</span>
+<span class="text-primary">ACTUALIZACIÓN: 4H AGO</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: RELATED INTEL DISPATCHES (3-COLUMN RECYCLE GRID) -->
+<section class="w-full bg-surface-container-lowest px-gutter py-space-xl">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">dynamic_feed</span>
+<span>INFORMES CORRELACIONADOS &amp; TRANSMISIONES RECIENTES</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">DOSSIERS TÁCTICOS RECOMENDADOS</h3>
+</div>
+<a class="text-primary hover:text-primary-fixed font-label-md text-label-md uppercase font-bold flex items-center gap-1 transition-colors" href="#">
+<span>EXPLORAR REPOSITORIO COMPLETO</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- 3-Column Tactical Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1: Báltico -->
+<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
+<div class="relative w-full h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Tactical electronic warfare map over the Baltic Sea with radio wave jamming graphics, radar circles over Gotland and Kaliningrad, digital cockpit telemetry aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK81QIpe108gg69csvNIlCD0_ErzKOfdkBTKOqbbniMzZBAo9M3qaxCJowJiU4aR0Pmerr8Gf7YhvAfwJAws79OAlU8CTaWBKiNjHphWTkzOeMrW1NobGBT3XUlqGVz86jhtmWWaOELrCxEX45Nxo1MbLid7uaC9YEVv9PZOON-OKN1rLuGWFfjL8yHB9XNV3sPxgnMYkY4JVg83yauZ08aF2yfJLul_0-az-APwQApNLRAliPb-z3Tw"/>
+<div class="absolute top-3 left-3">
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">videocam</span>
+<span>VIDEO + TRANSCRIPCIÓN</span>
+</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
+              DURACIÓN: 19:40 MIN
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span>EUROPA ORIENTAL</span>
+<span>•</span>
+<span>ZULU: 22-OCT-2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                Guerra Electrónica en el Báltico: Interferencia GPS sistemática sobre la aviación civil
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
+                Monitoreo de señales EW desde el exclave de Kaliningrado y su correlación con la pérdida de señal ADS-B en más de 1.400 vuelos comerciales en el corredor báltico.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
+<span>48K VIEWS (YT/FB)</span>
+</div>
+<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
+<span>VER INFORME</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 2: Drones Shahed -->
+<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
+<div class="relative w-full h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Technical schematic breakdown of Shahed-136 delta-wing drones with blueprint wireframes, radar intercept crosshairs, military cost analysis graphics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdfkvRSFiudwMo8IwlAmZMn8NzgkqHrzwX0q8FDy_WomuBbL5iV7x3IPNah1KTlrO2c5yixl5fWW0E-COOv09TR34j7SLNczMtJiiLicY8REi20YoTkMfm5eRR3DChGea4IFxtCVywCgchARiFopFdP47j1RrbXo1raF9v17rl7YKCMdOH0EIMp_80AKbcy4Ia14AwkdQMAUwwS7g7eZLU04l__mcwNwU0vgNsdUfAzVu1DOLB9L1DA"/>
+<div class="absolute top-3 left-3">
+<span class="bg-tertiary-container text-on-tertiary font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">description</span>
+<span>DOSSIER TÉCNICO</span>
+</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
+              LECTURA: 14 MIN
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span>BALÍSTICA &amp; DRONES</span>
+<span>•</span>
+<span>ZULU: 20-OCT-2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                Arsenales de Drones Shahed vs Enjambres Marítimos: Comparativa de costes por derribo
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
+                La asimetría económica de interceptores aire-aire de 1.2 millones USD frente a municiones merodeadoras de 20.000 USD y la viabilidad de los cañones láser DEW.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">science</span>
+<span>TABLAS BALÍSTICAS</span>
+</div>
+<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
+<span>VER DOSSIER</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 3: Estrecho de Malaca -->
+<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
+<div class="relative w-full h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Nautical naval map of the Malacca Strait with high density ship tracking routes in bright neon green, Singapore harbor radar overlay and Chinese energy supply lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy8eNLre3yoU0P0DGHVHnqSHirgd3ZxNKFh1YzZTaizIFXCUWT0jBYqFgeLoefBENnKyAfQiWfP4kC7ZP_F8B2bSZ0S0guka1pONaI59d7DoBS1xgRElApgLGtbnCY1Kwel98ksg6-83KQzBjSAV9MYh-yrOg_ZRs8klag_fCES5K4ABXhM257vFvlKIFmSU6QFZTAuL7Y2aEbUErm87Nra-vOkmOPg7YUM-7Tm3vpEDS0w8Gb_u9jtg"/>
+<div class="absolute top-3 left-3">
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">videocam</span>
+<span>VIDEO + TRANSCRIPCIÓN</span>
+</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
+              DURACIÓN: 31:10 MIN
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span>INDO-PACÍFICO</span>
+<span>•</span>
+<span>ZULU: 18-OCT-2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                El Estrecho de Malaca y el Dilema Chino: ¿Puede cerrarse la arteria de 100.000 buques?
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
+                Simulación estratégica de un bloqueo naval conjunto en las puertas de Singapur y el impacto directo en el suministro de petróleo del golfo hacia las refinerías de Guangdong.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">play_circle</span>
+<span>92K VIEWS (YT/FB)</span>
+</div>
+<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
+<span>VER INFORME</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- SECTION 5: LEAD MAGNET / OPERATIONAL SUBSCRIBER WAR-ROOM ACCESS -->
+<section class="w-full bg-background px-gutter py-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="relative bg-surface-container-low rounded-2xl p-space-xl overflow-hidden shadow-2xl">
+<!-- Ambient tactical background elements -->
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -bottom-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Text and Proposition (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold">DESPACHO CONFIDENCIAL SEMANAL</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
+              RECIBE LOS INFORMES OSINT ANTES DE SU PUBLICACIÓN EN REDES SOCIALES
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+              Únase a más de 28.000 oficiales de inteligencia, analistas de riesgo geopolítico y corresponsales internacionales. Cada lunes a las 06:00Z recibirá el dossier completo con modelos predictivos, transcripciones íntegras y datasets GIS.
+            </p>
+<div class="flex flex-wrap items-center gap-space-lg text-on-surface font-label-sm text-label-sm pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>SIN SPAM NI CLICKBAIT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
+<span>CANAL TELEGRAM CIFRADO DISPONIBLE</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">file_download</span>
+<span>DESCARGAS PDF INCLUIDAS</span>
+</div>
+</div>
+</div>
+<!-- Subscription Action Box (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container p-space-lg rounded-xl shadow-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase text-on-surface font-bold">ALTA DE ANALISTA // ACCESO LIBRE</span>
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">TIER 1 OPEN</span>
+</div>
+<form class="flex flex-col gap-space-sm" method="POST">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline uppercase">Correo Electrónico Institucional o Personal:</label>
+<input name="email" class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="analista@instituto-defensa.org" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline uppercase">Área de Interés Principal:</label>
+<select class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none cursor-pointer shadow-inner">
+<option>Oriente Medio &amp; Seguridad Energética</option>
+<option>Indo-Pacífico &amp; Disuasión Taiwán</option>
+<option>Europa Oriental &amp; Doctrina Báltica</option>
+<option>Guerra de Drones &amp; Balística Hipersónica</option>
+<option>Todos los Teatros (Dossier Global)</option>
+</select>
+</div>
+<button class="w-full bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md uppercase font-bold py-3 rounded mt-2 transition-all shadow-[0_0_16px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>SUSCRIBIRME AL INFORME ESTRATÉGICO</span>
+</button>
+</form>
+<p class="font-label-sm text-label-sm text-outline text-center">
+              Protocolo de privacidad conforme al RGPD militar. Cero cesión de datos a redes publicitarias.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
 </TopNavLayout>

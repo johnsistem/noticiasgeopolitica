@@ -1,48 +1,568 @@
 ---
-import TopNavLayout from '../layouts/TopNavLayout.astro';
+import SidebarLayout from '../layouts/SidebarLayout.astro';
 ---
 
-<TopNavLayout>
-  <div class="flex flex-col w-full">
-    <!-- SECTION 1: HERO & WAR ROOM HUD CONSOLE -->
-    <section class="relative w-full bg-surface-container-lowest px-margin py-space-xl overflow-hidden">
-      <!-- Optical Grid Scanline & Coordinate Reticle Ambient Background -->
-      <div class="absolute inset-0 pointer-events-none opacity-20">
-        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern height="48" id="tactical-grid" patternunits="userSpaceOnUse" width="48">
-              <path class="text-outline-variant" d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="0.75"></path>
-              <circle class="text-primary" cx="24" cy="24" fill="currentColor" r="1"></circle>
-            </pattern>
-          </defs>
-          <rect fill="url(#tactical-grid)" height="100%" width="100%"></rect>
-        </svg>
-      </div>
-      <div class="absolute top-1/4 right-1/10 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="relative max-w-7xl mx-auto flex flex-col gap-space-lg">
-        <!-- Terminal Header Line & Badges -->
-        <div class="flex flex-wrap items-center justify-between gap-space-sm">
-          <div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            <span class="font-label-sm text-label-sm uppercase text-primary font-bold">LIVE INTEL FEED</span>
-          </div>
-        </div>
-        
-        <!-- Main Tactical Title & Subtitle -->
-        <div class="flex flex-col gap-space-sm max-w-4xl">
-          <h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
-            EL TABLERO GLOBAL <span class="text-primary underline decoration-primary-container decoration-4 underline-offset-8">EN TIEMPO REAL</span>
+<SidebarLayout>
+<div class="flex flex-col w-full">
+<!-- Top Telemetry Micro-Bar -->
+<div class="flex items-center justify-between py-space-xs mb-space-sm font-label-sm text-label-sm text-outline">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+        GEO-FEED SYNC: ONLINE
+      </span>
+<span class="text-outline-variant">/</span>
+<span>RECON SAT: SENTINEL-2B OSINT</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface-variant">GRID RES: 0.5M/PX</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="text-secondary font-mono">LAT 12.6534° N // LON 43.4182° E</span>
+<span class="bg-surface-container px-2 py-0.5 rounded text-tertiary">DATUM WGS-84</span>
+</div>
+</div>
+<!-- 1. ENCABEZADO DE SECCIÓN GEOESPACIAL -->
+<section class="mb-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-lg shadow-xl relative overflow-hidden">
+<!-- Reticle Ambient Decoration -->
+<div class="absolute -right-8 -top-8 w-48 h-48 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md relative z-10 mb-space-md">
+<div>
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm mb-1 uppercase tracking-widest">
+<span class="material-symbols-outlined text-[16px]">satellite_alt</span>
+<span>Módulo de Reconocimiento Estratégico Multiespectral</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface tracking-tight uppercase">
+            Centro Cartográfico de Teatros de Conflicto
           </h1>
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
-            Análisis geopolítico independiente, telemetría de fuentes abiertas (OSINT) y monitoreo satelital continuo de teatros operativos, cuellos de botella marítimos y escaladas bélicas en desarrollo.
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-1">
+            Explora interactivamente fronteras en disputa, rutas marítimas estratégicas (chokepoints), despliegue de activos militares de alta precisión y análisis geopolítico en tiempo real derivado de telemetría OSINT y satelital.
           </p>
+</div>
+<!-- DEFCON / Session Badge -->
+<div class="flex items-center gap-space-sm bg-surface-container px-space-md py-2 rounded self-start lg:self-auto">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline">POSTURA OPERATIVA</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">VIGILANCIA ELEVADA</span>
+</div>
+<div class="w-2 h-8 bg-tertiary rounded-full"></div>
+</div>
+</div>
+<!-- Filters & Control Strip -->
+<div class="pt-space-md bg-surface-container/60 p-space-sm rounded flex flex-col xl:flex-row gap-space-md items-start xl:items-center justify-between">
+<!-- Region Filter Pills -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline mr-2 uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span> Región:
+          </span>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-2.5 py-1 rounded font-bold uppercase transition hover:brightness-110">
+            Todas
+          </button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+            Oriente Medio
+          </button>
+<button class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition ring-0 shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Mar Rojo
+          </button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+            Taiwán
+          </button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+            Ártico
+          </button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+            Cuerno de África
+          </button>
+</div>
+<!-- Threat & Display Modes -->
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Threat Mode Select -->
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield_with_heart</span> Amenaza:
+            </span>
+<div class="flex bg-surface-container-highest rounded p-0.5">
+<button class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Naval</button>
+<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Terrestre</button>
+<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Energía</button>
+<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Ciber/Sat</button>
+</div>
+</div>
+<!-- Map Surface Select -->
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">layers</span> Modo:
+            </span>
+<div class="flex bg-surface-container-highest rounded p-0.5">
+<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Satelital</button>
+<button class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Vector Táctico</button>
+<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Comercial</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. ÁREA DE TRABAJO PRINCIPAL DUAL (Mapa Interactivo 60% + Panel de Lectura 40%) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-md mb-space-xl">
+<!-- Lado Izquierdo: Visor de Mapa Táctico Interactivo (7 cols ~ 58-60%) -->
+<div class="lg:col-span-7 flex flex-col bg-surface-container-lowest rounded-lg overflow-hidden shadow-2xl relative">
+<!-- Top HUD Header over Map -->
+<div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between z-20">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">file_download_done</span>
+<span class="font-label-md text-label-md text-on-surface uppercase font-bold tracking-wider">BAB EL-MANDEB CHOKEPOINT // SECTOR YEMEN-PERIM</span>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span class="text-primary animate-pulse">● RADAR ACTIVO</span>
+<span class="text-outline">|</span>
+<span class="text-on-surface-variant">ESCALA: 1:75,000</span>
+</div>
+</div>
+<!-- Canvas Area / Map Container -->
+<div class="relative w-full h-[620px] bg-[#0b0e14] overflow-hidden select-none" id="tacticalMapContainer">
+<!-- Cartographic Grid / Lat-Lon Lines SVG -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="80" id="grid" patternunits="userSpaceOnUse" width="80">
+<path d="M 80 0 L 0 0 0 80" fill="none" stroke="#1f2636" stroke-width="0.75"></path>
+<circle cx="0" cy="0" fill="#3c4a42" r="1.5"></circle>
+</pattern>
+<!-- Radar sweep gradient -->
+<radialgradient cx="50%" cy="50%" id="radarGlow" r="50%">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.08"></stop>
+<stop offset="70%" stop-color="#10b981" stop-opacity="0.02"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+<!-- Crosshair coordinate lines -->
+<line stroke="#1f2636" stroke-dasharray="4,4" stroke-width="1" x1="50%" x2="50%" y1="0" y2="100%"></line>
+<line stroke="#1f2636" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="100%" y1="50%" y2="50%"></line>
+</svg>
+<!-- Simulated Vector Landmasses & Bathymetry Silhouette -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" preserveaspectratio="none" viewbox="0 0 800 620">
+<!-- Yemen Mainland (Top Right) -->
+<path d="M 460,0 L 800,0 L 800,340 Q 680,310 610,340 T 510,400 Q 470,360 480,290 T 520,180 Q 480,100 460,0 Z" fill="#161b24" stroke="#2a3547" stroke-width="1.5"></path>
+<text fill="#4d5c73" font-family="JetBrains Mono" font-size="12" letter-spacing="3" x="660" y="140">COSTA DE YEMEN (HODEIDA/TAIZ)</text>
+<!-- Djibouti / Eritrea African Horn (Bottom Left) -->
+<path d="M 0,160 Q 90,190 140,260 T 190,380 Q 230,490 280,620 L 0,620 Z" fill="#161b24" stroke="#2a3547" stroke-width="1.5"></path>
+<text fill="#4d5c73" font-family="JetBrains Mono" font-size="12" letter-spacing="3" x="50" y="480">YIBUTI / ERITREA</text>
+<text fill="#3c4a42" font-family="JetBrains Mono" font-size="10" x="40" y="505">BASE MILITAR DORALEH (CHIN/FRA/USA)</text>
+<!-- Perim Island (Center) -->
+<path d="M 420,345 C 435,338 450,342 458,355 C 462,368 455,382 440,388 C 428,392 412,385 410,370 C 408,358 412,349 420,345 Z" fill="#263142" stroke="#4edea3" stroke-width="1.5"></path>
+<text fill="#4edea3" font-family="JetBrains Mono" font-size="11" font-weight="bold" x="400" y="330">ISLA DE PERIM (MAYUN)</text>
+<line stroke="#4edea3" stroke-width="1" x1="435" x2="435" y1="335" y2="350"></line>
+<!-- Airstrips Vector Graphic on Perim -->
+<line stroke="#ffffff" stroke-linecap="round" stroke-width="2.5" x1="422" x2="450" y1="358" y2="378"></line>
+<line stroke="#10b981" stroke-dasharray="2,2" stroke-width="1" x1="423" x2="449" y1="360" y2="376"></line>
+<!-- Normal Commercial Route (Radar Green lines) -->
+<g opacity="0.95">
+<path d="M 120,0 Q 260,200 370,320 T 470,490 Q 530,570 580,620" fill="none" stroke="#10b981" stroke-dasharray="6,4" stroke-width="2.5"></path>
+<!-- Motion indicator circles -->
+<circle cx="280" cy="225" fill="#10b981" r="3"></circle>
+<circle cx="370" cy="320" fill="#10b981" r="3"></circle>
+<circle cx="510" cy="540" fill="#10b981" r="3"></circle>
+<text fill="#10b981" font-family="JetBrains Mono" font-size="10" transform="rotate(38 240,160)" x="240" y="160">RIMA COMERCIAL SUR-NORTE (AIS ACTIVE)</text>
+</g>
+<!-- Exclusion Zone / Drone Target Cone (Red Dotted Area) -->
+<polygon fill="#93000a" fill-opacity="0.12" points="560,260 750,380 620,530 460,420" stroke="#ffb4ab" stroke-dasharray="4,3" stroke-width="1.5"></polygon>
+<text fill="#ffb4ab" font-family="JetBrains Mono" font-size="10" font-weight="bold" x="560" y="410">ÁREA DE EXCLUSIÓN: AMENAZA USV / DRONES</text>
+<!-- Missile Threat Radius (Amber concentric circles from Yemen coast) -->
+<circle cx="590" cy="280" fill="none" opacity="0.75" r="140" stroke="#ffb95f" stroke-dasharray="8,4" stroke-width="1.2"></circle>
+<circle cx="590" cy="280" fill="none" opacity="0.45" r="230" stroke="#ffb95f" stroke-dasharray="4,6" stroke-width="0.8"></circle>
+<circle cx="590" cy="280" fill="#ffb95f" r="5"></circle>
+<text fill="#ffb95f" font-family="JetBrains Mono" font-size="9" x="602" y="278">ALCANCE AShM (C-802 / AL-MANDOOB)</text>
+<!-- Western Channel (Bab Iskander) & Eastern Channel -->
+<path d="M 330,360 L 370,410" stroke="#adc6ff" stroke-dasharray="2,2" stroke-width="1"></path>
+<text fill="#adc6ff" font-family="JetBrains Mono" font-size="10" x="250" y="420">CANAL OCCIDENTAL (DIRECCIÓN CANAL DE SUEZ)</text>
+</svg>
+<!-- Interactive Pins overlay (HTML positioned elements for crisp tooltips) -->
+<div class="absolute z-30" style="top: 54%; left: 53%;">
+<div class="relative group cursor-pointer" onclick="focusPin('perim')">
+<span class="flex h-5 w-5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-5 w-5 bg-primary text-on-primary items-center justify-center font-bold text-[10px] shadow-lg">1</span>
+</span>
+<!-- Pin Card -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<div class="text-primary font-label-sm text-label-sm font-bold">PISTA MILITAR ISLA DE PERIM</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">3,000m pista de asfalto y puestos de escucha SIGINT.</div>
+<div class="mt-1 font-label-sm text-label-sm text-outline">ESTADO: OPERATIVO NO RECONOCIDO</div>
+</div>
+</div>
+</div>
+<div class="absolute z-30" style="top: 41%; left: 74%;">
+<div class="relative group cursor-pointer" onclick="focusPin('radar')">
+<span class="flex h-4 w-4 relative">
+<span class="relative inline-flex rounded-full h-4 w-4 bg-tertiary-container text-on-tertiary items-center justify-center font-bold text-[9px]">2</span>
+</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<div class="text-tertiary font-label-sm text-label-sm font-bold">PUESTO DE RADAR COSTERO</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Vigilancia de superficie OTH montada en acantilados.</div>
+</div>
+</div>
+</div>
+<div class="absolute z-30" style="top: 66%; left: 39%;">
+<div class="relative group cursor-pointer" onclick="focusPin('canal')">
+<span class="flex h-4 w-4 relative">
+<span class="relative inline-flex rounded-full h-4 w-4 bg-secondary text-on-secondary items-center justify-center font-bold text-[9px]">3</span>
+</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<div class="text-secondary font-label-sm text-label-sm font-bold">BAB ISKANDER (CANAL)</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Cuello de botella de 26 km de navegación forzosa.</div>
+</div>
+</div>
+</div>
+<div class="absolute z-30" style="top: 28%; left: 34%;">
+<div class="relative group cursor-pointer" onclick="focusPin('tankers')">
+<span class="flex h-4 w-4 relative">
+<span class="relative inline-flex rounded-full h-4 w-4 bg-primary-fixed-dim text-on-primary-fixed items-center justify-center font-bold text-[9px]">4</span>
+</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<div class="text-primary-fixed-dim font-label-sm text-label-sm font-bold">FONDEADERO DE PETROLEROS VLCC</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Buques en espera de escolta de convoy multinacional.</div>
+</div>
+</div>
+</div>
+<!-- Floating Tactical Layer Controller Widget -->
+<div class="absolute top-4 left-4 z-20 bg-surface-container-low/90 backdrop-blur-md p-space-sm rounded shadow-2xl w-60">
+<div class="flex items-center justify-between pb-1 mb-2 font-label-sm text-label-sm text-on-surface uppercase font-bold">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-primary">tune</span> Capas Activas</span>
+<span class="text-outline">3/3</span>
+</div>
+<div class="flex flex-col gap-1.5 font-label-sm text-label-sm">
+<label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
+<span class="text-on-surface-variant">Fronteras Internacionales</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
+<span class="text-on-surface-variant">Tráfico Marítimo AIS Vivo</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
+<span class="text-on-surface-variant">Cables Submarinos SubTel</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Floating Dynamic Scale & Coordinates Indicator (Bottom Bar) -->
+<div class="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between bg-surface-container-low/85 backdrop-blur px-space-md py-1.5 rounded">
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-1 text-on-surface">
+<span class="text-outline">POSICIÓN RETÍCULA:</span>
+<span class="text-primary font-mono font-bold" id="coordDisplay">12°38'42"N 43°25'08"E</span>
+</div>
+<div class="text-outline font-mono">ALTURA SAT: 480 KM</div>
+</div>
+<!-- Nautical Scale Widget -->
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-outline">
+<span>0</span>
+<div class="w-16 h-1 bg-surface-bright flex">
+<div class="w-1/2 h-full bg-primary"></div>
+<div class="w-1/2 h-full bg-on-surface"></div>
+</div>
+<span>10 NM (18.5 KM)</span>
+</div>
+</div>
+</div>
+<!-- Map Footer Controls: Zoom, Reset, Satellite Layer Switcher -->
+<div class="bg-surface-container-low px-space-md py-2 flex items-center justify-between z-20">
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary">warning</span>
+<span>ZONA DE RIESGO DE GUERRA: CONDICIÓN JWC ALTA (LLOYD'S 2024)</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Acercar">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Alejar">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Centrar">
+<span class="material-symbols-outlined text-[16px]">filter_center_focus</span>
+</button>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-2 py-1 rounded font-bold uppercase ml-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">download</span> Exportar GeoJSON
+          </button>
+</div>
+</div>
+</div>
+<!-- Lado Derecho: Panel de Lectura Analítica (5 cols ~ 40-42%) -->
+<div class="lg:col-span-5 flex flex-col bg-surface-container-low rounded-lg p-space-md shadow-xl justify-between">
+<!-- Intel Header / Classification Rail -->
+<div>
+<div class="flex items-center justify-between mb-space-sm pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-2 py-0.5 font-bold uppercase rounded">
+              OSINT 1A CONFIRMADO
+            </span>
+<span class="font-label-sm text-label-sm text-outline">SEC: MAR-ROJO-SUR</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 6 MIN LECTURA
+          </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight mb-space-xs">
+          Análisis Táctico: La militarización de Perim y la asfixia del tráfico marítimo global
+        </h2>
+<div class="flex items-center gap-space-md text-body-sm font-body-sm text-outline mb-space-md">
+<span class="flex items-center gap-1 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span> Comando Editorial Geopolítica
+          </span>
+<span>•</span>
+<span>Actualizado hace 2 horas</span>
+</div>
+<!-- Accordion / Strategic Points Breakdown -->
+<div class="space-y-space-sm overflow-y-auto max-h-[400px] pr-1">
+<!-- Punto 1 -->
+<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-geo">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">1. Posición Geográfica Clave en Bab el-Mandeb</span>
+<button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('perim')">
+<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
+              </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Con apenas 13 km² de superficie volcánica, la isla de Mayun (Perim) divide el estrecho en dos canales navegables. Su control ofrece dominio visual y de tiro directo sobre el paso del 12% del comercio marítimo mundial y más de 4.8 millones de barriles diarios de crudo.
+            </p>
+</div>
+<!-- Punto 2 -->
+<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-runway">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">2. La nueva pista aérea y hangares fortificados</span>
+<button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('perim')">
+<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
+              </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Imágenes de satélite de apertura sintética (SAR) revelan una pista asfaltada de 1,850 metros completada recientemente. Diseñada para desplegar drones de ataque MALE (Wing Loong / Mohajer) y aviones de patrulla marítima para proyectar vector ofensivo permanente.
+            </p>
+</div>
+<!-- Punto 3 -->
+<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-insurance">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase">3. Seguros marítimos y Joint War Committee</span>
+<button class="text-outline hover:text-tertiary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('radar')">
+<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
+              </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Las primas de riesgo bélico del Lloyd’s de Londres se dispararon del 0.05% al 0.75% del valor total de casco y maquinaria. Para un petrolero Suezmax cargado, esto supone un coste añadido de hasta $800,000 dólares por cada travesía individual.
+            </p>
+</div>
+<!-- Punto 4 -->
+<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-cape">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">4. Alternativa logística: Cabo de Buena Esperanza</span>
+<button class="text-outline hover:text-secondary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('tankers')">
+<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
+              </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              El desvío forzoso rodeando Sudáfrica añade entre 10 y 14 días adicionales de navegación por trayecto Rotterdam-Singapur, generando un shock en la cadena de suministros y tensionando la capacidad portuaria en el Mediterráneo Occidental (Algeciras, Tánger-Med).
+            </p>
+</div>
+</div>
+</div>
+<!-- Bottom Sharing Strip & Action Trigger -->
+<div class="pt-space-md mt-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Transmitir Despacho a Redes</span>
+<span class="font-label-sm text-label-sm text-primary font-mono">LINK CLASIFICADO: ACTIVO</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<!-- Telegram -->
+<button class="flex items-center justify-center gap-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface py-2 rounded transition font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-[#2AABEE]">send</span>
+<span>Telegram</span>
+</button>
+<!-- X / Twitter -->
+<button class="flex items-center justify-center gap-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface py-2 rounded transition font-label-sm text-label-sm">
+<span class="font-bold text-[14px]">𝕏</span>
+<span>X Corp</span>
+</button>
+<!-- WhatsApp -->
+<button class="flex items-center justify-center gap-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface py-2 rounded transition font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">chat</span>
+<span>WhatsApp</span>
+</button>
+<!-- Copy Satellite View Link -->
+<button class="flex items-center justify-center gap-1.5 bg-primary-container hover:bg-primary-fixed text-on-primary-container py-2 rounded transition font-label-sm text-label-sm font-bold uppercase" onclick="navigator.clipboard.writeText(window.location.href); alert('Enlace de coordenadas copiado al portapapeles.');">
+<span class="material-symbols-outlined text-[16px]">link</span>
+<span>Copiar Vista</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. GALERÍA DE MAPAS DISPONIBLES (Catálogo de artículos interactivos) -->
+<section class="mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-md">
+<div>
+<div class="flex items-center gap-2 text-secondary font-label-sm text-label-sm uppercase tracking-wider mb-1">
+<span class="material-symbols-outlined text-[16px]">folder_special</span> Catálogo Geoestratégico
         </div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">
+          Teatros Activos Disponibles
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Accede a análisis en profundidad respaldados por capas de geolocalización e inteligencia satelital.
+        </p>
+</div>
+<div class="mt-space-sm md:mt-0 flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase">4 TEATROS LISTOS</span>
+</div>
+</div>
+<!-- 4 Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Taiwán -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+<div>
+<!-- Thumbnail using map location trigger -->
+<div class="w-full h-44 bg-cover bg-center relative" data-location="Taiwan Strait, Taiwan" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIC4irghiL7N4AR5-SNaQJmsRZkotMRV0y9M0klotJSmW7HI9BxDn7FSzjuZXr8E2n5AuV-XkrDppK2kVTYaMrbNHUdRz6d5WGhyf-h4RUyy-CDGqFak2mrjBQQfQiZWC_2HVEAsKN8pXJeBNQlgVOBHBtl16gl5IrlJZ2YVR_rk22WigQOSJQnMT3ATN_X5Q_ekeIVAKIsty-yOruLgjCzJmpccKT22WwpLmkQBUKUCRt1gjsqgGZTw')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-error-container text-on-error-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              Tensión: Crítica
+            </div>
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
+              8 CAPAS AIS/ADIZ
+            </div>
+</div>
+<div class="p-space-md">
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
+              Estrecho de Taiwán: Las 5 rutas del bloqueo naval y guerra de cerco
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
+              Modelado vectorial de zonas de exclusión ADIZ, cables submarinos de fibra óptica transpacíficos y vectores de incursión naval anfibio del PLAN.
+            </p>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
+          </button>
+</div>
+</div>
+<!-- Card 2: Zangezur -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 bg-cover bg-center relative" data-location="Syunik Province, Armenia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPPLthJXcbrGSiXdOMaGjMtcxDQmSeqzGHlQUfbj1ew_Oopy7gp8UHtsWR5KdZ4A5kHKlKKPdHoo6b5rsBGhaxVVlioUs0_av9VgKmoDxGgaMPItu7-hWrEseKrloZnFB6XNCSXMW8jClslPQ0flcYoyENW56S8VAjNoNTrKW8OMhzjuTuwDb1nC65-EVhNeWy_oXuxRSnVh3icKFCT0S3gnjufy2xfw9KKa_TyfeELbKe9jTFKPiNgA')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              Tensión: Alta
+            </div>
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
+              5 CAPAS FERROVIARIAS
+            </div>
+</div>
+<div class="p-space-md">
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
+              El Corredor de Zangezur: Fronteras calientes entre Armenia, Azerbaiyán e Irán
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
+              Disputa por la arteria terrestre que conectaría Bakú con Najicheván sin control aduanero armenio, desafiando la frontera septentrional iraní.
+            </p>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
+          </button>
+</div>
+</div>
+<!-- Card 3: Ártico -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 bg-cover bg-center relative" data-location="Svalbard, Norway" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIC4irghiL7N4AR5-SNaQJmsRZkotMRV0y9M0klotJSmW7HI9BxDn7FSzjuZXr8E2n5AuV-XkrDppK2kVTYaMrbNHUdRz6d5WGhyf-h4RUyy-CDGqFak2mrjBQQfQiZWC_2HVEAsKN8pXJeBNQlgVOBHBtl16gl5IrlJZ2YVR_rk22WigQOSJQnMT3ATN_X5Q_ekeIVAKIsty-yOruLgjCzJmpccKT22WwpLmkQBUKUCRt1gjsqgGZTw')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-surface-container-highest text-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Tensión: Media-Alta
+            </div>
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
+              6 CAPAS DE HIELO/BASES
+            </div>
+</div>
+<div class="p-space-md">
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
+              El Paso del Noroeste en el Ártico: Rutas polares y bases de rompehielos rusos
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
+              Mapeo de la Ruta Marítima del Norte (NSR), emplazamientos de misiles Bastion en el Círculo Polar y la flota de propulsión nuclear de Rosatom.
+            </p>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
+          </button>
+</div>
+</div>
+<!-- Card 4: Nilo / GERD -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+<div>
+<div class="w-full h-44 bg-cover bg-center relative" data-location="Grand Ethiopian Renaissance Dam, Ethiopia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt-t5Pqr2XbcsA40NTrKIJKm12QZAzg0WfzAA4VWNRBcJ89E69LG8sWnehsbbPYgzqSdVARcEp7L2BJv_TVbTz6RfgS5aqfjJiL4LJNxdRVV9qaHqK9ASRUrN7u6HH-ReHwocZ_XjQSJSVjp9XSOduZgDMO9TYpkEa4iP3eWdBhdDabocjhxv8jo9Z0AcqasCYwxTML9OVH6jfWaioTkX8QL12dAwGcbnUfOA00gpTO6NAcMmsTr7H1A')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              Tensión: Alta
+            </div>
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
+              4 CAPAS HÍDRICAS
+            </div>
+</div>
+<div class="p-space-md">
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
+              Guerra del Agua en el Nilo: La Presa del Renacimiento y tensiones Egipto-Etiopía
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
+              Telemetría de llenado de embalses por radar altimétrico, cuencas hídricas transfronterizas y doctrina militar del Delta del Nilo.
+            </p>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Coordinate Tracker & Pin Focus Script -->
+<script is:inline>
+    const mapContainer = document.getElementById('tacticalMapContainer');
+    const coordDisplay = document.getElementById('coordDisplay');
+
+    if (mapContainer && coordDisplay) {
+      mapContainer.addEventListener('mousemove', (e) => {
+        const rect = mapContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         
-      </div>
-    </section>
-  </div>
-</TopNavLayout>
+        // Approximate calculation to project lat/lon in Bab el-Mandeb bounds
+        const lat = (12.9 - (y / rect.height) * 0.6).toFixed(4);
+        const lon = (43.1 + (x / rect.width) * 0.7).toFixed(4);
+        coordDisplay.textContent = `${lat}°N ${lon}°E`;
+      });
+    }
+
+    function focusPin(pinId) {
+      const coords = {
+        'perim': '12.6534°N 43.4182°E',
+        'radar': '12.7821°N 43.5109°E',
+        'canal': '12.6102°N 43.3411°E',
+        'tankers': '12.8210°N 43.2840°E'
+      };
+
+      if (coordDisplay && coords[pinId]) {
+        coordDisplay.textContent = coords[pinId];
+        coordDisplay.classList.add('text-secondary');
+        setTimeout(() => coordDisplay.classList.remove('text-secondary'), 800);
+      }
+    }
+  </script>
+</div>
+</SidebarLayout>
