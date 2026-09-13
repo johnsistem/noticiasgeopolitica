@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: johnsistem/noticiasgeopolitica
   branch: main
+
+local_backend: true
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
