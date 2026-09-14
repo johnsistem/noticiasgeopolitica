@@ -7,9 +7,9 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Golfo Pérsico'
 coordinates: { lat: 26.5, lon: 53.5 }
-date: '2026-09-13'
+date: '2026-09-13T14:00:00Z'
 readingTime: '1 MIN READ'
-facebook_url: 'https://www.facebook.com/reel/1589712042789811'
+youtube_id: 'slFyN_lIYW8'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 

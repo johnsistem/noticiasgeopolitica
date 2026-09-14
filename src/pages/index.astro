@@ -8,8 +8,9 @@ const sortedCables = allCables.sort((a, b) => new Date(b.data.date).valueOf() - 
 
 // El cable más reciente será la noticia principal
 const leadCable = sortedCables[0];
-// Los siguientes 3 serán las noticias secundarias en la barra lateral
-const secondaryCables = sortedCables.slice(1, 4);
+// Todos los cables secundarios
+const secondaryCables = sortedCables.slice(1);
+const totalSecondary = secondaryCables.length;
 
 // Supabase Newsletter simulation logic
 let message = '';
@@ -206,7 +207,7 @@ if (Astro.request.method === 'POST') {
 <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
 <span class="text-primary font-semibold">CABLE RELÁMPAGO</span>
 <span>•</span>
-<span>{new Date(leadCable.data.date).toLocaleDateString('es-ES', {day: '2-digit', month: 'short', year: 'numeric'})}</span>
+<span>{new Date(leadCable.data.date).toLocaleString('es-ES', {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})}</span>
 </div>
 <h3 class="font-headline-md text-headline-md text-on-surface uppercase group-hover:text-primary transition-colors">
                 {leadCable.data.title.replace(/🚨/g, '')}
@@ -229,7 +230,7 @@ if (Astro.request.method === 'POST') {
 )}
 
 <!-- Right Side Stack: Secondary Intelligence Flashes -->
-<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="lg:col-span-4 flex flex-col gap-space-md max-h-[600px] overflow-y-auto pr-2 scrollbar-tactical">
 {secondaryCables.map((cable, index) => {
   // Use alternating accent colors based on index for the region tag
   const accentColors = ['text-secondary', 'text-primary', 'text-tertiary'];
@@ -240,7 +241,7 @@ if (Astro.request.method === 'POST') {
       <a href={`/cables/${cable.slug}`} class="absolute inset-0 z-10" aria-label={`Leer cable: ${cable.data.title}`}></a>
       <div class="flex items-center justify-between font-label-sm text-label-sm z-20 pointer-events-none">
         <span class={`${accentClass} font-bold uppercase tracking-wider`}>{cable.data.region}</span>
-        <span class="text-outline">{new Date(cable.data.date).toLocaleDateString('es-ES')}</span>
+        <span class="text-outline">{new Date(cable.data.date).toLocaleString('es-ES', {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})}</span>
       </div>
       <h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors z-20 pointer-events-none">
         {cable.data.title.replace(/🚨/g, '')}
@@ -255,6 +256,11 @@ if (Astro.request.method === 'POST') {
     </article>
   );
 })}
+{totalSecondary > 3 && (
+  <div class="sticky bottom-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/95 to-transparent pt-8 pb-2 text-center">
+    <span class="font-label-sm text-label-sm text-primary font-bold uppercase">↓ {totalSecondary - 3} CABLES MÁS ABAJO ↓</span>
+  </div>
+)}
 </div>
 
 </div>
