@@ -13,7 +13,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 
 <TopNavLayout
   title="Informes de Inteligencia & Análisis Estratégico"
-  description="Dossiers desclasificados, investigaciones OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas por IA para indexación global y análisis predictivo."
+  description="Dossiers de investigación OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas por IA para indexación global y análisis predictivo."
   image="/og-default.jpg"
 >
 <div class="flex flex-col w-full">
@@ -40,7 +40,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span>CENTRAL DE INTELIGENCIA DE FUENTES ABIERTAS</span>
 </div>
 <h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface uppercase tracking-tight">INFORMES DE INTELIGENCIA &amp; ANÁLISIS ESTRATÉGICO</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Dossiers desclasificados, investigaciones OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas con IA para indexación global y análisis predictivo.</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Dossiers de investigación OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas con IA para indexación global y análisis predictivo.</p>
 </div>
 <div class="flex items-center gap-space-sm">
 <button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md uppercase px-4 py-2.5 rounded transition-colors flex items-center gap-2 shadow-sm">
@@ -168,7 +168,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
             </div>
 <div class="flex flex-col">
 <span class="font-headline-sm text-headline-sm text-on-surface leading-none">Comandante (R) Marc Segarra &amp; Equipo OSINT-Echo</span>
-<span class="font-label-sm text-label-sm text-outline mt-1">Ex-Analista SIGINT OTAN // Director Técnico de Dossiers en Noticias Geopolítica</span>
+<span class="font-label-sm text-label-sm text-outline mt-1">Analista OSINT Independiente // Director Técnico de Dossiers en Noticias Geopolítica</span>
 </div>
 </div>
 <div class="flex items-center gap-space-sm">
@@ -584,8 +584,13 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
           <span>{informe.data.category}</span>
         </span>
       </div>
-      <div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-primary font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold">
-        {informe.data.defcon}
+      <div class="absolute bottom-3 right-3 flex items-center gap-2">
+        <span class={`${informe.data.verification === 'CONFIRMADO' ? 'bg-primary/90 text-on-primary' : informe.data.verification === 'ANÁLISIS' ? 'bg-tertiary/90 text-on-tertiary' : informe.data.verification === 'OSINT' ? 'bg-secondary/90 text-on-secondary' : 'bg-surface-container-lowest/90 text-on-surface'} font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold uppercase`}>
+          {informe.data.verification || 'REPORTADO'}
+        </span>
+        <span class="bg-surface-container-lowest/90 text-primary font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold">
+          {informe.data.defcon}
+        </span>
       </div>
     </div>
     <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">

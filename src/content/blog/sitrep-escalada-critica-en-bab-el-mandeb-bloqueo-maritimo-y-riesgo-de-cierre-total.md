@@ -13,7 +13,7 @@ La situación operacional en el estrecho de Bab el-Mandeb ha alcanzado un umbral
 
 [TELEMETRÍA TÁCTICA Y PARÁMETROS DE NAVEGACIÓN]
 • Ancho eficaz del chokepoint: 14 millas náuticas / Nmi (26 km) [Canal Bab Iskender: 2.9 Nmi / Canal Dact-el-Mayun: 11.0 Nmi].
-• Cobertura A2/AD detectada: Misiles de crucero antibuque, UAVs kamikaze y soporte de inteligencia GEOINT/SIGINT con el apoyo directo de Irán y Rusia.
+• Cobertura A2/AD detectada: Misiles de crucero antibuque, UAVs kamikaze y soporte de inteligencia geoespacial con el apoyo directo de Irán y Rusia.
 • Flujo energético comprometido: ~6.2 millones de barriles/día de crudo y derivados refinados (9% del comercio marítimo mundial).
 • Vectores de bloqueo clave: Isla de Perim (Yemen), Ras Menheli y aproximaciones al archipiélago de los Siete Hermanos (Yibuti).
 

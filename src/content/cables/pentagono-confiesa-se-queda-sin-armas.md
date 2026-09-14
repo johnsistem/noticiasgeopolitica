@@ -7,6 +7,7 @@ urgency: 'FLASH'
 threat_level: 'Alta'
 region: 'Global'
 tags: ['Pentágono', 'Arsenal', 'Ucrania', 'Israel', 'Inventario']
+verification: 'CONFIRMADO'
 coordinates: { lat: 38.8977, lon: -77.0365 }
 date: '2026-09-13T23:00:00Z'
 readingTime: '1 MIN READ'
@@ -22,6 +23,6 @@ Un informe secreto del **New York Times** ha sacado a la luz la crisis militar m
 • Epicentro del escándalo: Pentágono, Washington D.C. (38.8977° N, 77.0365° O).
 • Fuerzas involucradas: Departamento de Defensa de EE. UU. vs. demandas de Ucrania e Israel.
 • Contexto de la operación: Vaciamiento progresivo de almacenes militares por envíos al extranjero.
-• Cobertura de inteligencia: Análisis SIGINT de comunicaciones militares, evaluación GEOINT de capacidades defensivas.
+• Cobertura de inteligencia: análisis de inteligencia de comunicaciones militares, evaluación GEOINT de capacidades defensivas.
 
 Los altos mandos advierten que Estados Unidos no tendría cómo defenderse adecuadamente ante un ataque de **China**. Este vaciamiento de arsenales pone en jaque el poder hegemónico estadounidense y deja al mundo en una posición de vulnerabilidad sin precedentes.

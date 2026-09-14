@@ -6,6 +6,7 @@ date: '2026-09-13'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
 tags: ['Trump', 'Hutíes', 'Casa Blanca', 'Tregua', 'Diplomacia']
+verification: 'REPORTADO'
 coordinates: { lat: 38.8951, lon: -77.0364 }
 category: 'INFORMES OSINT'
 defcon: 'DEFCON 2'
@@ -24,6 +25,6 @@ Donald Trump ha revelado ante los medios de comunicación un secreto militar que
 • Epicentro diplomático: Casa Blanca, Washington D.C. (38.8951° N, 77.0364° O).
 • Fuerzas involucradas: Hutíes de Yemen (iniciativa) vs. Administración Trump (receptor).
 • Contexto de la operación: Petición de tregua mientras Arabia Saudita presiona por bombardeos.
-• Cobertura de inteligencia: Análisis SIGINT de comunicaciones diplomáticas filtradas.
+• Cobertura de inteligencia: análisis de inteligencia de comunicaciones diplomáticas filtradas.
 
 Esta revelación abre un escenario sin precedentes: mientras el príncipe heredero de **Arabia Saudita** le ruega a la Casa Blanca bombardeos masivos en la región, los hutíes buscan directamente un acuerdo con Washington. ¿Estamos ante un pacto secreto o una estrategia de engaño?

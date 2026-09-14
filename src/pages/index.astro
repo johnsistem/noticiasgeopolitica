@@ -34,6 +34,7 @@ const searchData = [
     region: c.data.region || '',
     tags: c.data.tags || [],
     threat: c.data.threat_level || 'Alta',
+    verification: c.data.verification || 'REPORTADO',
     slug: c.id,
     date: c.data.date
   })),
@@ -44,6 +45,7 @@ const searchData = [
     region: i.data.region || '',
     tags: i.data.tags || [],
     threat: i.data.threat_level || 'Alta',
+    verification: i.data.verification || 'REPORTADO',
     slug: i.id,
     date: i.data.date
   })),
@@ -86,7 +88,7 @@ if (Astro.request.method === 'POST') {
 
 <TopNavLayout
   title="NOTICIAS GEOPOLÍTICA | Intel & Strategic War Room Console"
-  description="Terminal de monitoreo geoestratégico, análisis de vector bélico y telemetría de crisis internacionales basada en fuentes abiertas y SIGINT analítico. En tiempo real."
+  description="Terminal de monitoreo geoestratégico, análisis de vector bélico y telemetría de crisis internacionales basada en fuentes abiertas (OSINT). En tiempo real."
   image="/og-default.jpg"
 >
 <div class="flex flex-col w-full">
@@ -263,7 +265,7 @@ if (Astro.request.method === 'POST') {
                 AMENAZA: {leadCable.data.threat_level?.toUpperCase()}
               </span>
 <span class="bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-sm text-label-sm px-2 py-0.5 rounded">
-                OSINT VERIFIED
+                {leadCable.data.verification || 'REPORTADO'}
               </span>
 </div>
 <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded border border-surface-container-highest">
@@ -325,7 +327,11 @@ if (Astro.request.method === 'POST') {
         {cable.data.description}
       </p>
       <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-outline z-20 pointer-events-none">
-        <span class={`${cable.data.threat_level === 'Crítica' ? 'text-error' : 'text-secondary'} font-semibold uppercase`}>AMENAZA {cable.data.threat_level}</span>
+        <div class="flex items-center gap-space-xs">
+          <span class={`${cable.data.threat_level === 'Crítica' ? 'text-error' : 'text-secondary'} font-semibold uppercase`}>AMENAZA {cable.data.threat_level}</span>
+          <span class="text-outline">|</span>
+          <span class={`${cable.data.verification === 'CONFIRMADO' ? 'text-primary' : cable.data.verification === 'ANÁLISIS' ? 'text-tertiary' : 'text-secondary'} font-semibold uppercase`}>{cable.data.verification || 'REPORTADO'}</span>
+        </div>
         <span class="truncate max-w-[120px]" title={cable.data.source_channel}>SRC: {cable.data.source_channel}</span>
       </div>
     </article>
@@ -723,13 +729,13 @@ if (Astro.request.method === 'POST') {
 <div class="relative bg-surface-container-low p-space-lg sm:p-space-xl rounded-xl shadow-2xl overflow-hidden">
 <!-- Watermark classified stamp -->
 <div class="absolute -right-8 -bottom-8 pointer-events-none opacity-5 select-none font-headline-xl text-headline-xl text-primary font-black uppercase rotate-12">
-          TOP SECRET // NOFORN
+          OSINT EXCLUSIVO
         </div>
 <div class="relative flex flex-col gap-space-lg">
 <!-- Classified Dispatch Header -->
 <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs">
 <div class="flex items-center gap-space-xs font-label-sm text-label-sm">
-<span class="bg-error/20 text-error px-2 py-0.5 rounded font-bold uppercase">TOP SECRET // NOFORN</span>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded font-bold uppercase">OSINT EXCLUSIVO</span>
 <span class="text-outline">PROTOCOLO DE ENLACE DIRECTO</span>
 </div>
 <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-primary">
@@ -743,7 +749,7 @@ if (Astro.request.method === 'POST') {
               Recibe informes de inteligencia geopolítica antes de que los censuren las redes
             </h2>
 <p class="font-body-md text-body-md text-on-surface-variant">
-              Sin algoritmos de mediación, sin sesgos corporativos. Boletines de situación de crisis, telemetría satelital en alta resolución y cables clasificados directamente en tu bandeja de entrada o cliente criptográfico.
+              Sin algoritmos de mediación, sin sesgos corporativos. Boletines de situación de crisis, análisis geoespacial de fuentes abiertas y alertas tácticas directamente en tu bandeja de entrada.
             </p>
 </div>
 <!-- Subscription Terminal Interactive Form -->
@@ -834,7 +840,7 @@ if (Astro.request.method === 'POST') {
               Informes de Inteligencia &amp; Deep-Dive
             </h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              Análisis doctrinales exhaustivos disponibles en formato escrito clasificado, podcasts tácticos en alta fidelidad y transcripciones procesadas por IA para rápida asimilación por analistas y diplomáticos.
+              Análisis doctrinales exhaustivos disponibles en formato escrito, podcasts tácticos en alta fidelidad y transcripciones procesadas por IA para rápida asimilación por analistas y diplomáticos.
             </p>
 </div>
 <div class="flex items-center justify-between pt-space-xs font-label-sm text-label-sm text-tertiary font-bold">
@@ -866,6 +872,7 @@ function renderResults(items) {
   }
   results.innerHTML = items.map(i => {
     const color = i.threat === 'Crítica' ? 'error' : i.threat === 'Alta' ? 'tertiary' : 'primary';
+    const vColor = i.verification === 'CONFIRMADO' ? 'primary' : i.verification === 'ANÁLISIS' ? 'tertiary' : i.verification === 'OSINT' ? 'secondary' : 'outline';
     const typeIcon = i.type === 'cable' ? 'bolt' : i.type === 'teatro' ? 'public' : 'description';
     const typeLabel = i.type === 'cable' ? 'CABLE' : i.type === 'teatro' ? 'TEATRO' : 'INFORME';
     const href = i.type === 'cable' ? '/cables/' + i.slug + '/' : i.type === 'teatro' ? '/mapas#' + i.slug : '/informes/' + i.slug + '/';
@@ -875,6 +882,7 @@ function renderResults(items) {
         '<div class="flex items-center gap-2 mb-1">' +
           '<span class="font-label-xs text-label-xs uppercase text-' + color + ' font-bold">' + typeLabel + '</span>' +
           '<span class="font-label-xs text-label-xs text-outline">' + i.region + '</span>' +
+          '<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-' + vColor + '/15 text-' + vColor + '">' + i.verification + '</span>' +
           '<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-' + color + '/15 text-' + color + '">' + i.threat + '</span>' +
         '</div>' +
         '<h4 class="font-body-sm text-body-sm text-on-surface font-medium truncate group-hover:text-primary transition-colors">' + i.title + '</h4>' +

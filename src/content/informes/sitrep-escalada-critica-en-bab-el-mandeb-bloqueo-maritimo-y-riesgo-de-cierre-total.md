@@ -4,6 +4,7 @@ description: 'Fuerzas de Ansar Allah intensifican los ataques y bloqueos a barco
 threat_level: 'Crítica'
 region: 'Mar Rojo'
 tags: ['Bab el-Mandeb', 'Mar Rojo', 'Hutíes', 'Bloqueo', 'Chokepoint']
+verification: 'OSINT'
 coordinates: { lat: 12.5883, lon: 43.3333 }
 image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'
 date: '2026-09-13'
@@ -14,7 +15,7 @@ La situación operacional en el estrecho de Bab el-Mandeb ha alcanzado un umbral
 
 [TELEMETRÍA TÁCTICA Y PARÁMETROS DE NAVEGACIÓN]
 • Ancho eficaz del chokepoint: 14 millas náuticas / Nmi (26 km) [Canal Bab Iskender: 2.9 Nmi / Canal Dact-el-Mayun: 11.0 Nmi].
-• Cobertura A2/AD detectada: Misiles de crucero antibuque, UAVs kamikaze y soporte de inteligencia GEOINT/SIGINT con el apoyo directo de Irán y Rusia.
+• Cobertura A2/AD detectada: Misiles de crucero antibuque, UAVs kamikaze y soporte de inteligencia geoespacial con el apoyo directo de Irán y Rusia.
 • Flujo energético comprometido: ~6.2 millones de barriles/día de crudo y derivados refinados (9% del comercio marítimo mundial).
 • Vectores de bloqueo clave: Isla de Perim (Yemen), Ras Menheli y aproximaciones al archipiélago de los Siete Hermanos (Yibuti).
 

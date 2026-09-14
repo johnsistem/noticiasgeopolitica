@@ -7,6 +7,7 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
 tags: ['Israel', 'Hutíes', 'Yemen', 'Perim', 'Ormuz']
+verification: 'ANÁLISIS'
 coordinates: { lat: 12.6500, lon: 43.3500 }
 date: '2026-09-13T22:15:00Z'
 readingTime: '1 MIN READ'
@@ -22,6 +23,6 @@ La alarma máxima se ha encendido en Tel Aviv. Funcionarios de **Israel** han co
 • Ubicación del evento: Isla de Perim, Bab el-Mandeb (12.65° N, 43.35° E).
 • Fuerzas involucradas: Milicias hutíes con control total del chokepoint.
 • Contexto de la operación: Los rebeldes ahora controlan el punto más estrecho del comercio mundial.
-• Cobertura de inteligencia: Sensores SIGINT interceptando comunicaciones israelíes, vigilancia GEOINT del corredor marítimo.
+• Cobertura de inteligencia: sensores de inteligencia interceptando comunicaciones israelíes, vigilancia GEOINT del corredor marítimo.
 
 Con la isla de Perim bajo control hutí, los rebeldes pueden destruir barcos con misiles de corto alcance simplemente viéndolos con sus propios ojos. El Mar Rojo se ha convertido en una zona de alto riesgo para el tráfico comercial internacional.

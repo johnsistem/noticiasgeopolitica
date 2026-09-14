@@ -7,6 +7,7 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
 tags: ['Hutíes', 'Bab el-Mandeb', 'Mar Rojo', 'Chokepoint', 'Yemen']
+verification: 'CONFIRMADO'
 coordinates: { lat: 12.7855, lon: 43.2391 }
 date: '2026-09-13T20:00:00Z'
 readingTime: '1 MIN READ'
@@ -22,6 +23,6 @@ La crisis en las rutas energéticas globales ha alcanzado un punto de no retorno
 • Ubicación del evento: Estrecho de Bab el-Mandeb (12.7855° N, 43.2391° E).
 • Fuerzas involucradas: Milicias hutíes con control territorial completo en Al Hudeida.
 • Contexto de la operación: Flanqueo estratégico del Mar Rojo frente al paso de buques occidentales.
-• Cobertura de inteligencia: Sensores SIGINT monitorizando comunicaciones hutíes, vigilancia GEOINT del corredor marítimo.
+• Cobertura de inteligencia: sensores de inteligencia monitorizando comunicaciones hutíes, vigilancia GEOINT del corredor marítimo.
 
 La consolidación hutí sobre Bab el-Mandeb amenaza con paralizar el tráfico comercial internacional entre Asia y Europa. Las cadenas de suministro mundiales enfrentan un colapso sin precedentes mientras los buques mercantes se desvían por rutas alternativas más largas y costosas.

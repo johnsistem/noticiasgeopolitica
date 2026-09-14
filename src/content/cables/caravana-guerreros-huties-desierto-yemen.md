@@ -7,6 +7,7 @@ urgency: 'FLASH'
 threat_level: 'Alta'
 region: 'Yemen'
 tags: ['Hutíes', 'Yemen', 'Caravana', 'Artillería', 'Bani Hashish']
+verification: 'CONFIRMADO'
 coordinates: { lat: 15.35, lon: 44.2 }
 date: '2026-09-14T01:15:00Z'
 readingTime: '1 MIN READ'

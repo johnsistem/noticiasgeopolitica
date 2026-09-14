@@ -6,6 +6,7 @@ date: '2026-09-14'
 threat_level: 'Alta'
 region: 'Global'
 tags: ['Dólar', 'Deuda', 'Oro', 'Desdolarización', 'CBDC', 'Geoeconomía']
+verification: 'ANÁLISIS'
 category: 'GEOCONOMÍA GLOBAL'
 defcon: 'DEFCON 3'
 hotspots: ['Dólar', 'Deuda EE.UU.', 'Oro', 'Desdolarización']

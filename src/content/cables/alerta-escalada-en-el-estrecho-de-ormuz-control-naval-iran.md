@@ -7,6 +7,7 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Estrecho de Ormuz'
 tags: ['Ormuz', 'Irán', 'Armada', 'Chokepoint', 'Persia']
+verification: 'REPORTADO'
 coordinates: { lat: 26.5667, lon: 56.2500 }
 date: '2026-09-13T08:00:00Z'
 readingTime: '1 MIN READ'
@@ -20,7 +21,7 @@ La tensión operacional en el **Estrecho de Ormuz** ha alcanzado un nivel críti
 
 [TELEMETRÍA TÁCTICA Y PARÁMETROS NAVEGABLES]
 • Epicentro de operaciones: Estrecho de Ormuz (26.5667° N, 56.2500° E).
-• Cobertura A2/AD detectada: Sensores de radar SIGINT, lanchas rápidas de ataque y baterías de misiles antibuque en la costa de Bandar Abbas.
+• Cobertura A2/AD detectada: sensores de radar, lanchas rápidas de ataque y baterías de misiles antibuque en la costa de Bandar Abbas.
 • Flujo energético afectado: ~21 millones de barriles/día de petróleo (más del 20% del consumo mundial de crudo).
 • Impacto comercial: Elevación inmediata de seguros de guerra marítimos para buques de gran calado clase VLCC.
 
