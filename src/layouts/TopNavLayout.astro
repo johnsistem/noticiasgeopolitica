@@ -31,10 +31,10 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <div class="flex items-center gap-space-md">
         <div class="flex items-center gap-space-xs">
           <span class="inline-block w-2 h-2 rounded-full bg-tertiary-container animate-ping"></span>
-          <span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-1.5 py-0.5 font-bold uppercase">DEFCON 3</span>
+          <span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-1.5 py-0.5 font-bold uppercase">NIVEL DE ALERTA</span>
         </div>
         <div class="flex items-center gap-space-sm font-label-sm text-label-sm text-on-surface-variant">
-          <span class="text-primary">SITREP ACTIVO:</span>
+          <span class="text-primary">SITUACIÓN ACTUAL ACTIVO:</span>
           <span>Estrecho de Bab el-Mandeb bajo vigilancia</span>
           <span class="text-outline">|</span>
           <span class="text-tertiary">Mar Rojo Alerta Naranja</span>
@@ -45,7 +45,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <div class="flex items-center gap-space-md pl-gutter">
         <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
           <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-          <span class="font-label-sm text-label-sm text-primary font-bold zulu-live">ZULU TIME: --:--:--Z</span>
+          <span class="font-label-sm text-label-sm text-primary font-bold zulu-live">HORA ACTUAL: --:--:--Z</span>
         </div>
         <div class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
           <span class="w-1.5 h-1.5 bg-primary rounded-full"></span><span>SEC-NET ACTIVE</span>
@@ -60,7 +60,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
         <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
         <div class="flex flex-col">
           <span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface leading-none">NOTICIAS GEOPOLÍTICA</span>
-          <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">INTEL & STRATEGIC WAR ROOM</span>
+          <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">INTEL & STRATEGIC CENTRO DE ANÁLISIS</span>
         </div>
       </div>
       <nav class="hidden xl:flex items-center gap-space-xs">
@@ -71,7 +71,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <div class="flex items-center gap-space-md">
         <div class="hidden md:flex items-center bg-surface-container px-space-sm py-1.5 rounded">
           <span class="material-symbols-outlined text-outline text-[18px] mr-2">search</span>
-          <input class="bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-48" placeholder="HOTSPOTS / TEATROS / OSINT..." type="text" />
+          <input class="bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-48" placeholder="ZONAS DE INTERÉS / TEATROS / OSINT..." type="text" />
         </div>
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
@@ -110,7 +110,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
         const ss = String(now.getUTCSeconds()).padStart(2, '0');
         const t = hh + ':' + mm + ':' + ss + 'Z';
         document.querySelectorAll('.zulu-live').forEach((el) => {
-          el.textContent = el.dataset.prefix ? el.dataset.prefix + t : 'ZULU TIME: ' + t;
+          el.textContent = el.dataset.prefix ? el.dataset.prefix + t : 'HORA ACTUAL: ' + t;
         });
       };
       tick();

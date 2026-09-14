@@ -9,7 +9,7 @@ tags: ['Hutíes', 'Sharurah', 'Arabia Saudita', 'Misiles', 'Drones']
 verification: 'CONFIRMADO'
 coordinates: { lat: 17.48, lon: 47.12 }
 category: 'INFORMES OSINT'
-defcon: 'DEFCON 2'
+defcon: 'NIVEL DE ALERTA ALTO'
 hotspots: ['Arabia Saudita', 'Yemen', 'Sharurah']
 author: 'Comando OSINT'
 readingTime: '8 MIN READ'
@@ -22,7 +22,7 @@ chapters: []
 
 El portavoz militar de los hutíes, **Yahya Saree**, ha confirmado un ataque con **misiles balísticos** y **enjambres de drones** contra la base militar de **Sharurah**, en el sur de Arabia Saudita. El ataque marca un punto de inflexión en el conflicto.
 
-[TELEMETRÍA TÁCTICA Y PARÁMETROS BÉLICOS]
+[DATOS DE REFERENCIA Y PARÁMETROS BÉLICOS]
 • Ubicación del impacto: Base militar de Sharurah, Arabia Saudita (17.48° N, 47.12° E).
 • Fuerzas involucradas: Hutíes de Yemen (ofensiva combinada misiles + drones).
 • Contexto de la operación: Respuesta declarada a la agresión saudí y advertencia de bloqueo del crudo hacia el Canal de Suez.

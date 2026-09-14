@@ -21,7 +21,7 @@ const catalog = theaters.slice(1);
         GEO-FEED SYNC: ONLINE
       </span>
 <span class="text-outline-variant">/</span>
-<span>RECON SAT: SENTINEL-2B OSINT</span>
+<span>IMÁGENES SATÉLITE DE REFERENCIA</span>
 <span class="text-outline-variant">/</span>
 <span class="text-on-surface-variant">RESOLUCIÓN SATELITAL COMERCIAL</span>
 </div>
@@ -48,7 +48,7 @@ const catalog = theaters.slice(1);
             Explora interactivamente fronteras en disputa, rutas marítimas estratégicas (chokepoints), despliegue de activos militares de alta precisión y análisis geopolítico en tiempo real derivado de telemetría OSINT y satelital.
           </p>
 </div>
-<!-- DEFCON / Session Badge -->
+<!-- NIVEL DE ALERTA / Session Badge -->
 <div class="flex items-center gap-space-sm bg-surface-container px-space-md py-2 rounded self-start lg:self-auto">
 <div class="flex flex-col text-right">
 <span class="font-label-sm text-label-sm text-outline">POSTURA OPERATIVA</span>
@@ -153,8 +153,8 @@ const catalog = theaters.slice(1);
 <input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkPerim"/>
 </label>
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
-<span class="text-on-surface-variant">Rutas AIS (EST.)</span>
-<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkAIS"/>
+<span class="text-on-surface-variant">Rutas Marítimas (Est.)</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkRutas"/>
 </label>
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
 <span class="text-on-surface-variant">Alcance A2/AD (TEÓRICO)</span>
@@ -255,7 +255,7 @@ const catalog = theaters.slice(1);
       if (el.checked) { group.addTo(visorMap); } else { visorMap.removeLayer(group); }
     };
     set('visorChkPerim', gPoints);
-    set('visorChkAIS', gRoutes);
+    set('visorChkRutas', gRoutes);
     set('visorChkMissile', gZones);
   }
 
@@ -340,7 +340,7 @@ const catalog = theaters.slice(1);
     currentTheaterId = t0.id;
     applyLayerToggles();
 
-    ['visorChkPerim', 'visorChkAIS', 'visorChkMissile'].forEach(id => {
+    ['visorChkPerim', 'visorChkRutas', 'visorChkMissile'].forEach(id => {
       document.getElementById(id)?.addEventListener('change', applyLayerToggles);
     });
 

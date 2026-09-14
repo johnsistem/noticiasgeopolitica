@@ -1,5 +1,5 @@
 ---
-title: '🚨 SITREP: ESCALADA CRÍTICA EN BAB EL-MANDEB – BLOQUEO MARÍTIMO Y RIESGO DE CIERRE TOTAL 🚨'
+title: '🚨 SITUACIÓN ACTUAL: ESCALADA CRÍTICA EN BAB EL-MANDEB – BLOQUEO MARÍTIMO Y RIESGO DE CIERRE TOTAL 🚨'
 description: 'Fuerzas de Ansar Allah intensifican los ataques y bloqueos a barcos en el estrecho de Bab el-Mandeb contra buques saudíes e israelíes, poniendo en riesgo inminente el 9% del comercio petrolero mundial.'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
@@ -11,7 +11,7 @@ date: '2026-09-13'
 
 La situación operacional en el estrecho de Bab el-Mandeb ha alcanzado un umbral de riesgo extremo tras los recientes ataques y bloqueos a barcos ejecutados por las fuerzas de Ansar Allah (Hutíes) desde la costa yemení. Dando continuidad al cerco contra la navegación con bandera o propiedad israelí declarado en marzo de 2025, la imposición de un bloqueo marítimo directo contra buques petroleros y superpetroleros clase VLCC de Arabia Saudita en julio de 2026, sumado a las advertencias de un cierre total del estrecho desde Saná, desestabiliza por completo el tráfico en la arteria del Mar Rojo. El despliegue de zonas de exclusión militar A2/AD (Anti-Access/Area Denial) compromete directamente el paso libre de los barcos mercantes y la seguridad estratégica global.
 
-[TELEMETRÍA TÁCTICA Y PARÁMETROS DE NAVEGACIÓN]
+[DATOS DE REFERENCIA Y PARÁMETROS DE NAVEGACIÓN]
 • Ancho eficaz del chokepoint: 14 millas náuticas / Nmi (26 km) [Canal Bab Iskender: 2.9 Nmi / Canal Dact-el-Mayun: 11.0 Nmi].
 • Cobertura A2/AD detectada: Misiles de crucero antibuque, UAVs kamikaze y soporte de inteligencia geoespacial con el apoyo directo de Irán y Rusia.
 • Flujo energético comprometido: ~6.2 millones de barriles/día de crudo y derivados refinados (9% del comercio marítimo mundial).

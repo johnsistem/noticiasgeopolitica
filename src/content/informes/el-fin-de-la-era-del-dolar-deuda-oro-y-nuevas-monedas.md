@@ -8,7 +8,7 @@ region: 'Global'
 tags: ['Dólar', 'Deuda', 'Oro', 'Desdolarización', 'CBDC', 'Geoeconomía']
 verification: 'ANÁLISIS'
 category: 'GEOCONOMÍA GLOBAL'
-defcon: 'DEFCON 3'
+defcon: 'NIVEL DE ALERTA'
 hotspots: ['Dólar', 'Deuda EE.UU.', 'Oro', 'Desdolarización']
 author: 'Comando OSINT'
 readingTime: '10 MIN READ'

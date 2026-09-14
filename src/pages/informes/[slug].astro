@@ -32,7 +32,7 @@ const { Content } = await entry.render();
         <span class="bg-primary-container text-on-primary-container px-2 py-0.5 font-bold uppercase rounded">{entry.data.category}</span>
         <span class="bg-tertiary-container text-on-tertiary px-2 py-0.5 font-bold uppercase rounded">{entry.data.defcon}</span>
         <span>•</span>
-        <span class="text-outline">{entry.data.date} ZULU</span>
+        <span class="text-outline">{entry.data.date} HORA</span>
         <span>•</span>
         <span class="text-outline">{entry.data.readingTime}</span>
       </div>
@@ -157,7 +157,7 @@ const { Content } = await entry.render();
       </a>
       <button onclick="window.print()" class="font-label-md text-label-md uppercase border border-outline hover:border-primary text-on-surface px-space-md py-2 rounded font-bold transition-colors flex items-center gap-space-xs">
         <span class="material-symbols-outlined text-[18px]">print</span>
-        EXPORTAR DOSSIER (PDF)
+        EXPORTAR INFORME (PDF)
       </button>
     </footer>
   </article>

@@ -31,9 +31,9 @@ const { Content } = await entry.render();
       <div class="flex items-center justify-between font-mono text-xs mb-space-xs">
         <span class="bg-error text-on-error font-bold px-2 py-0.5 rounded uppercase tracking-wider animate-pulse flex items-center gap-1">
           <span class="material-symbols-outlined text-[14px]">bolt</span>
-          CABLE RELÁMPAGO // {entry.data.urgency || 'FLASH'}
+          ÚLTIMA HORA // {entry.data.urgency || 'FLASH'}
         </span>
-        <span class="text-error font-bold">{new Date(entry.data.date).toLocaleString('es-ES', {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})} ZULU</span>
+        <span class="text-error font-bold">{new Date(entry.data.date).toLocaleString('es-ES', {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})} HORA</span>
       </div>
 
       <h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight leading-snug mt-2">

@@ -12,7 +12,7 @@ const baseOsintSchema = z.object({
     lon: z.number()
   }).optional(),
   category: z.string().default('INFORMES OSINT'),
-  defcon: z.string().default('DEFCON 3'),
+  defcon: z.string().default('NIVEL DE ALERTA'),
   hotspots: z.array(z.string()).default([]),
   tags: z.array(z.string()).default([]),
   image: z.string().default('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'),
