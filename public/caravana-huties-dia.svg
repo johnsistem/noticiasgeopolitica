@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="Caravana militar de vehículos armados hutíes en el desierto" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="skyx" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="30%" stop-color="#241436"/>
+      <stop offset="55%" stop-color="#4d2214"/>
+      <stop offset="75%" stop-color="#8a4a1e"/>
+      <stop offset="100%" stop-color="#2a1408"/>
+    </linearGradient>
+    <linearGradient id="dunex" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#331c0e"/>
+      <stop offset="100%" stop-color="#151008"/>
+    </linearGradient>
+    <linearGradient id="roadx" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#232f3d"/>
+      <stop offset="100%" stop-color="#0b1016"/>
+    </linearGradient>
+    <radialGradient id="sunx" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe7ad"/>
+      <stop offset="40%" stop-color="#ffb866" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff7a33" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurX"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="blurS"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="glowX"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1200" height="560" fill="url(#skyx)"/>
+
+  <!-- Sol incandescente -->
+  <circle cx="880" cy="330" r="150" fill="url(#sunx)"/>
+  <circle cx="880" cy="330" r="44" fill="#ffe7ad" opacity="0.95" filter="url(#glowX)"/>
+
+  <!-- Bancos de nubes de tormenta -->
+  <g opacity="0.35">
+    <ellipse cx="300" cy="180" rx="260" ry="40" fill="#3a1a2e" filter="url(#blurX)"/>
+    <ellipse cx="700" cy="140" rx="300" ry="46" fill="#2b1230" filter="url(#blurX)"/>
+    <ellipse cx="1050" cy="210" rx="280" ry="38" fill="#401a26" filter="url(#blurX)"/>
+  </g>
+
+  <!-- Horizonte de dunas -->
+  <path d="M0 350 Q 200 300 420 348 Q 650 296 860 352 Q 1050 300 1200 348 L1200 420 L0 420 Z" fill="url(#dunex)" filter="url(#blurS)"/>
+  <path d="M0 380 Q 300 340 560 380 Q 820 422 1200 372 L1200 440 L0 440 Z" fill="#0f0a05" opacity="0.95"/>
+
+  <!-- Carretera -->
+  <path d="M0 560 L 240 478 L 640 430 L 950 410 L1200 402 L1200 560 Z" fill="url(#roadx)"/>
+
+  <!-- Línea central de carretera punteada -->
+  <path d="M120 540 L 260 474 M380 500 L 480 462 M640 440 L 720 430 M900 420 L 1000 410" stroke="#8a94a8" stroke-width="2.5" stroke-dasharray="18 14" opacity="0.4"/>
+
+  <!-- Polvo/niebla baja de la caravana -->
+  <g fill="#a8773f" opacity="0.35" filter="url(#blurX)">
+    <ellipse cx="240" cy="470" rx="200" ry="50"/>
+    <ellipse cx="460" cy="448" rx="170" ry="40"/>
+    <ellipse cx="700" cy="430" rx="140" ry="34"/>
+    <ellipse cx="930" cy="418" rx="110" ry="26"/>
+  </g>
+
+  <!-- ===== VEHÍCULO 1 (lejano, silueta) ===== -->
+  <g transform="translate(210 452) scale(0.62)" opacity="0.85">
+    <path d="M4 20 L8 8 L52 8 L60 20 L62 34 L58 36 L56 30 L48 26 L8 26 L4 30 L0 34 Z" fill="#141c28"/>
+    <rect x="6" y="34" width="8" height="9" fill="#0b1117"/>
+    <rect x="46" y="34" width="8" height="9" fill="#0b1117"/>
+    <circle cx="10" cy="44" r="6" fill="#05080c" stroke="#39495c" stroke-width="1.5"/>
+    <circle cx="50" cy="44" r="6" fill="#05080c" stroke="#39495c" stroke-width="1.5"/>
+    <!-- arma en caja -->
+    <rect x="20" y="0" width="22" height="6" fill="#1c2733"/>
+  </g>
+
+  <!-- ===== VEHÍCULO 2 (medio) ===== -->
+  <g transform="translate(430 428) scale(0.88)" opacity="0.95">
+    <path d="M2 26 L6 10 L14 4 L22 -2 L30 4 L52 2 L62 8 L68 18 L70 32 L62 34 L58 28 L50 24 L8 24 L2 28 L-2 32 Z" fill="#1d2836"/>
+    <rect x="4" y="32" width="10" height="11" fill="#10161f"/>
+    <rect x="56" y="32" width="10" height="11" fill="#10161f"/>
+    <circle cx="9" cy="44" r="7" fill="#06090d" stroke="#43546a" stroke-width="1.8"/>
+    <circle cx="61" cy="44" r="7" fill="#06090d" stroke="#43546a" stroke-width="1.8"/>
+    <circle cx="9" cy="44" r="2.5" fill="#ffd98a" opacity="0.8"/>
+    <circle cx="61" cy="44" r="2.5" fill="#ff6b4a" opacity="0.8"/>
+    <!-- torreta + ametralladora -->
+    <rect x="18" y="-6" width="26" height="7" rx="2" fill="#161f2b"/>
+    <rect x="6" y="-4" width="18" height="5" fill="#0f141d"/>
+    <!-- bandera -->
+    <line x1="52" y1="-2" x2="52" y2="-26" stroke="#2c3a4a" stroke-width="2.5"/>
+    <path d="M52 -26 L74 -21 L52 -16 Z" fill="#c8223a"/>
+    <path d="M52 -26 L74 -21 L52 -16 Z" fill="#f2d98a" opacity="0.0" stroke="#0a0d12" stroke-width="1"/>
+  </g>
+
+  <!-- ===== VEHÍCULO 3 (protagonista) ===== -->
+  <g transform="translate(650 388) scale(1.18)">
+    <!-- cuerpo -->
+    <path d="M0 30 L6 12 L16 4 L26 -2 L34 4 L60 2 L70 10 L76 22 L78 40 L68 42 L64 34 L54 30 L8 30 L0 34 L-4 44 Z" fill="#283542"/>
+    <path d="M8 30 L10 12 L22 6 L55 6 L62 14 L64 30 Z" fill="#1d2836" stroke="#3a4c5f" stroke-width="1"/>
+    <!-- puertas -->
+    <rect x="20" y="16" width="22" height="14" rx="2" fill="#161f2a"/>
+    <rect x="34" y="18" width="4" height="10" fill="#0c1118"/>
+    <!-- caja trasera con lanzacohetes -->
+    <rect x="38" y="-6" width="30" height="8" rx="1" fill="#33281a" stroke="#6b5b2f" stroke-width="1"/>
+    <rect x="46" y="-16" width="9" height="12" rx="3" fill="#88733a"/>
+    <rect x="60" y="-16" width="9" height="12" rx="3" fill="#88733a"/>
+    <!-- tubo lanzador -->
+    <rect x="42" y="-26" width="7" height="24" rx="3" fill="#5c4f28" stroke="#87742f" stroke-width="1.2"/>
+    <!-- ruedas -->
+    <circle cx="12" cy="44" r="9" fill="#070a0f" stroke="#4a5c70" stroke-width="2"/>
+    <circle cx="66" cy="44" r="9" fill="#070a0f" stroke="#4a5c70" stroke-width="2"/>
+    <circle cx="12" cy="44" r="3" fill="#ffd98a" opacity="0.85"/>
+    <circle cx="66" cy="44" r="3" fill="#ff6b2a" opacity="0.85"/>
+    <!-- faros -->
+    <ellipse cx="74" cy="20" rx="2.5" ry="2" fill="#ffe7ad" filter="url(#glowX)"/>
+  </g>
+
+  <!-- Rayos de faros en el suelo -->
+  <g fill="#d9a85e" opacity="0.16">
+    <polygon points="712,430 940,470 900,500 700,470" filter="url(#blurS)"/>
+    <polygon points="486,452 640,478 610,500 470,486" filter="url(#blurS)"/>
+  </g>
+
+  <!-- Polvo en primer plano -->
+  <g fill="#a37740" opacity="0.24" filter="url(#blurX)">
+    <ellipse cx="150" cy="510" rx="220" ry="60"/>
+    <ellipse cx="500" cy="490" rx="180" ry="48"/>
+    <ellipse cx="820" cy="460" rx="160" ry="40"/>
+  </g>
+  <!-- partículas -->
+  <g fill="#e0b06a" opacity="0.5">
+    <circle cx="340" cy="470" r="2"/>
+    <circle cx="600" cy="450" r="2"/>
+    <circle cx="820" cy="440" r="2"/>
+    <circle cx="430" cy="470" r="1.5"/>
+    <circle cx="380" cy="480" r="1.8"/>
+  </g>
+
+  <!-- HUD -->
+  <g>
+    <rect x="36" y="34" width="352" height="76" rx="8" fill="#0a0f18" opacity="0.82" stroke="#d4af37" stroke-opacity="0.6" stroke-width="1"/>
+    <text x="52" y="58" fill="#f3dd8a" font-size="14" font-weight="800" letter-spacing="2">▲ MOVILIZACIÓN TERRESTRE VERIFICADA</text>
+    <text x="52" y="80" fill="#f5f7fa" font-size="12" font-weight="700">COLUMNA BANI HASHISH · VECTOR NORTE</text>
+    <text x="52" y="98" fill="#9fb0c4" font-size="11">GEO: 15.35°N 44.2°E · EN RUMBO A ARABIA SAUDITA</text>
+  </g>
+
+  <g>
+    <rect x="1000" y="34" width="164" height="44" rx="8" fill="#0a0f18" opacity="0.85" stroke="#ef4444" stroke-opacity="0.5"/>
+    <circle cx="1022" cy="56" r="6" fill="#ef4444">
+      <animate attributeName="opacity" values="1;0.15;1" dur="0.9s" repeatCount="indefinite"/>
+    </circle>
+    <text x="1038" y="61" fill="#fca5a5" font-size="13" font-weight="800">LIVE TRACK</text>
+  </g>
+</svg>

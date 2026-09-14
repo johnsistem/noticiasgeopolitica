@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="760" height="360" role="img" aria-label="Deuda pública de EE.UU. a septiembre 2026" font-family="Inter, system-ui, sans-serif">
+  <rect width="760" height="360" rx="10" fill="#0b0e14"/>
+
+  <text x="40" y="36" fill="#f5f7fa" font-size="20" font-weight="700">DEUDA PÚBLICA DE EE. UU. — DATO OFICIAL</text>
+  <text x="40" y="58" fill="#8b98ab" font-size="13">US Treasury · Debt to the Penny · 10 sept 2026 · Cifras en US$ billones</text>
+
+  <!-- Tarjetas -->
+  <g>
+    <rect x="40" y="84" width="320" height="88" rx="8" fill="#12294d" stroke="#2f6fb0" stroke-width="1"/>
+    <text x="56" y="108" fill="#7ca8d9" font-size="12" font-weight="600" letter-spacing="1">DEUDA TOTAL</text>
+    <text x="56" y="140" fill="#ffffff" font-size="30" font-weight="700">$40,05 B</text>
+    <text x="56" y="158" fill="#8b98ab" font-size="11">Total público pendiente</text>
+
+    <rect x="400" y="84" width="320" height="88" rx="8" fill="#12294d" stroke="#2f6fb0" stroke-width="1"/>
+    <text x="416" y="108" fill="#7ca8d9" font-size="12" font-weight="600" letter-spacing="1">EN MANOS DEL PÚBLICO</text>
+    <text x="416" y="140" fill="#ffffff" font-size="30" font-weight="700">$32,36 B</text>
+    <text x="416" y="158" fill="#8b98ab" font-size="11">Titulares privados y extranjeros</text>
+  </g>
+
+  <!-- Barras comparativas Tenedores -->
+  <text x="40" y="216" fill="#f5f7fa" font-size="15" font-weight="700">TENENCIAS EN RETIRADA  ($ miles de millones)</text>
+
+  <!-- Barra China -->
+  <text x="40" y="246" fill="#8b98ab" font-size="12">China — bonos del Tesoro</text>
+  <rect x="40" y="254" width="420" height="14" rx="4" fill="#1a2333"/>
+  <rect x="40" y="254" width="210" height="14" rx="4" fill="#e11d48"/>
+  <text x="470" y="265" fill="#f5f7fa" font-size="13" font-weight="600">$633,4</text>
+  <text x="470" y="281" fill="#8b98ab" font-size="10">jun 2026</text>
+
+  <!-- Barra Oro -->
+  <text x="40" y="306" fill="#8b98ab" font-size="12">Oro — compras bancos centrales (toneladas, 2025)</text>
+  <rect x="40" y="314" width="420" height="14" rx="4" fill="#1a2333"/>
+  <rect x="40" y="314" width="260" height="14" rx="4" fill="#d4af37"/>
+  <text x="470" y="325" fill="#f5f7fa" font-size="13" font-weight="600">863 t</text>
+  <text x="470" y="341" fill="#8b98ab" font-size="10">2025 completo</text>
+</svg>

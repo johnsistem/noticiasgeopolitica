@@ -2,9 +2,11 @@
 interface Props {
   location?: string;
   coords?: string;
+  lat?: number;
+  lon?: number;
 }
 
-const { location = "ESTRECHO DE BAB EL-MANDEB", coords = "12.65° N / 43.41° E" } = Astro.props;
+const { location = "ESTRECHO DE BAB EL-MANDEB", coords = "12.65° N / 43.41° E", lat = 12.6534, lon = 43.4182 } = Astro.props;
 ---
 
 <div class="my-space-md border border-outline-variant bg-surface-container-lowest rounded overflow-hidden">
@@ -13,14 +15,42 @@ const { location = "ESTRECHO DE BAB EL-MANDEB", coords = "12.65° N / 43.41° E"
       <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
       <span class="text-primary font-bold">{location}</span>
     </div>
-    <span>COORDS: {coords}</span>
+    <span>COORDS: {lat}° N / {lon}° E</span>
   </div>
-  <div class="p-space-md relative flex items-center justify-center bg-surface bg-[radial-gradient(#1c2620_1px,transparent_1px)] [background-size:16px_16px] min-h-[200px]">
-    <div class="absolute inset-0 border border-primary/20 rounded-full w-48 h-48 m-auto animate-pulse"></div>
-    <div class="text-center font-mono z-10">
-      <span class="material-symbols-outlined text-primary text-4xl animate-spin">radar</span>
-      <p class="text-xs text-primary font-bold mt-2 uppercase">TELEMETRÍA SATELITAL EN TIEMPO REAL</p>
-      <p class="text-outline text-[11px]"><slot>Tránsito marítimo monitorizado por SIGINT analítico.</slot></p>
-    </div>
+  <div class="p-space-md relative min-h-[260px] bg-[#0b0e14]">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <div id="radarWidgetMap" class="w-full h-[260px] z-0"></div>
+    <script define:vars={{ lat, lon }}>
+      function initRadarWidgetMap() {
+        if (typeof L === 'undefined' || !document.getElementById('radarWidgetMap')) {
+          setTimeout(initRadarWidgetMap, 200);
+          return;
+        }
+        const m = L.map('radarWidgetMap', {
+          center: [lat, lon],
+          zoom: 10,
+          zoomControl: false,
+          attributionControl: false,
+          scrollWheelZoom: false
+        });
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 16
+        }).addTo(m);
+        const pulse = L.divIcon({
+          className: 'radar-pulse',
+          html: '<div style="position:relative;width:34px;height:34px;display:flex;align-items:center;justify-content:center;"><span class="animate-ping absolute inline-flex h-full w-full rounded-full" style="background:#ef4444;opacity:.75;"></span><span style="position:relative;display:inline-flex;width:14px;height:14px;border-radius:9999px;background:#ef4444;border:2px solid #fff;box-shadow:0 0 14px rgba(239,68,68,.8);"></span></div>',
+          iconSize: [34, 34],
+          iconAnchor: [17, 17]
+        });
+        L.marker([lat, lon], { icon: pulse }).addTo(m)
+          .bindPopup('PUNTO DE INTERÉS: ' + (lat.toFixed(4)) + '° N, ' + lon.toFixed(4) + '° E');
+      }
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initRadarWidgetMap();
+      } else {
+        document.addEventListener('DOMContentLoaded', initRadarWidgetMap);
+      }
+    </script>
   </div>
 </div>

@@ -1,9 +1,14 @@
 ---
 import SidebarLayout from '../layouts/SidebarLayout.astro';
+import { theaters } from '../data/theaters.js';
+
+const active = theaters[0];
+const catalog = theaters.slice(1);
 ---
 
 <SidebarLayout>
 <div class="flex flex-col w-full">
+<script type="application/json" id="theatersData" set:html={JSON.stringify(theaters)}></script>
 <!-- Top Telemetry Micro-Bar -->
 <div class="flex items-center justify-between py-space-xs mb-space-sm font-label-sm text-label-sm text-outline">
 <div class="flex items-center gap-space-sm">
@@ -14,7 +19,7 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span class="text-outline-variant">/</span>
 <span>RECON SAT: SENTINEL-2B OSINT</span>
 <span class="text-outline-variant">/</span>
-<span class="text-on-surface-variant">GRID RES: 0.5M/PX</span>
+<span class="text-on-surface-variant">RESOLUCIÓN SATELITAL COMERCIAL</span>
 </div>
 <div class="flex items-center gap-space-md">
 <span class="text-secondary font-mono">LAT 12.6534° N // LON 43.4182° E</span>
@@ -55,22 +60,22 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span class="font-label-sm text-label-sm text-outline mr-2 uppercase flex items-center gap-1">
 <span class="material-symbols-outlined text-[14px]">public</span> Región:
           </span>
-<button class="bg-primary text-on-primary font-label-sm text-label-sm px-2.5 py-1 rounded font-bold uppercase transition hover:brightness-110">
+<button data-region="todas" class="region-btn bg-primary text-on-primary font-label-sm text-label-sm px-2.5 py-1 rounded font-bold uppercase transition hover:brightness-110">
             Todas
           </button>
-<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+<button data-region="hormuz" class="region-btn bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
             Oriente Medio
           </button>
-<button class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition ring-0 shadow-sm flex items-center gap-1">
+<button data-region="bab-el-mandeb" class="region-btn region-active bg-surface-container-high text-primary font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition ring-0 shadow-sm flex items-center gap-1">
 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Mar Rojo
           </button>
-<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+<button data-region="taiwan" class="region-btn bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
             Taiwán
           </button>
-<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+<button data-region="artico" class="region-btn bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
             Ártico
           </button>
-<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
+<button data-region="nilo" class="region-btn bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded uppercase transition">
             Cuerno de África
           </button>
 </div>
@@ -82,10 +87,10 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span class="material-symbols-outlined text-[14px]">shield_with_heart</span> Amenaza:
             </span>
 <div class="flex bg-surface-container-highest rounded p-0.5">
-<button class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Naval</button>
-<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Terrestre</button>
-<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Energía</button>
-<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Ciber/Sat</button>
+<button data-threat="naval" class="threat-btn bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Naval</button>
+<button data-threat="terrestre" class="threat-btn text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Terrestre</button>
+<button data-threat="energia" class="threat-btn text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Energía</button>
+<button data-threat="ciber" class="threat-btn text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Ciber/Sat</button>
 </div>
 </div>
 <!-- Map Surface Select -->
@@ -94,9 +99,9 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span class="material-symbols-outlined text-[14px]">layers</span> Modo:
             </span>
 <div class="flex bg-surface-container-highest rounded p-0.5">
-<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Satelital</button>
-<button class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Vector Táctico</button>
-<button class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Comercial</button>
+<button data-mode="satelital" class="mode-btn text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Satelital</button>
+<button data-mode="vector" class="mode-btn mode-active bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">Vector Táctico</button>
+<button data-mode="comercial" class="mode-btn text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">Comercial</button>
 </div>
 </div>
 </div>
@@ -111,7 +116,7 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between z-20">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-primary text-[18px]">file_download_done</span>
-<span class="font-label-md text-label-md text-on-surface uppercase font-bold tracking-wider">BAB EL-MANDEB CHOKEPOINT // SECTOR YEMEN-PERIM</span>
+<span id="visorTitle" class="font-label-md text-label-md text-on-surface uppercase font-bold tracking-wider">BAB EL-MANDEB &amp; ISLA DE PERIM</span>
 </div>
 <div class="flex items-center gap-space-sm font-label-sm text-label-sm">
 <span class="text-primary animate-pulse">● RADAR ACTIVO</span>
@@ -121,128 +126,35 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 </div>
 <!-- Canvas Area / Map Container -->
 <div class="relative w-full h-[620px] bg-[#0b0e14] overflow-hidden select-none" id="tacticalMapContainer">
-<!-- Cartographic Grid / Lat-Lon Lines SVG -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<pattern height="80" id="grid" patternUnits="userSpaceOnUse" width="80">
-<path d="M 80 0 L 0 0 0 80" fill="none" stroke="#1f2636" stroke-width="0.75"></path>
-<circle cx="0" cy="0" fill="#3c4a42" r="1.5"></circle>
-</pattern>
-<!-- Radar sweep gradient -->
-<radialgradient cx="50%" cy="50%" id="radarGlow" r="50%">
-<stop offset="0%" stop-color="#10b981" stop-opacity="0.08"></stop>
-<stop offset="70%" stop-color="#10b981" stop-opacity="0.02"></stop>
-<stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
-</radialgradient>
-</defs>
-<rect fill="url(#grid)" height="100%" width="100%"></rect>
-<!-- Crosshair coordinate lines -->
-<line stroke="#1f2636" stroke-dasharray="4,4" stroke-width="1" x1="50%" x2="50%" y1="0" y2="100%"></line>
-<line stroke="#1f2636" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="100%" y1="50%" y2="50%"></line>
-</svg>
-<!-- Simulated Vector Landmasses & Bathymetry Silhouette -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" preserveAspectRatio="none" viewBox="0 0 800 620">
-<!-- Yemen Mainland (Top Right) -->
-<path d="M 460,0 L 800,0 L 800,340 Q 680,310 610,340 T 510,400 Q 470,360 480,290 T 520,180 Q 480,100 460,0 Z" fill="#161b24" stroke="#2a3547" stroke-width="1.5"></path>
-<text fill="#4d5c73" font-family="JetBrains Mono" font-size="12" letter-spacing="3" x="660" y="140">COSTA DE YEMEN (HODEIDA/TAIZ)</text>
-<!-- Djibouti / Eritrea African Horn (Bottom Left) -->
-<path d="M 0,160 Q 90,190 140,260 T 190,380 Q 230,490 280,620 L 0,620 Z" fill="#161b24" stroke="#2a3547" stroke-width="1.5"></path>
-<text fill="#4d5c73" font-family="JetBrains Mono" font-size="12" letter-spacing="3" x="50" y="480">YIBUTI / ERITREA</text>
-<text fill="#3c4a42" font-family="JetBrains Mono" font-size="10" x="40" y="505">BASE MILITAR DORALEH (CHIN/FRA/USA)</text>
-<!-- Perim Island (Center) -->
-<path d="M 420,345 C 435,338 450,342 458,355 C 462,368 455,382 440,388 C 428,392 412,385 410,370 C 408,358 412,349 420,345 Z" fill="#263142" stroke="#4edea3" stroke-width="1.5"></path>
-<text fill="#4edea3" font-family="JetBrains Mono" font-size="11" font-weight="bold" x="400" y="330">ISLA DE PERIM (MAYUN)</text>
-<line stroke="#4edea3" stroke-width="1" x1="435" x2="435" y1="335" y2="350"></line>
-<!-- Airstrips Vector Graphic on Perim -->
-<line stroke="#ffffff" stroke-linecap="round" stroke-width="2.5" x1="422" x2="450" y1="358" y2="378"></line>
-<line stroke="#10b981" stroke-dasharray="2,2" stroke-width="1" x1="423" x2="449" y1="360" y2="376"></line>
-<!-- Normal Commercial Route (Radar Green lines) -->
-<g opacity="0.95">
-<path d="M 120,0 Q 260,200 370,320 T 470,490 Q 530,570 580,620" fill="none" stroke="#10b981" stroke-dasharray="6,4" stroke-width="2.5"></path>
-<!-- Motion indicator circles -->
-<circle cx="280" cy="225" fill="#10b981" r="3"></circle>
-<circle cx="370" cy="320" fill="#10b981" r="3"></circle>
-<circle cx="510" cy="540" fill="#10b981" r="3"></circle>
-<text fill="#10b981" font-family="JetBrains Mono" font-size="10" transform="rotate(38 240,160)" x="240" y="160">RIMA COMERCIAL SUR-NORTE (AIS ACTIVE)</text>
-</g>
-<!-- Exclusion Zone / Drone Target Cone (Red Dotted Area) -->
-<polygon fill="#93000a" fill-opacity="0.12" points="560,260 750,380 620,530 460,420" stroke="#ffb4ab" stroke-dasharray="4,3" stroke-width="1.5"></polygon>
-<text fill="#ffb4ab" font-family="JetBrains Mono" font-size="10" font-weight="bold" x="560" y="410">ÁREA DE EXCLUSIÓN: AMENAZA USV / DRONES</text>
-<!-- Missile Threat Radius (Amber concentric circles from Yemen coast) -->
-<circle cx="590" cy="280" fill="none" opacity="0.75" r="140" stroke="#ffb95f" stroke-dasharray="8,4" stroke-width="1.2"></circle>
-<circle cx="590" cy="280" fill="none" opacity="0.45" r="230" stroke="#ffb95f" stroke-dasharray="4,6" stroke-width="0.8"></circle>
-<circle cx="590" cy="280" fill="#ffb95f" r="5"></circle>
-<text fill="#ffb95f" font-family="JetBrains Mono" font-size="9" x="602" y="278">ALCANCE AShM (C-802 / AL-MANDOOB)</text>
-<!-- Western Channel (Bab Iskander) & Eastern Channel -->
-<path d="M 330,360 L 370,410" stroke="#adc6ff" stroke-dasharray="2,2" stroke-width="1"></path>
-<text fill="#adc6ff" font-family="JetBrains Mono" font-size="10" x="250" y="420">CANAL OCCIDENTAL (DIRECCIÓN CANAL DE SUEZ)</text>
-</svg>
-<!-- Interactive Pins overlay (HTML positioned elements for crisp tooltips) -->
-<div class="absolute z-30" style="top: 54%; left: 53%;">
-<div class="relative group cursor-pointer" onclick="focusPin('perim')">
-<span class="flex h-5 w-5 relative">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-5 w-5 bg-primary text-on-primary items-center justify-center font-bold text-[10px] shadow-lg">1</span>
-</span>
-<!-- Pin Card -->
-<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-<div class="text-primary font-label-sm text-label-sm font-bold">PISTA MILITAR ISLA DE PERIM</div>
-<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">3,000m pista de asfalto y puestos de escucha SIGINT.</div>
-<div class="mt-1 font-label-sm text-label-sm text-outline">ESTADO: OPERATIVO NO RECONOCIDO</div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Mapa Leaflet real -->
+<div id="visorTacticalMap" class="absolute inset-0 z-0"></div>
+
+<!-- Aviso: capas ilustrativas -->
+<div class="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-surface-container-lowest/90 backdrop-blur-md border border-tertiary/40 px-2.5 py-1 rounded shadow-lg pointer-events-none">
+<span class="material-symbols-outlined text-tertiary text-[14px]">info</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">CAPAS ILUSTRATIVAS · NO SON DATOS EN VIVO</span>
 </div>
-</div>
-</div>
-<div class="absolute z-30" style="top: 41%; left: 74%;">
-<div class="relative group cursor-pointer" onclick="focusPin('radar')">
-<span class="flex h-4 w-4 relative">
-<span class="relative inline-flex rounded-full h-4 w-4 bg-tertiary-container text-on-tertiary items-center justify-center font-bold text-[9px]">2</span>
-</span>
-<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-<div class="text-tertiary font-label-sm text-label-sm font-bold">PUESTO DE RADAR COSTERO</div>
-<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Vigilancia de superficie OTH montada en acantilados.</div>
-</div>
-</div>
-</div>
-<div class="absolute z-30" style="top: 66%; left: 39%;">
-<div class="relative group cursor-pointer" onclick="focusPin('canal')">
-<span class="flex h-4 w-4 relative">
-<span class="relative inline-flex rounded-full h-4 w-4 bg-secondary text-on-secondary items-center justify-center font-bold text-[9px]">3</span>
-</span>
-<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-<div class="text-secondary font-label-sm text-label-sm font-bold">BAB ISKANDER (CANAL)</div>
-<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Cuello de botella de 26 km de navegación forzosa.</div>
-</div>
-</div>
-</div>
-<div class="absolute z-30" style="top: 28%; left: 34%;">
-<div class="relative group cursor-pointer" onclick="focusPin('tankers')">
-<span class="flex h-4 w-4 relative">
-<span class="relative inline-flex rounded-full h-4 w-4 bg-primary-fixed-dim text-on-primary-fixed items-center justify-center font-bold text-[9px]">4</span>
-</span>
-<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 p-2 bg-surface-container-high/95 backdrop-blur-md rounded shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-<div class="text-primary-fixed-dim font-label-sm text-label-sm font-bold">FONDEADERO DE PETROLEROS VLCC</div>
-<div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Buques en espera de escolta de convoy multinacional.</div>
-</div>
-</div>
-</div>
+
 <!-- Floating Tactical Layer Controller Widget -->
 <div class="absolute top-4 left-4 z-20 bg-surface-container-low/90 backdrop-blur-md p-space-sm rounded shadow-2xl w-60">
 <div class="flex items-center justify-between pb-1 mb-2 font-label-sm text-label-sm text-on-surface uppercase font-bold">
 <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-primary">tune</span> Capas Activas</span>
-<span class="text-outline">3/3</span>
 </div>
 <div class="flex flex-col gap-1.5 font-label-sm text-label-sm">
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
-<span class="text-on-surface-variant">Fronteras Internacionales</span>
-<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+<span class="text-on-surface-variant">Puntos Clave / Perim</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkPerim"/>
 </label>
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
-<span class="text-on-surface-variant">Tráfico Marítimo AIS Vivo</span>
-<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+<span class="text-on-surface-variant">Rutas AIS (EST.)</span>
+<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkAIS"/>
 </label>
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
-<span class="text-on-surface-variant">Cables Submarinos SubTel</span>
-<input checked="" class="accent-primary rounded cursor-pointer" type="checkbox"/>
+<span class="text-on-surface-variant">Alcance A2/AD (TEÓRICO)</span>
+<input class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkMissile"/>
 </label>
 </div>
 </div>
@@ -251,7 +163,7 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <div class="flex items-center gap-space-md font-label-sm text-label-sm">
 <div class="flex items-center gap-1 text-on-surface">
 <span class="text-outline">POSICIÓN RETÍCULA:</span>
-<span class="text-primary font-mono font-bold" id="coordDisplay">12°38'42"N 43°25'08"E</span>
+<span class="text-primary font-mono font-bold" id="coordDisplay">12.6534°N 43.4182°E</span>
 </div>
 <div class="text-outline font-mono">ALTURA SAT: 480 KM</div>
 </div>
@@ -265,6 +177,247 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span>10 NM (18.5 KM)</span>
 </div>
 </div>
+
+<script is:inline>
+(function () {
+  const theaters = JSON.parse(document.getElementById('theatersData').textContent);
+  let visorMap = null;
+  let baseLayer = null;
+  let gPoints = null, gRoutes = null, gZones = null;
+  let currentTheaterId = null;
+
+  function updatePanel(t) {
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set('intelTitle', t.name);
+    set('intelRegion', 'SEC: ' + t.region.toUpperCase());
+    set('intelThreat', 'AMENAZA ' + t.threat.toUpperCase());
+    set('intelSource', t.source);
+    set('intelSummary', t.summary);
+
+    const box = document.getElementById('intelPoints');
+    if (box) {
+      box.innerHTML = t.analysis.map((p, i) =>
+        '<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high">' +
+          '<div class="flex items-center justify-between mb-1">' +
+            '<span class="font-label-sm text-label-sm text-primary font-bold uppercase">' + p.title + '</span>' +
+            '<button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" data-focus-index="' + i + '">' +
+              '<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar' +
+            '</button>' +
+          '</div>' +
+          '<p class="font-body-sm text-body-sm text-on-surface-variant">' + p.text + '</p>' +
+        '</div>'
+      ).join('');
+    }
+  }
+
+  function drawTheater(t) {
+    gPoints.clearLayers(); gRoutes.clearLayers(); gZones.clearLayers();
+
+    const pulse = L.divIcon({
+      className: 'visor-pulse',
+      html: '<div style="position:relative;width:30px;height:30px;display:flex;align-items:center;justify-content:center;"><span class="animate-ping absolute inline-flex h-full w-full rounded-full" style="background:#ef4444;opacity:.75;"></span><span style="position:relative;display:inline-flex;width:13px;height:13px;border-radius:9999px;background:#ef4444;border:2px solid #fff;"></span></div>',
+      iconSize: [30, 30], iconAnchor: [15, 15]
+    });
+    const square = L.divIcon({
+      className: 'visor-square',
+      html: '<div style="width:14px;height:14px;border-radius:3px;background:#38bdf8;border:2px solid #fff;transform:rotate(45deg);"></div>',
+      iconSize: [14, 14], iconAnchor: [7, 7]
+    });
+
+    t.keyPoints.forEach(p => {
+      L.marker([p.lat, p.lon], { icon: pulse }).addTo(gPoints)
+        .bindPopup('<div style="color:#10b981;font-family:monospace;font-weight:bold;font-size:12px;">' + p.name + '</div><div style="color:#9ca3af;font-family:monospace;font-size:11px;">' + p.desc + '</div>');
+    });
+    t.bases.forEach(b => {
+      L.marker([b.lat, b.lon], { icon: square }).addTo(gPoints)
+        .bindPopup('<div style="color:#38bdf8;font-family:monospace;font-weight:bold;font-size:12px;">' + b.name + '</div>');
+    });
+    t.routes.forEach((pts, idx) => {
+      L.polyline(pts, { color: idx === 0 ? '#10b981' : '#38bdf8', weight: 2, opacity: 0.8, dashArray: idx === 0 ? null : '6 8' }).addTo(gRoutes);
+    });
+    t.zones.forEach(z => {
+      L.circle([z.lat, z.lon], { radius: z.radius, color: z.color || '#ef4444', weight: 1.5, dashArray: '5 6', fill: true, fillColor: z.color || '#ef4444', fillOpacity: 0.06, opacity: 0.5 })
+        .bindPopup('<div style="color:' + (z.color || '#ef4444') + ';font-family:monospace;font-weight:bold;font-size:12px;">' + z.name + '</div>').addTo(gZones);
+    });
+
+    const visorTitle = document.getElementById('visorTitle');
+    if (visorTitle) visorTitle.textContent = t.name;
+  }
+
+  function applyLayerToggles() {
+    const set = (id, group) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.checked) { group.addTo(visorMap); } else { visorMap.removeLayer(group); }
+    };
+    set('visorChkPerim', gPoints);
+    set('visorChkAIS', gRoutes);
+    set('visorChkMissile', gZones);
+  }
+
+  function setActiveRegion(id) {
+    document.querySelectorAll('.region-btn').forEach(b => {
+      if (b.getAttribute('data-region') === id) {
+        b.classList.add('region-active', 'text-primary');
+        b.classList.remove('text-on-surface-variant');
+        if (b.getAttribute('data-region') && b.getAttribute('data-region') !== 'todas') {
+          // asegura el indicador pulsante en la píldora correspondiente
+          if (!b.querySelector('.bullet')) {
+            const dot = document.createElement('span');
+            dot.className = 'bullet w-1.5 h-1.5 rounded-full bg-primary animate-pulse mr-1';
+            b.prepend(dot);
+          }
+        }
+      } else {
+        b.classList.remove('region-active', 'text-primary');
+        b.classList.add('text-on-surface-variant');
+        b.querySelector('.bullet')?.remove();
+      }
+    });
+  }
+
+  window.loadTheater = function (id) {
+    const t = theaters.find(x => x.id === id);
+    if (!t) return;
+    if (!visorMap || !gPoints || !gRoutes || !gZones) {
+      setTimeout(() => window.loadTheater(id), 250);
+      return;
+    }
+    currentTheaterId = id;
+    drawTheater(t);
+    applyLayerToggles();
+    visorMap.flyTo(t.center, t.zoom, { duration: 1.0 });
+    updatePanel(t);
+    const coordDisplay = document.getElementById('coordDisplay');
+    if (coordDisplay) coordDisplay.textContent = t.center[0].toFixed(4) + '°N ' + t.center[1].toFixed(4) + '°E';
+    document.getElementById('visorTacticalMap')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof setActiveRegion === 'function') setActiveRegion(id);
+    if (window.location.hash.replace('#', '') !== id) {
+      try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    }
+  };
+
+  function initVisorMap() {
+    if (typeof L === 'undefined' || !document.getElementById('visorTacticalMap')) {
+      setTimeout(initVisorMap, 200);
+      return;
+    }
+    const t0 = theaters[0];
+    visorMap = L.map('visorTacticalMap', {
+      center: t0.center,
+      zoom: t0.zoom,
+      zoomControl: false,
+      attributionControl: false,
+      scrollWheelZoom: true
+    });
+
+    baseLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16
+    }).addTo(visorMap);
+
+    // Cambiar capa base según el modo seleccionado
+    window.switchMode = function (mode) {
+      if (!visorMap) return;
+      const urls = {
+        vector: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+        satelital: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        comercial: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+      };
+      if (!urls[mode]) return;
+      if (baseLayer) visorMap.removeLayer(baseLayer);
+      baseLayer = L.tileLayer(urls[mode], { maxZoom: 16 }).addTo(visorMap);
+    };
+
+    gPoints = L.layerGroup().addTo(visorMap);
+    gRoutes = L.layerGroup().addTo(visorMap);
+    gZones = L.layerGroup();
+
+    drawTheater(t0);
+    currentTheaterId = t0.id;
+    applyLayerToggles();
+
+    ['visorChkPerim', 'visorChkAIS', 'visorChkMissile'].forEach(id => {
+      document.getElementById(id)?.addEventListener('change', applyLayerToggles);
+    });
+
+    const coordDisplay = document.getElementById('coordDisplay');
+    visorMap.on('mousemove', (e) => {
+      if (coordDisplay) coordDisplay.textContent = e.latlng.lat.toFixed(4) + '°N ' + e.latlng.lng.toFixed(4) + '°E';
+    });
+
+    // Enfocar puntos desde el panel
+    document.getElementById('intelPoints')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-focus-index]');
+      if (!btn || !visorMap) return;
+      const t = theaters.find(x => x.id === currentTheaterId);
+      const idx = parseInt(btn.dataset.focusIndex, 10);
+      const kp = t && t.keyPoints[idx % Math.max(t.keyPoints.length, 1)];
+      if (kp) visorMap.flyTo([kp.lat, kp.lon], 10, { duration: 0.8 });
+    });
+
+    document.getElementById('visorZoomIn')?.addEventListener('click', () => visorMap.zoomIn());
+    document.getElementById('visorZoomOut')?.addEventListener('click', () => visorMap.zoomOut());
+    document.getElementById('visorRecenter')?.addEventListener('click', () => {
+      const t = theaters.find(x => x.id === currentTheaterId) || t0;
+      visorMap.flyTo(t.center, t.zoom, { duration: 0.8 });
+    });
+
+    // Filtro por REGIÓN
+    document.querySelectorAll('.region-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const region = btn.getAttribute('data-region');
+        if (region && region !== 'todas') {
+          if (typeof window.loadTheater === 'function') window.loadTheater(region);
+        } else {
+          if (typeof window.loadTheater === 'function') window.loadTheater(theaters[0].id);
+        }
+      });
+    });
+
+    // Selector de MODO (capa base)
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-mode');
+        if (typeof window.switchMode === 'function') window.switchMode(mode);
+        document.querySelectorAll('.mode-btn').forEach(b => {
+          b.classList.remove('mode-active', 'bg-secondary', 'text-on-secondary', 'font-bold');
+          b.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+        });
+        btn.classList.add('mode-active', 'bg-secondary', 'text-on-secondary', 'font-bold');
+        btn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+      });
+    });
+
+    // Selector de AMENAZA (visual, tipo de vector destacado)
+    document.querySelectorAll('.threat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.threat-btn').forEach(b => {
+          b.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-bold');
+          b.classList.add('text-on-surface-variant', 'hover:text-on-surface');
+        });
+        btn.classList.add('bg-primary-container', 'text-on-primary-container', 'font-bold');
+        btn.classList.remove('text-on-surface-variant', 'hover:text-on-surface');
+      });
+    });
+
+    // Cargar teatro vía hash (#hormuz, #spratly, ...) desde links del sidebar
+    const applyHash = () => {
+      const h = window.location.hash.replace('#', '');
+      if (h && theaters.some(t => t.id === h)) {
+        if (typeof window.loadTheater === 'function') window.loadTheater(h);
+      }
+    };
+    window.addEventListener('hashchange', applyHash);
+    setTimeout(applyHash, 600);
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initVisorMap();
+  } else {
+    document.addEventListener('DOMContentLoaded', initVisorMap);
+  }
+})();
+</script>
 </div>
 <!-- Map Footer Controls: Zoom, Reset, Satellite Layer Switcher -->
 <div class="bg-surface-container-low px-space-md py-2 flex items-center justify-between z-20">
@@ -273,16 +426,16 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span>ZONA DE RIESGO DE GUERRA: CONDICIÓN JWC ALTA (LLOYD'S 2024)</span>
 </div>
 <div class="flex items-center gap-1">
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Acercar">
+<button id="visorZoomIn" class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Acercar">
 <span class="material-symbols-outlined text-[16px]">add</span>
 </button>
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Alejar">
+<button id="visorZoomOut" class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Alejar">
 <span class="material-symbols-outlined text-[16px]">remove</span>
 </button>
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Centrar">
+<button id="visorRecenter" class="bg-surface-container hover:bg-surface-container-high text-on-surface p-1 rounded transition" title="Centrar">
 <span class="material-symbols-outlined text-[16px]">filter_center_focus</span>
 </button>
-<button class="bg-primary text-on-primary font-label-sm text-label-sm px-2 py-1 rounded font-bold uppercase ml-2 flex items-center gap-1">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-2 py-1 rounded font-bold uppercase ml-2 flex items-center gap-1 opacity-60 cursor-not-allowed" disabled title="Función en preparación">
 <span class="material-symbols-outlined text-[14px]">download</span> Exportar GeoJSON
           </button>
 </div>
@@ -297,72 +450,35 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-2 py-0.5 font-bold uppercase rounded">
               OSINT 1A CONFIRMADO
             </span>
-<span class="font-label-sm text-label-sm text-outline">SEC: MAR-ROJO-SUR</span>
+<span class="font-label-sm text-label-sm text-outline" id="intelRegion">SEC: {active.region.toUpperCase()}</span>
 </div>
 <span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">timer</span> 6 MIN LECTURA
+<span class="material-symbols-outlined text-[14px]">timer</span> <span id="intelThreat">AMENAZA {active.threat.toUpperCase()}</span>
           </span>
 </div>
-<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight mb-space-xs">
-          Análisis Táctico: La militarización de Perim y la asfixia del tráfico marítimo global
+<h2 id="intelTitle" class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight mb-space-xs">
+          {active.name}
         </h2>
 <div class="flex items-center gap-space-md text-body-sm font-body-sm text-outline mb-space-md">
 <span class="flex items-center gap-1 text-on-surface-variant font-medium">
-<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span> Comando Editorial Geopolítica
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span> <span id="intelSource">{active.source}</span>
           </span>
 <span>•</span>
-<span>Actualizado hace 2 horas</span>
+<span id="intelSummary" class="line-clamp-3">{active.summary}</span>
 </div>
-<!-- Accordion / Strategic Points Breakdown -->
-<div class="space-y-space-sm overflow-y-auto max-h-[400px] pr-1">
-<!-- Punto 1 -->
-<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-geo">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase">1. Posición Geográfica Clave en Bab el-Mandeb</span>
-<button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('perim')">
-<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
-              </button>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              Con apenas 13 km² de superficie volcánica, la isla de Mayun (Perim) divide el estrecho en dos canales navegables. Su control ofrece dominio visual y de tiro directo sobre el paso del 12% del comercio marítimo mundial y más de 4.8 millones de barriles diarios de crudo.
-            </p>
-</div>
-<!-- Punto 2 -->
-<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-runway">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase">2. La nueva pista aérea y hangares fortificados</span>
-<button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('perim')">
-<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
-              </button>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              Imágenes de satélite de apertura sintética (SAR) revelan una pista asfaltada de 1,850 metros completada recientemente. Diseñada para desplegar drones de ataque MALE (Wing Loong / Mohajer) y aviones de patrulla marítima para proyectar vector ofensivo permanente.
-            </p>
-</div>
-<!-- Punto 3 -->
-<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-insurance">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase">3. Seguros marítimos y Joint War Committee</span>
-<button class="text-outline hover:text-tertiary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('radar')">
-<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
-              </button>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              Las primas de riesgo bélico del Lloyd’s de Londres se dispararon del 0.05% al 0.75% del valor total de casco y maquinaria. Para un petrolero Suezmax cargado, esto supone un coste añadido de hasta $800,000 dólares por cada travesía individual.
-            </p>
-</div>
-<!-- Punto 4 -->
-<div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high" id="section-perim-cape">
-<div class="flex items-center justify-between mb-1">
-<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">4. Alternativa logística: Cabo de Buena Esperanza</span>
-<button class="text-outline hover:text-secondary font-label-sm text-label-sm flex items-center gap-1" onclick="focusPin('tankers')">
-<span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
-              </button>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              El desvío forzoso rodeando Sudáfrica añade entre 10 y 14 días adicionales de navegación por trayecto Rotterdam-Singapur, generando un shock en la cadena de suministros y tensionando la capacidad portuaria en el Mediterráneo Occidental (Algeciras, Tánger-Med).
-            </p>
-</div>
+<!-- Accordion / Strategic Points Breakdown (dinámico por teatro) -->
+<div id="intelPoints" class="space-y-space-sm overflow-y-auto max-h-[400px] pr-1">
+{active.analysis.map((p, i) => (
+  <div class="bg-surface-container p-space-sm rounded transition hover:bg-surface-container-high">
+    <div class="flex items-center justify-between mb-1">
+      <span class="font-label-sm text-label-sm text-primary font-bold uppercase">{p.title}</span>
+      <button class="text-outline hover:text-primary font-label-sm text-label-sm flex items-center gap-1" data-focus-index={i}>
+        <span class="material-symbols-outlined text-[14px]">my_location</span> Enfocar
+      </button>
+    </div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">{p.text}</p>
+  </div>
+))}
 </div>
 </div>
 <!-- Bottom Sharing Strip & Action Trigger -->
@@ -406,163 +522,98 @@ import SidebarLayout from '../layouts/SidebarLayout.astro';
 <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">
           Teatros Activos Disponibles
         </h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
-          Accede a análisis en profundidad respaldados por capas de geolocalización e inteligencia satelital.
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Teatros de conflicto con datos verificados. Selecciona uno para cargarlo en el visor interactivo superior.
         </p>
 </div>
 <div class="mt-space-sm md:mt-0 flex items-center gap-2">
-<span class="font-label-sm text-label-sm text-outline uppercase">4 TEATROS LISTOS</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">TEATROS DISPONIBLES · FUENTE ABIERTA</span>
 </div>
 </div>
-<!-- 4 Cards Grid -->
+<!-- Catálogo dinámico de teatros -->
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
-<!-- Card 1: Taiwán -->
-<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
-<div>
-<!-- Thumbnail using map location trigger -->
-<div class="w-full h-44 bg-cover bg-center relative" data-location="Taiwan Strait, Taiwan" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIC4irghiL7N4AR5-SNaQJmsRZkotMRV0y9M0klotJSmW7HI9BxDn7FSzjuZXr8E2n5AuV-XkrDppK2kVTYaMrbNHUdRz6d5WGhyf-h4RUyy-CDGqFak2mrjBQQfQiZWC_2HVEAsKN8pXJeBNQlgVOBHBtl16gl5IrlJZ2YVR_rk22WigQOSJQnMT3ATN_X5Q_ekeIVAKIsty-yOruLgjCzJmpccKT22WwpLmkQBUKUCRt1gjsqgGZTw')">
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
-<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-error-container text-on-error-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
-<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
-              Tensión: Crítica
-            </div>
-<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
-              8 CAPAS AIS/ADIZ
-            </div>
-</div>
-<div class="p-space-md">
-<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
-              Estrecho de Taiwán: Las 5 rutas del bloqueo naval y guerra de cerco
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
-              Modelado vectorial de zonas de exclusión ADIZ, cables submarinos de fibra óptica transpacíficos y vectores de incursión naval anfibio del PLAN.
-            </p>
-</div>
-</div>
-<div class="p-space-md pt-0">
-<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
-          </button>
-</div>
-</div>
-<!-- Card 2: Zangezur -->
-<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
-<div>
-<div class="w-full h-44 bg-cover bg-center relative" data-location="Syunik Province, Armenia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPPLthJXcbrGSiXdOMaGjMtcxDQmSeqzGHlQUfbj1ew_Oopy7gp8UHtsWR5KdZ4A5kHKlKKPdHoo6b5rsBGhaxVVlioUs0_av9VgKmoDxGgaMPItu7-hWrEseKrloZnFB6XNCSXMW8jClslPQ0flcYoyENW56S8VAjNoNTrKW8OMhzjuTuwDb1nC65-EVhNeWy_oXuxRSnVh3icKFCT0S3gnjufy2xfw9KKa_TyfeELbKe9jTFKPiNgA')">
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
-<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
-<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              Tensión: Alta
-            </div>
-<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
-              5 CAPAS FERROVIARIAS
-            </div>
-</div>
-<div class="p-space-md">
-<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
-              El Corredor de Zangezur: Fronteras calientes entre Armenia, Azerbaiyán e Irán
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
-              Disputa por la arteria terrestre que conectaría Bakú con Najicheván sin control aduanero armenio, desafiando la frontera septentrional iraní.
-            </p>
-</div>
-</div>
-<div class="p-space-md pt-0">
-<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
-          </button>
-</div>
-</div>
-<!-- Card 3: Ártico -->
-<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
-<div>
-<div class="w-full h-44 bg-cover bg-center relative" data-location="Svalbard, Norway" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIC4irghiL7N4AR5-SNaQJmsRZkotMRV0y9M0klotJSmW7HI9BxDn7FSzjuZXr8E2n5AuV-XkrDppK2kVTYaMrbNHUdRz6d5WGhyf-h4RUyy-CDGqFak2mrjBQQfQiZWC_2HVEAsKN8pXJeBNQlgVOBHBtl16gl5IrlJZ2YVR_rk22WigQOSJQnMT3ATN_X5Q_ekeIVAKIsty-yOruLgjCzJmpccKT22WwpLmkQBUKUCRt1gjsqgGZTw')">
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
-<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-surface-container-highest text-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-              Tensión: Media-Alta
-            </div>
-<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
-              6 CAPAS DE HIELO/BASES
-            </div>
-</div>
-<div class="p-space-md">
-<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
-              El Paso del Noroeste en el Ártico: Rutas polares y bases de rompehielos rusos
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
-              Mapeo de la Ruta Marítima del Norte (NSR), emplazamientos de misiles Bastion en el Círculo Polar y la flota de propulsión nuclear de Rosatom.
-            </p>
-</div>
-</div>
-<div class="p-space-md pt-0">
-<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
-          </button>
-</div>
-</div>
-<!-- Card 4: Nilo / GERD -->
-<div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
-<div>
-<div class="w-full h-44 bg-cover bg-center relative" data-location="Grand Ethiopian Renaissance Dam, Ethiopia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt-t5Pqr2XbcsA40NTrKIJKm12QZAzg0WfzAA4VWNRBcJ89E69LG8sWnehsbbPYgzqSdVARcEp7L2BJv_TVbTz6RfgS5aqfjJiL4LJNxdRVV9qaHqK9ASRUrN7u6HH-ReHwocZ_XjQSJSVjp9XSOduZgDMO9TYpkEa4iP3eWdBhdDabocjhxv8jo9Z0AcqasCYwxTML9OVH6jfWaioTkX8QL12dAwGcbnUfOA00gpTO6NAcMmsTr7H1A')">
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
-<div class="absolute top-2 left-2 flex items-center gap-1.5 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase">
-<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-              Tensión: Alta
-            </div>
-<div class="absolute bottom-2 right-2 bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
-              4 CAPAS HÍDRICAS
-            </div>
-</div>
-<div class="p-space-md">
-<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">
-              Guerra del Agua en el Nilo: La Presa del Renacimiento y tensiones Egipto-Etiopía
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">
-              Telemetría de llenado de embalses por radar altimétrico, cuencas hídricas transfronterizas y doctrina militar del Delta del Nilo.
-            </p>
-</div>
-</div>
-<div class="p-space-md pt-0">
-<button class="w-full bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm py-2 rounded font-bold uppercase transition flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
-          </button>
-</div>
-</div>
+{catalog.map((t) => (
+  <div class="bg-surface-container-low rounded-lg overflow-hidden shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-full h-44 relative overflow-hidden bg-[#0b0e14]">
+        <div id={`miniMap-${t.id}`} class="absolute inset-0 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/20 to-transparent z-[1000] pointer-events-none"></div>
+        <div class={`absolute top-2 left-2 z-[1001] flex items-center gap-1.5 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase ${t.threat === 'Crítica' ? 'bg-error-container text-on-error-container' : 'bg-tertiary-container text-on-tertiary'}`}>
+          <span class={`w-1.5 h-1.5 rounded-full ${t.threat === 'Crítica' ? 'bg-error animate-ping' : 'bg-tertiary'}`}></span>
+          Tensión: {t.threat}
+        </div>
+        <div class="absolute bottom-2 right-2 z-[1001] bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm text-primary px-2 py-0.5 rounded font-mono">
+          {t.region}
+        </div>
+      </div>
+      <div class="p-space-md">
+        <h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs line-clamp-2">{t.name}</h4>
+        <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-space-sm">{t.summary}</p>
+        <div class="flex flex-wrap gap-1.5">
+          {t.stats.map(s => (
+            <span class="bg-surface-container px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant">
+              <span class="text-outline">{s.label}:</span> <span class="text-primary font-bold">{s.value}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="p-space-md pt-0">
+      <button data-theater={t.id} onclick={`window.loadTheater && window.loadTheater('${t.id}')`} class="theater-btn w-full bg-primary text-on-primary hover:bg-primary-fixed active:scale-[0.98] font-label-sm text-label-sm py-2 rounded font-bold uppercase flex items-center justify-center gap-2 transition-all cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">explore</span> Explorar Mapa
+      </button>
+    </div>
+  </div>
+))}
 </div>
 </section>
-<!-- Interactive Coordinate Tracker & Pin Focus Script -->
+
 <script is:inline>
-    const mapContainer = document.getElementById('tacticalMapContainer');
-    const coordDisplay = document.getElementById('coordDisplay');
+(function () {
+  const theaters = JSON.parse(document.getElementById('theatersData').textContent);
+  function initMiniMaps() {
+    if (typeof L === 'undefined') { setTimeout(initMiniMaps, 200); return; }
 
-    if (mapContainer && coordDisplay) {
-      mapContainer.addEventListener('mousemove', (e) => {
-        const rect = mapContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        // Approximate calculation to project lat/lon in Bab el-Mandeb bounds
-        const lat = (12.9 - (y / rect.height) * 0.6).toFixed(4);
-        const lon = (43.1 + (x / rect.width) * 0.7).toFixed(4);
-        coordDisplay.textContent = `${lat}°N ${lon}°E`;
+    // Mini-mapas para los teatros del catálogo (todos menos el activo)
+    theaters.slice(1).forEach(t => {
+      const el = document.getElementById('miniMap-' + t.id);
+      if (!el) return;
+      const m = L.map(el, {
+        center: t.center,
+        zoom: t.zoom,
+        zoomControl: false,
+        attributionControl: false,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        touchZoom: false,
+        keyboard: false
       });
-    }
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16
+      }).addTo(m);
+      const pin = L.divIcon({
+        className: 'mini-pin',
+        html: '<div style="position:relative;width:22px;height:22px;display:flex;align-items:center;justify-content:center;"><span class="animate-ping absolute inline-flex h-full w-full rounded-full" style="background:#ef4444;opacity:.7;"></span><span style="position:relative;display:inline-flex;width:11px;height:11px;border-radius:9999px;background:#ef4444;border:2px solid #fff;"></span></div>',
+        iconSize: [22, 22], iconAnchor: [11, 11]
+      });
+      L.marker(t.center, { icon: pin }).addTo(m);
+    });
 
-    function focusPin(pinId) {
-      const coords = {
-        'perim': '12.6534°N 43.4182°E',
-        'radar': '12.7821°N 43.5109°E',
-        'canal': '12.6102°N 43.3411°E',
-        'tankers': '12.8210°N 43.2840°E'
-      };
-
-      if (coordDisplay && coords[pinId]) {
-        coordDisplay.textContent = coords[pinId];
-        coordDisplay.classList.add('text-secondary');
-        setTimeout(() => coordDisplay.classList.remove('text-secondary'), 800);
-      }
-    }
-  </script>
+    // Botones "Explorar Mapa" → cargar teatro en el visor
+    document.querySelectorAll('.theater-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-theater');
+        if (typeof window.loadTheater === 'function') window.loadTheater(id);
+      });
+    });
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initMiniMaps();
+  } else {
+    document.addEventListener('DOMContentLoaded', initMiniMaps);
+  }
+})();
+</script>
 </div>
 </SidebarLayout>
