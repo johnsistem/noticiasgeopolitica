@@ -15,9 +15,9 @@ youtube_id: 'r4xNPgNi4vk'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 
-### ALERTA OPERACIONAL: COLAPSO DEL CHOKEPOINT EN EL MAR ROJO
+### ANÁLISIS: CRISIS EN EL CHOKEPOINT DEL MAR ROJO
 
-La alarma máxima se ha encendido en Tel Aviv. Funcionarios de **Israel** han confesado que la caída de la estratégica **Isla de Perim** ante los hutíes de Yemen es un "drama enorme", considerándolo peor que la crisis en el Estrecho de Ormuz.
+La alarma se ha encendido en Tel Aviv. Funcionarios de **Israel** han confesado que la caída de la estratégica **Isla de Perim** ante los hutíes de Yemen es un "drama enorme", considerándolo peor que la crisis en el Estrecho de Ormuz.
 
 [TELEMETRÍA TÁCTICA Y PARÁMETROS BÉLICOS]
 • Ubicación del evento: Isla de Perim, Bab el-Mandeb (12.65° N, 43.35° E).

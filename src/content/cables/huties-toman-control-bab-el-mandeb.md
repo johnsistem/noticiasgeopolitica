@@ -15,9 +15,9 @@ youtube_id: 'WDBLAm4rvb8'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 
-### ALERTA OPERACIONAL: COLAPSO DEL CORREDOR MARÍTIMO BAB EL-MANDEB
+### ALERTA: HUTÍES AVANZAN SOBRE EL ESTRECHO DE BAB EL-MANDEB
 
-La crisis en las rutas energéticas globales ha alcanzado un punto de no retorno. El **movimiento hutí del Yemen** ha consolidado el control total de la provincia costera de **Al Hudeida** y avanzado directamente sobre el **Estrecho de Bab el-Mandeb**, el chokepoint que conecta Asia con Europa a través del Mar Rojo.
+La crisis en las rutas energéticas globales se intensifica. El **movimiento hutí del Yemen** ha consolidado el control de la provincia costera de **Al Hudeida** y avanzado sobre el **Estrecho de Bab el-Mandeb**, el chokepoint que conecta Asia con Europa a través del Mar Rojo.
 
 [TELEMETRÍA TÁCTICA Y PARÁMETROS BÉLICOS]
 • Ubicación del evento: Estrecho de Bab el-Mandeb (12.7855° N, 43.2391° E).
