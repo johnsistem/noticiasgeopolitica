@@ -73,12 +73,14 @@ const { Content } = await entry.render();
           allowfullscreen>
         </iframe>
       </div>
-    ) : entry.data.coordinates ? (
+    ) : null}
+
+    <!-- Live Leaflet Map (shows after video if coordinates exist) -->
+    {entry.data.coordinates && (
       <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl bg-[#0b0e14] relative group">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        <!-- Leaflet Map Container -->
         <div id="articleMap" class="w-full h-[420px] z-10"></div>
 
         <!-- Military Telemetry HUD Overlay -->
@@ -139,16 +141,6 @@ const { Content } = await entry.render();
             document.addEventListener('DOMContentLoaded', initArticleMap);
           }
         </script>
-      </div>
-    ) : (
-      <div class="mb-space-xl rounded-xl overflow-hidden border border-surface-container-high shadow-2xl bg-surface-container-lowest relative group">
-        <div class="relative w-full h-[420px] overflow-hidden">
-          <img 
-            src={entry.data.image || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'} 
-            alt={entry.data.title} 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-          />
-        </div>
       </div>
     )}
 

@@ -7,9 +7,9 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Global'
 coordinates: { lat: 29.2433, lon: 50.3061 }
-date: '2026-09-13'
+date: '2026-09-13T10:30:00Z'
 readingTime: '1 MIN READ'
-facebook_url: 'https://www.facebook.com/reel/2724072537995141'
+youtube_id: '1gb53cnALbM'
 source_channel: 'RED DE MONITOREO CENTCOM & OSINT'
 ---
 

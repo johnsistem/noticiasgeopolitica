@@ -7,9 +7,9 @@ urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Global'
 coordinates: { lat: 26.5667, lon: 56.2500 }
-date: '2026-09-13'
+date: '2026-09-13T08:00:00Z'
 readingTime: '1 MIN READ'
-facebook_url: 'https://www.facebook.com/reel/1629583945196226'
+youtube_id: 'NPOlXVjUsjk'
 source_channel: 'CANAL DE ALERTA RÁPIDA OSINT'
 ---
 

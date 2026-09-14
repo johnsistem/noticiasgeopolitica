@@ -548,7 +548,28 @@ const informesCollection = await getCollection('informes');
 {informesCollection.map((informe) => (
   <article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all border border-primary/20">
     <div class="relative w-full h-48 overflow-hidden">
-      <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src={informe.data.image} alt={informe.data.title} />
+      {informe.data.coordinates ? (
+        <div class="w-full h-full relative overflow-hidden">
+          <img class="w-full h-full object-cover" src={`https://tile.openstreetmap.org/8/${Math.floor((informe.data.coordinates.lon + 180) / 360 * 256)}/${Math.floor((1 - Math.log(Math.tan(informe.data.coordinates.lat * Math.PI / 180) + 1 / Math.cos(informe.data.coordinates.lat * Math.PI / 180)) / Math.PI) / 2 * 256)}.png`} alt="" style="filter: invert(0.9) hue-rotate(180deg) saturate(0.3) brightness(0.6);" onerror="this.style.display='none'" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container/80 via-transparent to-surface-container/40"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative flex items-center justify-center w-10 h-10">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-60"></span>
+              <span class="relative inline-flex rounded-full h-4 w-4 bg-error border-2 border-white shadow-xl"></span>
+            </div>
+          </div>
+          <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between">
+            <span class="bg-surface-container-lowest/90 px-2 py-0.5 rounded font-mono text-[10px] text-primary font-bold backdrop-blur-sm">
+              {informe.data.coordinates.lat.toFixed(2)}°N {informe.data.coordinates.lon.toFixed(2)}°E
+            </span>
+            <span class="bg-surface-container-lowest/90 px-2 py-0.5 rounded font-mono text-[10px] text-error font-bold backdrop-blur-sm animate-pulse">
+              GEOINT LIVE
+            </span>
+          </div>
+        </div>
+      ) : (
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src={informe.data.image} alt={informe.data.title} />
+      )}
       <div class="absolute top-3 left-3">
         <span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
           <span class="material-symbols-outlined text-[14px]">article</span>
