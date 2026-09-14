@@ -3,6 +3,12 @@ import TopNavLayout from '../layouts/TopNavLayout.astro';
 import { getCollection } from 'astro:content';
 
 const informesCollection = await getCollection('informes');
+
+// Conteos reales por región/categoría de los informes
+const countOriente = informesCollection.filter(i => ['Mar Rojo', 'Oriente Medio', 'Arabia Saudita', 'Yemen', 'Golfo Pérsico'].includes(i.data.region)).length;
+const countAsiaPac = informesCollection.filter(i => ['Indo-Pacífico', 'Asia-Pacífico', 'Estrecho de Taiwán'].includes(i.data.region)).length;
+const countEuropa = informesCollection.filter(i => ['Europa Oriental', 'Báltico', 'Mar Negro'].includes(i.data.region)).length;
+const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].includes(i.data.region)).length;
 ---
 
 <TopNavLayout>
@@ -46,24 +52,24 @@ const informesCollection = await getCollection('informes');
 <!-- Tactical Tabs / Category Filters -->
 <div class="flex flex-wrap items-center gap-space-xs pt-space-sm overflow-x-auto">
 <button class="bg-primary text-on-primary font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 font-bold shadow-sm">
-<span>Oriente Medio</span>
-<span class="bg-on-primary text-primary text-[10px] px-1.5 py-0.2 rounded font-label-sm">48</span>
+<span>Oriente Medio &amp; Mar Rojo</span>
+<span class="bg-on-primary text-primary text-[10px] px-1.5 py-0.2 rounded font-label-sm">{countOriente}</span>
 </button>
 <button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
 <span>Asia-Pacífico</span>
-<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">34</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">{countAsiaPac}</span>
 </button>
 <button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
-<span>Reservas Militares &amp; Balística</span>
-<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">29</span>
+<span>Europa Oriental</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">{countEuropa}</span>
 </button>
 <button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
-<span>Occidente vs. Oriente (Geoeconomía)</span>
-<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">52</span>
+<span>Global / Geoeconomía</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">{countGlobal}</span>
 </button>
 <button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md uppercase px-4 py-2 rounded flex items-center gap-2 transition-colors">
-<span>Ciberguerra &amp; Espacio</span>
-<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">17</span>
+<span>Todos los Dossiers</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-1.5 py-0.2 rounded font-label-sm">{informesCollection.length}</span>
 </button>
 </div>
 <!-- Advanced Filter & Search Console -->
@@ -116,7 +122,7 @@ const informesCollection = await getCollection('informes');
 <span>/</span>
 <a class="hover:text-primary transition-colors" href="#">Oriente Medio</a>
 <span>/</span>
-<span class="text-primary font-bold">Informe SITREP-2024-09</span>
+<span class="text-primary font-bold">Informe SITREP BAB EL-MANDEB</span>
 </nav>
 <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
 <div class="max-w-4xl flex flex-col gap-space-xs">
@@ -125,7 +131,7 @@ const informesCollection = await getCollection('informes');
 <span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
                 CHOKEPOINT CRÍTICO
               </span>
-<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">GEOINT VECTOR ID: 12.65°N, 43.41°E</span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">GEOINT VECTOR ID: 12.5883°N, 43.3333°E</span>
 <span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-2 py-0.5 rounded font-bold">ALERTA NAVAL NIVEL 4</span>
 </div>
 <h2 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight mt-1 leading-tight">
@@ -133,15 +139,15 @@ const informesCollection = await getCollection('informes');
             </h2>
 </div>
 <!-- Quick Metrics Bar -->
-<div class="flex flex-wrap items-center gap-space-md bg-surface-container-low px-space-md py-2.5 rounded shrink-0">
+<div class="flex items-center gap-space-md bg-surface-container-low px-space-md py-2.5 rounded shrink-0">
 <div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline">PUBLICADO ZULU</span>
-<span class="font-label-md text-label-md text-on-surface font-bold">24-OCT-2024 11:20Z</span>
+<span class="font-label-sm text-label-sm text-outline">TEATRO</span>
+<span class="font-label-md text-label-md text-primary font-bold">MAR ROJO</span>
 </div>
 <div class="w-px h-8 bg-surface-container-highest"></div>
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-outline">TIEMPO LECTURA</span>
-<span class="font-label-md text-label-md text-primary font-bold">18 MIN // AUDIO 24:15</span>
+<span class="font-label-md text-label-md text-primary font-bold">8 MIN</span>
 </div>
 <div class="w-px h-8 bg-surface-container-highest"></div>
 <div class="flex flex-col">
@@ -175,132 +181,130 @@ const informesCollection = await getCollection('informes');
 </div>
 <!-- TACTICAL IN-STREAM VIDEO PLAYER -->
 <div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-2xl flex flex-col gap-space-md">
-<!-- Player Container (16:9 Aspect Ratio with Military Telemetry UI) -->
-<div class="relative w-full aspect-video bg-surface-container-lowest rounded-lg overflow-hidden flex items-center justify-center group shadow-xl">
-<!-- Video Thumbnail Image -->
-<img class="w-full h-full object-cover opacity-75 group-hover:opacity-60 transition-opacity" data-alt="Satellite imagery and military tactical view of the Perim Island in the Bab-el-Mandeb strait with radar circles, naval routes, vector lines in neon green and amber, cinematic dark defense atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU226KW9QAyadU70orWKCvzvNOMdBj0Z8z1GGVrPo5v1UiHCoAZLS3neZG25Zaf79woYJkkCfToIzNHdk8z3A6yIHsPH0NGWrWXdSMpWkV0912TrdirlIvCkTo-AA6bzdmLFSbF-xgIUPUUHxOgz1gnDW6I36Q_wij3yaHc5DNMQ10epeZMhGFJIofp1N7bb5BbGlTkYp5Gy5HewXbYEOGUs-LCcu-I4G7R0AlWr_eBRR_7y8CSLMxQQ"/>
-<!-- Tactical HUD Reticle & Crosshair Overlays -->
-<div class="absolute inset-0 pointer-events-none p-space-md flex flex-col justify-between">
-<div class="flex items-center justify-between text-primary font-label-sm text-label-sm">
-<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
-<span>REC // STREAM SYNC: BAB-EL-MANDEB SECTOR 4</span>
+<!-- Aviso: vista previa de demostración -->
+<div class="flex items-center gap-2 bg-tertiary-container/20 border border-tertiary/40 px-3 py-1.5 rounded">
+<span class="material-symbols-outlined text-tertiary text-[16px]">info</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">VISTA PREVIA ILUSTRATIVA · REPRODUCTOR DE DEMOSTRACIÓN</span>
 </div>
-<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm">
-<span>GEO-LOC: 12°39'24"N 43°24'54"E</span>
+<!-- Visor de Mapa Táctico REAL (Perim / Bab el-Mandeb) -->
+<div class="relative w-full aspect-video bg-[#0b0e14] rounded-lg overflow-hidden group shadow-xl">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <div id="perimFeaturedMap" class="w-full h-full z-0"></div>
+
+  <!-- Tactical HUD Reticle & Crosshair Overlays -->
+  <div class="absolute inset-0 pointer-events-none p-space-md flex flex-col justify-between z-[600]">
+    <div class="flex items-center justify-between text-primary font-label-sm text-label-sm">
+      <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+        <span>GEOINT LIVE // ISLA DE PERIM · SECTOR YEMEN</span>
+      </div>
+      <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm">
+        <span>GEO-LOC: 12.5883°N 43.3333°E</span>
+      </div>
+    </div>
+    <div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
+      <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm">
+        <span>CAPAS: RUTAS AIS · ALCANCE A2/AD (EST.)</span>
+      </div>
+      <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm text-primary">
+        <span>● MAPA INTERACTIVO · PANTALLA COMPLETA</span>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    function initPerimFeaturedMap() {
+      if (typeof L === 'undefined' || !document.getElementById('perimFeaturedMap')) {
+        setTimeout(initPerimFeaturedMap, 200);
+        return;
+      }
+      const m = L.map('perimFeaturedMap', {
+        center: [12.6534, 43.4182],
+        zoom: 9,
+        zoomControl: true,
+        attributionControl: false,
+        scrollWheelZoom: false
+      });
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16
+      }).addTo(m);
+
+      const pulse = L.divIcon({
+        className: 'perim-pulse',
+        html: '<div style="position:relative;width:32px;height:32px;display:flex;align-items:center;justify-content:center;"><span class="animate-ping absolute inline-flex h-full w-full rounded-full" style="background:#ef4444;opacity:.75;"></span><span style="position:relative;display:inline-flex;width:14px;height:14px;border-radius:9999px;background:#ef4444;border:2px solid #fff;box-shadow:0 0 14px rgba(239,68,68,.8);"></span></div>',
+        iconSize: [32, 32], iconAnchor: [16, 16]
+      });
+      const square = L.divIcon({
+        className: 'perim-square',
+        html: '<div style="width:12px;height:12px;border-radius:3px;background:#38bdf8;border:2px solid #fff;transform:rotate(45deg);"></div>',
+        iconSize: [12, 12], iconAnchor: [6, 6]
+      });
+
+      L.marker([12.6534, 43.4182], { icon: pulse }).addTo(m).bindPopup('ISLA DE PERIM (MAYYUN) — Batería de Misiles & Pista Táctica');
+      L.marker([12.7821, 43.5109], { icon: square }).addTo(m).bindPopup('Puesto de Radar Costero');
+      L.marker([12.6102, 43.3411], { icon: square }).addTo(m).bindPopup('Canal Bab Iskander (2.9 Nmi)');
+      L.marker([12.821, 43.284], { icon: square }).addTo(m).bindPopup('Fondeadero VLCC (EST.)');
+
+      // Rutas AIS estimadas
+      [[[13.20, 43.05], [12.65, 43.42], [12.10, 43.75]], [[13.45, 42.95], [12.90, 43.30], [12.30, 43.95]]].forEach((pts, idx) => {
+        L.polyline(pts, { color: idx === 0 ? '#10b981' : '#38bdf8', weight: 2, opacity: 0.8, dashArray: idx === 0 ? null : '6 8' }).addTo(m);
+      });
+
+      // Cobertura A2/AD teórica
+      L.circle([12.6534, 43.4182], { radius: 300000, color: '#ef4444', weight: 1.5, dashArray: '5 6', fill: true, fillColor: '#ef4444', fillOpacity: 0.05, opacity: 0.5 }).addTo(m);
+    }
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initPerimFeaturedMap();
+    } else {
+      document.addEventListener('DOMContentLoaded', initPerimFeaturedMap);
+    }
+  </script>
 </div>
-</div>
-<div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
-<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm">
-<span>FPS: 60.00 // BITRATE: 14.8 MBPS // H.265</span>
-</div>
-<div class="bg-surface-container-lowest/80 px-2 py-1 rounded backdrop-blur-sm text-primary">
-<span>OPTICAL SENSOR: FLIR-SAT MK IX</span>
-</div>
-</div>
-</div>
-<!-- Play Button (Big Tactical Trigger) -->
-<button class="absolute z-10 w-20 h-20 rounded-full bg-primary/90 text-on-primary hover:bg-primary-fixed flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-transform hover:scale-110 active:scale-95">
-<span class="material-symbols-outlined text-[42px] ml-1">play_arrow</span>
-</button>
-<!-- Bottom Control Bar (In-Stream Simulation) -->
-<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent p-space-md flex flex-col gap-2 z-20">
-<!-- Timeline / Chapters -->
-<div class="relative w-full h-2 bg-surface-container-highest rounded-full cursor-pointer overflow-hidden">
-<div class="h-full bg-primary rounded-full w-[38%]"></div>
-<!-- Chapter markers -->
-<div class="absolute top-0 bottom-0 left-[18%] w-0.5 bg-on-surface/60" title="04:30 Imágenes Satélite"></div>
-<div class="absolute top-0 bottom-0 left-[46%] w-0.5 bg-on-surface/60" title="11:15 Capacidades Antibuque"></div>
-<div class="absolute top-0 bottom-0 left-[77%] w-0.5 bg-on-surface/60" title="18:40 Impacto Brent"></div>
-</div>
-<!-- Controls row -->
-<div class="flex items-center justify-between text-on-surface font-label-md text-label-md">
-<div class="flex items-center gap-space-md">
-<button class="hover:text-primary transition-colors flex items-center">
-<span class="material-symbols-outlined text-[24px]">play_arrow</span>
-</button>
-<button class="hover:text-primary transition-colors flex items-center">
-<span class="material-symbols-outlined text-[20px]">volume_up</span>
-</button>
-<span class="font-label-sm text-label-sm text-on-surface-variant">09:12 / 24:15</span>
-</div>
-<!-- Chapter current title -->
-<div class="hidden md:flex items-center gap-2 font-label-sm text-label-sm bg-surface-container-low/90 px-3 py-1 rounded">
-<span class="text-tertiary font-bold">CAPÍTULO 2:</span>
-<span class="text-on-surface">Imágenes de satélite de la pista de aterrizaje construida en Perim</span>
-</div>
-<div class="flex items-center gap-space-sm">
-<span class="bg-surface-container-high px-2 py-0.5 rounded text-primary text-[10px] font-bold">1080p 60HD</span>
-<button class="hover:text-primary font-label-sm text-label-sm px-1.5 py-0.5 rounded hover:bg-surface-container-high">1.25x</button>
-<button class="hover:text-primary font-label-sm text-label-sm px-1.5 py-0.5 rounded hover:bg-surface-container-high">1.5x</button>
-<button class="hover:text-primary transition-colors flex items-center ml-2">
-<span class="material-symbols-outlined text-[20px]">fullscreen</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Video Channel Social Sync / Conversion Actions -->
+<!-- Fuente / Acciones -->
 <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container p-space-sm rounded-lg">
 <div class="flex items-center gap-space-md">
 <div class="flex items-center gap-2">
-<span class="font-label-sm text-label-sm text-outline">ORIGEN DEL TRANSMISOR:</span>
-<span class="font-label-sm text-label-sm text-primary font-bold">CANAL OFICIAL NOTICIAS GEOPOLÍTICA</span>
+<span class="font-label-sm text-label-sm text-outline">VISOR GEOINT:</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">BAB EL-MANDEB · ISLA DE PERIM</span>
 </div>
 <span class="text-outline">|</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">142K VISUALIZACIONES MULTIPLATAFORMA</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DATOS: FUENTES ABIERTAS · CAPAS ESTIMADAS</span>
 </div>
 <div class="flex flex-wrap items-center gap-space-sm">
-<!-- YouTube CTA -->
-<a class="bg-error hover:bg-error-container text-on-error hover:text-on-error-container font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm" href="#">
-<span class="material-symbols-outlined text-[16px]">smart_display</span>
-<span>SUSCRIBIRSE EN YOUTUBE</span>
+<!-- Enlace al informe completo -->
+<a href="/informes/sitrep-escalada-critica-en-bab-el-mandeb-bloqueo-maritimo-y-riesgo-de-cierre-total/" class="bg-error hover:bg-error-container text-on-error hover:text-on-error-container font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span>LEER INFORME COMPLETO</span>
 </a>
-<!-- Facebook Watch CTA -->
-<a class="bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm" href="#">
-<span class="material-symbols-outlined text-[16px]">thumb_up</span>
-<span>SEGUIR EN FACEBOOK</span>
+<a href="/mapas#bab-el-mandeb" class="bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span>VER TEATRO EN MAPAS</span>
 </a>
-<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-3 py-2 rounded flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-[16px] text-tertiary">bookmark</span>
-<span>GUARDAR DOSSIER</span>
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-3 py-2 rounded flex items-center gap-1.5 transition-colors" onclick="window.print()">
+<span class="material-symbols-outlined text-[16px] text-tertiary">print</span>
+<span>EXPORTAR</span>
 </button>
 </div>
 </div>
-<!-- Interactive Chapter Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
-<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-primary font-bold">00:00</span>
-<span class="font-label-sm text-label-sm text-outline">PARTE I</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Introducción al Estrecho de Bab el-Mandeb</p>
-<span class="font-label-sm text-label-sm text-outline">Geografía y vulnerabilidad de pasos</span>
-</div>
-<div class="bg-surface-container p-space-sm rounded cursor-pointer flex flex-col gap-1 shadow-sm">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-tertiary font-bold">04:30</span>
-<span class="font-label-sm text-label-sm text-tertiary uppercase">EN REPRODUCCIÓN</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Imágenes de satélite de la nueva base</p>
-<span class="font-label-sm text-label-sm text-outline">Pista de 1.800m y hangares protegidos</span>
-</div>
-<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-primary font-bold">11:15</span>
-<span class="font-label-sm text-label-sm text-outline">PARTE III</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">Capacidades antibuque de los arsenales</p>
-<span class="font-label-sm text-label-sm text-outline">Misiles Noor, Al-Mandab y drones UAV</span>
-</div>
-<div class="bg-surface-container-low hover:bg-surface-container-high p-space-sm rounded cursor-pointer transition-colors flex flex-col gap-1">
-<div class="flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-primary font-bold">18:40</span>
-<span class="font-label-sm text-label-sm text-outline">PARTE IV</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-1">El impacto en el precio del barril Brent</p>
-<span class="font-label-sm text-label-sm text-outline">Desvío por Cabo de Buena Esperanza</span>
-</div>
+<!-- Metricas reales del chokepoint -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+  <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+    <span class="font-label-sm text-label-sm text-primary font-bold">~12%</span>
+    <span class="font-label-sm text-label-sm text-outline">Comercio marítimo mundial</span>
+  </div>
+  <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+    <span class="font-label-sm text-label-sm text-primary font-bold">~6,2 MM</span>
+    <span class="font-label-sm text-label-sm text-outline">Barriles de crudo/día</span>
+  </div>
+  <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+    <span class="font-label-sm text-label-sm text-primary font-bold">14 Nmi</span>
+    <span class="font-label-sm text-label-sm text-outline">Ancho eficaz del chokepoint</span>
+  </div>
+  <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
+    <span class="font-label-sm text-label-sm text-primary font-bold">+142%</span>
+    <span class="font-label-sm text-label-sm text-outline">Desvío vía Cabo de Buena Esperanza</span>
+  </div>
 </div>
 </div>
 <!-- SECTION 3: AI EXTENDED TRANSCRIPTION & SEO INDEXING ENGINE -->
@@ -342,7 +346,7 @@ const informesCollection = await getCollection('informes');
 <span class="material-symbols-outlined text-outline text-[18px]">find_in_page</span>
 <input class="w-full bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none placeholder:text-outline" placeholder="Buscar entidades en el texto (ej: Bab-el-Mandeb, Maersk, A2/AD, Harpoon)..." type="text"/>
 </div>
-<span class="font-label-sm text-label-sm text-outline shrink-0 ml-2">4 COINCIDENCIAS</span>
+<span class="font-label-sm text-label-sm text-outline shrink-0 ml-2">BÚSQUEDA EN TRANSCRIPCIÓN</span>
 </div>
 <!-- Block 1: 00:00 - 04:29 -->
 <div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
@@ -429,7 +433,7 @@ const informesCollection = await getCollection('informes');
 <span>METADATOS SCHEMA.ORG / TECHARTICLE INDEXADOS POR GOOGLE CRAWLER</span>
 </div>
 <div class="flex items-center gap-2">
-<span>HASH DOCUMENTO: 8F2A-E41B-9021</span>
+<span>RECURSOS DEL DOSSIER · MATERIAL DE REFERENCIA</span>
 </div>
 </div>
 </div>
@@ -503,7 +507,7 @@ const informesCollection = await getCollection('informes');
                 </p>
 <button class="w-full bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md uppercase py-2.5 rounded font-bold transition-colors flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-[18px]">download</span>
-<span>DESCARGAR PAQUETE COMPLETO (68 MB)</span>
+<span>PAQUETE DE RECURSOS EN PREPARACIÓN</span>
 </button>
 </div>
 </div>
@@ -511,14 +515,14 @@ const informesCollection = await getCollection('informes');
 <div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-space-sm shadow-sm">
 <span class="font-label-sm text-label-sm text-outline uppercase">TELEMETRÍA ORBITAL ASOCIADA</span>
 <div class="w-full h-40 rounded overflow-hidden relative">
-<img class="w-full h-full object-cover" data-alt="Satellite thermal heat map of the Bab-el-Mandeb strait showing vessel density tracks and military patrol ships in high-contrast cyan and emerald tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-U2c79ePuYTcLyoY9ZxWFriW0wxXpaRf6y8KpSTTMAc2018iosIzcH0cmuK9bOIsRZaephOwBx1R2SVEMZ-XuzD9wGNsDJolZbyGUybTDCp5eI3ajvHgrU9Sy4wU7dzFlJ2beLWXrWAkUeSLHj2YM586zwruhFl9whAw938CQlNKsI5nC0aJ5C6p3Ya0phJxNrJAAP950Sm6K8Hk_wiIgpq6aO4JfOycgep2HOmCZ_hZ8ckkdw9h50Q"/>
+<img class="w-full h-full object-cover" data-alt="Órbita satelital sobre el estrecho de Bab el-Mandeb con el punto de interés de la isla de Perim." src="/sat-perim-orbital.svg"/>
 <div class="absolute bottom-2 left-2 bg-surface-container-lowest/80 px-2 py-0.5 rounded font-label-sm text-label-sm text-primary backdrop-blur-sm">
-                  ORBIT: SENTINEL-2 / PASS 412
+                  IMAGEN GEOINT DE REFERENCIA
                 </div>
 </div>
 <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
-<span>RESOLUCIÓN: 0.5M/PX</span>
-<span class="text-primary">ACTUALIZACIÓN: 4H AGO</span>
+<span>FUENTE: SATÉLITE COMERCIAL (ILUSTRATIVO)</span>
+<span class="text-primary">REFERENCIA</span>
 </div>
 </div>
 </div>
@@ -548,7 +552,7 @@ const informesCollection = await getCollection('informes');
 {informesCollection.map((informe) => (
   <article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all border border-primary/20">
     <div class="relative w-full h-48 overflow-hidden">
-      {informe.data.coordinates ? (
+      {informe.data.coordinates && informe.data.image?.includes('images.unsplash.com') ? (
         <div class="w-full h-full relative overflow-hidden">
           <img class="w-full h-full object-cover" src={`https://tile.openstreetmap.org/8/${Math.floor((informe.data.coordinates.lon + 180) / 360 * 256)}/${Math.floor((1 - Math.log(Math.tan(informe.data.coordinates.lat * Math.PI / 180) + 1 / Math.cos(informe.data.coordinates.lat * Math.PI / 180)) / Math.PI) / 2 * 256)}.png`} alt="" style="filter: invert(0.9) hue-rotate(180deg) saturate(0.3) brightness(0.6);" onerror="this.style.display='none'" />
           <div class="absolute inset-0 bg-gradient-to-t from-surface-container/80 via-transparent to-surface-container/40"></div>
@@ -600,127 +604,6 @@ const informesCollection = await getCollection('informes');
     </div>
   </article>
 ))}
-
-<!-- Card 1: Báltico -->
-<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
-<div class="relative w-full h-48 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Tactical electronic warfare map over the Baltic Sea with radio wave jamming graphics, radar circles over Gotland and Kaliningrad, digital cockpit telemetry aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK81QIpe108gg69csvNIlCD0_ErzKOfdkBTKOqbbniMzZBAo9M3qaxCJowJiU4aR0Pmerr8Gf7YhvAfwJAws79OAlU8CTaWBKiNjHphWTkzOeMrW1NobGBT3XUlqGVz86jhtmWWaOELrCxEX45Nxo1MbLid7uaC9YEVv9PZOON-OKN1rLuGWFfjL8yHB9XNV3sPxgnMYkY4JVg83yauZ08aF2yfJLul_0-az-APwQApNLRAliPb-z3Tw"/>
-<div class="absolute top-3 left-3">
-<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">videocam</span>
-<span>VIDEO + TRANSCRIPCIÓN</span>
-</span>
-</div>
-<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
-              DURACIÓN: 19:40 MIN
-            </div>
-</div>
-<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span>EUROPA ORIENTAL</span>
-<span>•</span>
-<span>ZULU: 22-OCT-2024</span>
-</div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
-                Guerra Electrónica en el Báltico: Interferencia GPS sistemática sobre la aviación civil
-              </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
-                Monitoreo de señales EW desde el exclave de Kaliningrado y su correlación con la pérdida de señal ADS-B en más de 1.400 vuelos comerciales en el corredor báltico.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-space-sm">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
-<span>48K VIEWS (YT/FB)</span>
-</div>
-<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
-<span>VER INFORME</span>
-<span class="material-symbols-outlined text-[16px]">chevron_right</span>
-</a>
-</div>
-</div>
-</article>
-<!-- Card 2: Drones Shahed -->
-<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
-<div class="relative w-full h-48 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Technical schematic breakdown of Shahed-136 delta-wing drones with blueprint wireframes, radar intercept crosshairs, military cost analysis graphics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdfkvRSFiudwMo8IwlAmZMn8NzgkqHrzwX0q8FDy_WomuBbL5iV7x3IPNah1KTlrO2c5yixl5fWW0E-COOv09TR34j7SLNczMtJiiLicY8REi20YoTkMfm5eRR3DChGea4IFxtCVywCgchARiFopFdP47j1RrbXo1raF9v17rl7YKCMdOH0EIMp_80AKbcy4Ia14AwkdQMAUwwS7g7eZLU04l__mcwNwU0vgNsdUfAzVu1DOLB9L1DA"/>
-<div class="absolute top-3 left-3">
-<span class="bg-tertiary-container text-on-tertiary font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">description</span>
-<span>DOSSIER TÉCNICO</span>
-</span>
-</div>
-<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
-              LECTURA: 14 MIN
-            </div>
-</div>
-<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span>BALÍSTICA &amp; DRONES</span>
-<span>•</span>
-<span>ZULU: 20-OCT-2024</span>
-</div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
-                Arsenales de Drones Shahed vs Enjambres Marítimos: Comparativa de costes por derribo
-              </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
-                La asimetría económica de interceptores aire-aire de 1.2 millones USD frente a municiones merodeadoras de 20.000 USD y la viabilidad de los cañones láser DEW.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-space-sm">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px] text-tertiary">science</span>
-<span>TABLAS BALÍSTICAS</span>
-</div>
-<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
-<span>VER DOSSIER</span>
-<span class="material-symbols-outlined text-[16px]">chevron_right</span>
-</a>
-</div>
-</div>
-</article>
-<!-- Card 3: Estrecho de Malaca -->
-<article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all">
-<div class="relative w-full h-48 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Nautical naval map of the Malacca Strait with high density ship tracking routes in bright neon green, Singapore harbor radar overlay and Chinese energy supply lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy8eNLre3yoU0P0DGHVHnqSHirgd3ZxNKFh1YzZTaizIFXCUWT0jBYqFgeLoefBENnKyAfQiWfP4kC7ZP_F8B2bSZ0S0guka1pONaI59d7DoBS1xgRElApgLGtbnCY1Kwel98ksg6-83KQzBjSAV9MYh-yrOg_ZRs8klag_fCES5K4ABXhM257vFvlKIFmSU6QFZTAuL7Y2aEbUErm87Nra-vOkmOPg7YUM-7Tm3vpEDS0w8Gb_u9jtg"/>
-<div class="absolute top-3 left-3">
-<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-2.5 py-1 rounded font-bold flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-[14px]">videocam</span>
-<span>VIDEO + TRANSCRIPCIÓN</span>
-</span>
-</div>
-<div class="absolute bottom-3 right-3 bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm">
-              DURACIÓN: 31:10 MIN
-            </div>
-</div>
-<div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span>INDO-PACÍFICO</span>
-<span>•</span>
-<span>ZULU: 18-OCT-2024</span>
-</div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
-                El Estrecho de Malaca y el Dilema Chino: ¿Puede cerrarse la arteria de 100.000 buques?
-              </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mt-1">
-                Simulación estratégica de un bloqueo naval conjunto en las puertas de Singapur y el impacto directo en el suministro de petróleo del golfo hacia las refinerías de Guangdong.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-space-sm">
-<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px] text-primary">play_circle</span>
-<span>92K VIEWS (YT/FB)</span>
-</div>
-<a class="text-primary hover:text-primary-fixed font-label-sm text-label-sm uppercase font-bold flex items-center gap-1" href="#">
-<span>VER INFORME</span>
-<span class="material-symbols-outlined text-[16px]">chevron_right</span>
-</a>
-</div>
-</div>
-</article>
 </div>
 </div>
 </section>
@@ -742,7 +625,7 @@ const informesCollection = await getCollection('informes');
               RECIBE LOS INFORMES OSINT ANTES DE SU PUBLICACIÓN EN REDES SOCIALES
             </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
-              Únase a más de 28.000 oficiales de inteligencia, analistas de riesgo geopolítico y corresponsales internacionales. Cada lunes a las 06:00Z recibirá el dossier completo con modelos predictivos, transcripciones íntegras y datasets GIS.
+              Únase a la red de analistas, profesionales de riesgo geopolítico y corresponsales internacionales. Cada lunes a las 06:00Z recibirá el dossier completo con modelos predictivos, transcripciones íntegras y datasets GIS.
             </p>
 <div class="flex flex-wrap items-center gap-space-lg text-on-surface font-label-sm text-label-sm pt-space-xs">
 <div class="flex items-center gap-2">

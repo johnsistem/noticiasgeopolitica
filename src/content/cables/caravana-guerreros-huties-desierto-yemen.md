@@ -10,6 +10,7 @@ coordinates: { lat: 15.35, lon: 44.2 }
 date: '2026-09-14T01:15:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'UCcRbD6krV0'
+image: '/caravana.jpeg'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 

@@ -11,6 +11,7 @@ defcon: 'DEFCON 2'
 hotspots: ['Arabia Saudita', 'Yemen', 'Sharurah']
 author: 'Comando OSINT'
 readingTime: '8 MIN READ'
+image: '/card-misiles-sharurah.svg'
 youtube_id: 'OEEKmSWt0J4'
 chapters: []
 ---

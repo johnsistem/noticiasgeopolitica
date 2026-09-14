@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160" role="img" aria-label="Órbita satelital sobre el estrecho de Bab el-Mandeb" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="orbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070d18"/>
+      <stop offset="100%" stop-color="#0d1f38"/>
+    </linearGradient>
+    <radialGradient id="glowb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="160" fill="url(#orbg)"/>
+  <rect width="400" height="160" fill="url(#glowb)"/>
+
+  <text x="20" y="28" fill="#10b981" font-size="11" font-weight="700" letter-spacing="1">PASS SATELITAL · LEO OVER BAB EL-MANDEB</text>
+
+  <!-- Órbitas -->
+  <ellipse cx="200" cy="88" rx="170" ry="42" fill="none" stroke="#2f6fb0" stroke-width="1.2" transform="rotate(-12 200 88)"/>
+  <ellipse cx="200" cy="88" rx="120" ry="30" fill="none" stroke="#1b4a86" stroke-width="1" stroke-dasharray="4 5" transform="rotate(-35 200 88)"/>
+
+  <!-- Satélite -->
+  <g transform="translate(318 62)">
+    <rect x="-14" y="-8" width="28" height="14" rx="3" fill="#c9d4e4"/>
+    <polyline points="-36,0 -14,0" stroke="#9aa6b8" stroke-width="3"/>
+    <polyline points="14,6 34,20" stroke="#d4af37" stroke-width="2.5"/>
+    <circle cx="20" cy="14" r="3" fill="#d4af37"/>
+  </g>
+
+  <!-- Huella de cobertura -->
+  <path d="M 60 88 Q 130 20 240 40 Q 300 55 330 88" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.8"/>
+
+  <!-- Punto de interés Perim -->
+  <circle cx="200" cy="88" r="5" fill="#ef4444"/>
+  <circle cx="200" cy="88" r="10" fill="none" stroke="#ef4444" stroke-width="1">
+    <animate attributeName="r" values="6;16;6" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.2;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="214" y="92" fill="#fca5a5" font-size="9">PERIM · 12.5883°N 43.3333°E</text>
+
+  <!-- Footer -->
+  <text x="20" y="142" fill="#8b98ab" font-size="10">SENSOR: MULTI-ESPECTRAL · SWATH 290 km</text>
+  <text x="300" y="142" fill="#10b981" font-size="10" font-weight="700">● EN BARRIDO</text>
+</svg>

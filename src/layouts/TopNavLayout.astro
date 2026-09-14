@@ -44,7 +44,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <div class="flex items-center gap-space-md pl-gutter">
         <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
           <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-          <span class="font-label-sm text-label-sm text-primary font-bold">ZULU TIME: 14:42:09Z</span>
+          <span class="font-label-sm text-label-sm text-primary font-bold zulu-live">ZULU TIME: --:--:--Z</span>
         </div>
         <div class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
           <span class="w-1.5 h-1.5 bg-primary rounded-full"></span><span>SEC-NET ACTIVE</span>
@@ -56,7 +56,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
         <button class="xl:hidden text-on-surface hover:text-primary transition-colors flex items-center justify-center">
           <span class="material-symbols-outlined text-[24px]">menu</span>
         </button>
-        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
+        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
         <div class="flex flex-col">
           <span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface leading-none">NOTICIAS GEOPOLÍTICA</span>
           <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">INTEL & STRATEGIC WAR ROOM</span>
@@ -87,7 +87,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
     <div class="max-w-7xl mx-auto px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl mb-space-xl">
       <div class="flex flex-col gap-space-sm">
         <div class="flex items-center gap-space-sm">
-          <img alt="Noticias Geopolítica Tactical Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
+          <img alt="Noticias Geopolítica Tactical Logo" class="h-6 w-auto object-contain" src="/logo2.jpg" />
           <span class="font-headline-sm text-headline-sm uppercase text-on-surface">NOTICIAS GEOPOLÍTICA</span>
         </div>
         <p class="font-body-sm text-body-sm text-outline mt-space-xs">Terminal independiente de monitoreo geoestratégico, análisis de vector bélico y telemetría de crisis internacionales basada en fuentes abiertas y SIGINT analítico.</p>
@@ -95,9 +95,26 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <!-- ... -->
     </div>
     <div class="max-w-7xl mx-auto px-margin pt-space-md border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-outline">
-      <p>© 2024 NOTICIAS GEOPOLÍTICA. OPERATIONAL CONTROL ALL RIGHTS RESERVED.</p>
+      <p>© {new Date().getFullYear()} NOTICIAS GEOPOLÍTICA. OPERATIONAL CONTROL ALL RIGHTS RESERVED.</p>
       <p class="text-primary">SYS POSTURE: NOMINAL // ZERO LOGS DISPATCH</p>
     </div>
   </footer>
+
+  <script is:inline>
+    (function () {
+      const tick = () => {
+        const now = new Date();
+        const hh = String(now.getUTCHours()).padStart(2, '0');
+        const mm = String(now.getUTCMinutes()).padStart(2, '0');
+        const ss = String(now.getUTCSeconds()).padStart(2, '0');
+        const t = hh + ':' + mm + ':' + ss + 'Z';
+        document.querySelectorAll('.zulu-live').forEach((el) => {
+          el.textContent = el.dataset.prefix ? el.dataset.prefix + t : 'ZULU TIME: ' + t;
+        });
+      };
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>

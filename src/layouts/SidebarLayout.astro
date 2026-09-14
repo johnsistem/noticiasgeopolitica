@@ -28,7 +28,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
   <aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 hidden lg:flex flex-col justify-between shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
     <div class="flex flex-col">
       <div class="p-space-md bg-surface-container-low flex items-center gap-space-sm">
-        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVueap01vmQn5yFYYqQi62YobrSy2Crc1BGG6CGxazsCRUfKO-IqS-lb1-zuM-sk5DKDluUqtxLBtH3HCe-GrX6XPdVqHhz2EfOOFQdpHhPvzSXyh14ipgkciaW8swfn9RBcCZKd0M6in4yyqnbo1I81Qv5XGl69_9cPxXBCEtZo1ats40r0WaeKllWTPbSl547oDJWR6FCp1ugqW9sG2UzoCIszyxyTK6sMMVhZvBoW54WpNvUZ2-EA" />
+        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
         <div class="flex flex-col">
           <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wider">GEOPOLÍTICA</span>
           <span class="font-label-sm text-label-sm text-primary uppercase">WAR ROOM CONSOLE</span>
@@ -39,7 +39,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
         <span class="font-label-sm text-label-sm text-primary font-bold animate-pulse">EN LÍNEA</span>
       </div>
       <nav class="flex flex-col gap-space-xs p-space-sm mt-space-sm">
-        <a class="flex items-center gap-space-sm px-space-sm py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded font-label-md text-label-md uppercase transition-all" href="#">
+        <a class="flex items-center gap-space-sm px-space-sm py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded font-label-md text-label-md uppercase transition-all" href="/">
           <span class="material-symbols-outlined text-[18px]">radar</span><span>Central Operativa</span>
         </a>
         <a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 uppercase transition-all bg-primary-container text-on-primary-container font-semibold rounded" href="/mapas">
@@ -48,18 +48,18 @@ const { title, description, image, article, publishedTime } = Astro.props;
         <a class="flex items-center gap-space-sm px-space-sm py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded font-label-md text-label-md uppercase transition-all" href="/informes">
           <span class="material-symbols-outlined text-[18px]">4g_mobiledata</span><span>Informes OSINT</span>
         </a>
-        <a class="flex items-center gap-space-sm px-space-sm py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded font-label-md text-label-md uppercase transition-all" href="#">
+        <a class="flex items-center gap-space-sm px-space-sm py-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded font-label-md text-label-md uppercase transition-all" href="/">
           <span class="material-symbols-outlined text-[18px]">mark_email_read</span><span>Suscripción Táctica</span>
         </a>
       </nav>
       <div class="px-space-md pt-space-sm">
         <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">SECTORES DE VIGILANCIA</span>
         <div class="flex flex-col gap-1 mt-space-xs">
-          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="#">• Sector Oriente Medio</a>
-          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="#">• Vector Indo-Pacífico</a>
-          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="#">• Flanco Oriental OTAN</a>
-          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="#">• Cinturón Sahel-África</a>
-          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="#">• Espacio LatAm / Antártida</a>
+          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="/mapas#hormuz">• Sector Oriente Medio</a>
+          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="/mapas#spratly">• Vector Indo-Pacífico</a>
+          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="/mapas#suwalki">• Flanco Oriental OTAN</a>
+          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="/mapas#nilo">• Cinturón Sahel-África</a>
+          <a class="text-body-sm font-body-sm text-on-surface-variant hover:text-primary py-1" href="/mapas#narco-caribe">• Espacio LatAm / Antártida</a>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
         </div>
         <span class="text-outline">|</span>
         <div class="font-label-sm text-label-sm text-on-surface-variant">
-          ZULU: <span class="text-primary font-bold">14:42:09Z</span>
+          ZULU: <span class="text-primary font-bold zulu-live" data-prefix="">--:--:--Z</span>
         </div>
       </div>
       <div class="flex items-center gap-space-md">
@@ -96,7 +96,7 @@ const { title, description, image, article, publishedTime } = Astro.props;
           <span class="material-symbols-outlined text-outline text-[16px] mr-2">search</span>
           <input class="hidden sm:block bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-44" placeholder="RASTREAR DISPATCH..." type="text" />
         </div>
-        <a class="hidden sm:inline-flex font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-1.5 font-bold rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:bg-primary-fixed" href="#">DESPACHO CLASIFICADO</a>
+        <a class="hidden sm:inline-flex font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-1.5 font-bold rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:bg-primary-fixed" href="/">DESPACHO CLASIFICADO</a>
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </div>
@@ -107,5 +107,21 @@ const { title, description, image, article, publishedTime } = Astro.props;
       <slot />
     </main>
   </div>
+  <script is:inline>
+    (function () {
+      const tick = () => {
+        const now = new Date();
+        const hh = String(now.getUTCHours()).padStart(2, '0');
+        const mm = String(now.getUTCMinutes()).padStart(2, '0');
+        const ss = String(now.getUTCSeconds()).padStart(2, '0');
+        const t = hh + ':' + mm + ':' + ss + 'Z';
+        document.querySelectorAll('.zulu-live').forEach((el) => {
+          el.textContent = el.dataset.prefix !== undefined ? el.dataset.prefix + t : t;
+        });
+      };
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>

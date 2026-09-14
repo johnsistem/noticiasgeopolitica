@@ -36,7 +36,7 @@ const schema = article ? {
     "name": "Noticias Geopolítica",
     "logo": {
       "@type": "ImageObject",
-      "url": new URL("/logo.png", canonicalURL).href
+      "url": new URL("/logo2.jpg", canonicalURL).href
     }
   }
 } : {
@@ -52,6 +52,12 @@ const schema = article ? {
 <meta name="title" content={formattedTitle} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL.href} />
+
+<!-- Favicons -->
+<link rel="icon" type="image/jpeg" href="/logo2.jpg" />
+<link rel="shortcut icon" type="image/jpeg" href="/logo2.jpg" />
+<link rel="apple-touch-icon" href="/logo2.jpg" />
+<meta name="theme-color" content="#0a1a30" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={article ? "article" : "website"} />

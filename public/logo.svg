@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Noticias Geopolíticas">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#12294d"/>
+      <stop offset="100%" stop-color="#081627"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3dd8a"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#a8842a"/>
+    </linearGradient>
+    <linearGradient id="globe" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b4a86"/>
+      <stop offset="100%" stop-color="#0d2a4f"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="256" cy="256" r="252" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="url(#gold)" stroke-width="9"/>
+  <circle cx="256" cy="256" r="224" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.75"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="#0a1a30" stroke-width="6"/>
+
+  <!-- Marcas cardinales -->
+  <g fill="url(#gold)">
+    <path d="M256 12 l9 20 -18 0 z" transform="rotate(0 256 256)"/>
+    <path d="M256 12 l9 20 -18 0 z" transform="rotate(90 256 256)"/>
+    <path d="M256 12 l9 20 -18 0 z" transform="rotate(180 256 256)"/>
+    <path d="M256 12 l9 20 -18 0 z" transform="rotate(270 256 256)"/>
+  </g>
+
+  <!-- Globo -->
+  <g>
+    <circle cx="256" cy="256" r="168" fill="url(#globe)" stroke="#2f6fb0" stroke-width="2.5"/>
+    <g fill="none" stroke="#5fa0da" stroke-width="2">
+      <ellipse cx="256" cy="256" rx="168" ry="168"/>
+      <ellipse cx="256" cy="256" rx="118" ry="168"/>
+      <ellipse cx="256" cy="256" rx="60" ry="168"/>
+      <ellipse cx="256" cy="256" rx="168" ry="118"/>
+      <ellipse cx="256" cy="256" rx="168" ry="60"/>
+      <line x1="88" y1="256" x2="424" y2="256"/>
+    </g>
+    <ellipse cx="256" cy="256" rx="168" ry="168" fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+  </g>
+
+  <!-- Brújula / estrella de cuatro puntas -->
+  <g>
+    <path d="M256 92 L282 232 L420 256 L282 280 L256 420 L230 280 L92 256 L230 232 Z"
+          fill="url(#gold)" stroke="#7a5f1c" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M256 132 L272 240 L256 256 L240 240 Z" fill="#f7e9ad" opacity="0.9"/>
+    <path d="M256 380 L240 272 L256 256 L272 272 Z" fill="#f7e9ad" opacity="0.9"/>
+    <circle cx="256" cy="256" r="13" fill="#0a1a30" stroke="url(#gold)" stroke-width="3"/>
+  </g>
+</svg>
