@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async () => {
-  const siteUrl = 'https://geopolitica-war-room.vercel.app';
+  const siteUrl = 'https://noticiasgeopolitica.vercel.app';
   
   // Static routes
   const staticPages = [
@@ -15,7 +15,11 @@ export const GET: APIRoute = async () => {
   const informes = await getCollection('informes');
   const informePages = informes.map((informe) => `/informes/${informe.slug}`);
 
-  const allPages = [...staticPages, ...informePages];
+  // Dynamic cables (flash alerts)
+  const cables = await getCollection('cables');
+  const cablePages = cables.map((cable) => `/cables/${cable.slug}`);
+
+  const allPages = [...staticPages, ...informePages, ...cablePages];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemapindex.org/schemas/sitemap/0.9">

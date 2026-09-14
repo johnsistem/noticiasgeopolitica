@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SEO from '../components/SEO.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -123,5 +124,6 @@ const { title, description, image, article, publishedTime } = Astro.props;
       setInterval(tick, 1000);
     })();
   </script>
+  <Analytics />
 </body>
 </html>

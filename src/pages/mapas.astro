@@ -6,7 +6,11 @@ const active = theaters[0];
 const catalog = theaters.slice(1);
 ---
 
-<SidebarLayout>
+<SidebarLayout
+  title="Mapas de Conflicto en Tiempo Real"
+  description="Visualizadores dinámicos en capas con vectores de choque, flujos logísticos globales, alcances de sistemas antiaéreos y rutas comerciales estratégicas en teatros de conflicto activos."
+  image="/og-default.jpg"
+>
 <div class="flex flex-col w-full">
 <script type="application/json" id="theatersData" set:html={JSON.stringify(theaters)}></script>
 <!-- Top Telemetry Micro-Bar -->

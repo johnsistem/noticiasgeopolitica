@@ -17,7 +17,7 @@ const {
   author = "War Room Command"
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://geopolitica-war-room.vercel.app');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://noticiasgeopolitica.vercel.app');
 const formattedTitle = title.includes("NOTICIAS GEOPOLÍTICA") ? title : `${title} | NOTICIAS GEOPOLÍTICA`;
 
 const schema = article ? {
@@ -51,6 +51,7 @@ const schema = article ? {
 <title>{formattedTitle}</title>
 <meta name="title" content={formattedTitle} />
 <meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <link rel="canonical" href={canonicalURL.href} />
 
 <!-- Favicons -->

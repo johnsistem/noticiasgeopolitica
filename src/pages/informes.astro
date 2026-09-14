@@ -11,7 +11,11 @@ const countEuropa = informesCollection.filter(i => ['Europa Oriental', 'Báltico
 const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].includes(i.data.region)).length;
 ---
 
-<TopNavLayout>
+<TopNavLayout
+  title="Informes de Inteligencia & Análisis Estratégico"
+  description="Dossiers desclasificados, investigaciones OSINT de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas por IA para indexación global y análisis predictivo."
+  image="/og-default.jpg"
+>
 <div class="flex flex-col w-full">
 <!-- SECTION: SUB-HEADER / TAXONOMY & SEO CONTROL DECK -->
 <section class="w-full bg-surface-container-lowest px-gutter py-space-xl">
