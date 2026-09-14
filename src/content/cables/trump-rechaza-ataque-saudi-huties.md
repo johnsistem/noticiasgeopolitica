@@ -23,6 +23,6 @@ Las tensiones diplomáticas en Oriente Medio han dado un giro inesperado. El pre
 • Epicentro diplomático: Casa Blanca, Washington D.C. (38.8951° N, 77.0364° O).
 • Fuerzas involucradas: EE. UU. (freno diplomático) vs. Arabia Saudita (presión ofensiva).
 • Contexto de la operación: Distanciamiento estratégico en medio de la crisis por el control de Bab el-Mandeb.
-• Cobertura de inteligencia: análisis de inteligencia de comunicaciones diplomáticas, vigilancia geoespacial del teatro de operaciones en Yemen.
+• Cobertura de inteligencia: análisis de inteligencia de comunicaciones diplomáticas, vigilancia geoespacial del zona de conflicto en Yemen.
 
 El freno de Washington a la ofensiva saudí altera el equilibrio geopolítico de la región. Mientras Arabia Saudita busca una solución militar directa, Estados Unidos opta por contención estratégica, dejando al Mar Rojo en una posición de alta vulnerabilidad frente a la expansión hutí.

@@ -22,7 +22,7 @@ La confrontación militar entre Estados Unidos e Irán ha cruzado un umbral crí
 [DATOS DE REFERENCIA Y PARÁMETROS NAVEGABLES]
 • Ubicación de la incursión: Zona de anclaje de la Isla de Kharg (29.2433° N, 50.3061° E).
 • Fuerzas involucradas: Vector ofensivo del CENTCOM en respuesta al previo asedio iraní contra buques de la Armada estadounidense.
-• Alerta energética: Riesgo inminente sobre el flujo del 20% del crudo global transportado en tanqueros clase VLCC por el Golfo Pérsico.
+• Alerta energética: Riesgo inminente sobre el flujo del 20% del crudo global transportado en tanqueros clase superpetrolero por el Golfo Pérsico.
 • Cobertura de inteligencia: sensores de radar y vigilancia de alta resolución geoespacial rastreando movimientos de respuesta.
 
 Esta incursión armada frontal representa una represalia directa y una fuerte escalada bélica que amenaza con desestabilizar por completo las cadenas de suministro energético y forzar el desvío de buques mercantes hacia rutas internacionales alternativas.

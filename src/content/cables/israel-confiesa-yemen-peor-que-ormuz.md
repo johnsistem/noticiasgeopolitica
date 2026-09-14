@@ -15,13 +15,13 @@ youtube_id: 'r4xNPgNi4vk'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 
-### ANÁLISIS: CRISIS EN EL CHOKEPOINT DEL MAR ROJO
+### ANÁLISIS: CRISIS EN EL punto de estrangulamiento DEL MAR ROJO
 
 La alarma se ha encendido en Tel Aviv. Funcionarios de **Israel** han confesado que la caída de la estratégica **Isla de Perim** ante los hutíes de Yemen es un "drama enorme", considerándolo peor que la crisis en el Estrecho de Ormuz.
 
 [DATOS DE REFERENCIA Y PARÁMETROS BÉLICOS]
 • Ubicación del evento: Isla de Perim, Bab el-Mandeb (12.65° N, 43.35° E).
-• Fuerzas involucradas: Milicias hutíes con control total del chokepoint.
+• Fuerzas involucradas: Milicias hutíes con control total del punto de estrangulamiento.
 • Contexto de la operación: Los rebeldes ahora controlan el punto más estrecho del comercio mundial.
 • Cobertura de inteligencia: sensores de inteligencia interceptando comunicaciones israelíes, vigilancia geoespacial del corredor marítimo.
 

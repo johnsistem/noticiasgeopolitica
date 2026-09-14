@@ -1,12 +1,12 @@
 ---
 title: '🚨 ÚLTIMA HORA: HUTÍES TOMAN EL CONTROL DEL ESTRECHO DE BAB EL-MANDEB 🚨'
-description: 'El movimiento hutí del Yemen consolida el control total de Al Hudeida y avanza sobre el chokepoint que conecta Asia con Europa.'
+description: 'El movimiento hutí del Yemen consolida el control total de Al Hudeida y avanza sobre el punto de estrangulamiento que conecta Asia con Europa.'
 format: 'cable'
 flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
-tags: ['Hutíes', 'Bab el-Mandeb', 'Mar Rojo', 'Chokepoint', 'Yemen']
+tags: ['Hutíes', 'Bab el-Mandeb', 'Mar Rojo', 'Punto de estrangulamiento', 'Yemen']
 verification: 'CONFIRMADO'
 coordinates: { lat: 12.7855, lon: 43.2391 }
 date: '2026-09-13T20:00:00Z'
@@ -17,7 +17,7 @@ source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 
 ### ALERTA: HUTÍES AVANZAN SOBRE EL ESTRECHO DE BAB EL-MANDEB
 
-La crisis en las rutas energéticas globales se intensifica. El **movimiento hutí del Yemen** ha consolidado el control de la provincia costera de **Al Hudeida** y avanzado sobre el **Estrecho de Bab el-Mandeb**, el chokepoint que conecta Asia con Europa a través del Mar Rojo.
+La crisis en las rutas energéticas globales se intensifica. El **movimiento hutí del Yemen** ha consolidado el control de la provincia costera de **Al Hudeida** y avanzado sobre el **Estrecho de Bab el-Mandeb**, el punto de estrangulamiento que conecta Asia con Europa a través del Mar Rojo.
 
 [DATOS DE REFERENCIA Y PARÁMETROS BÉLICOS]
 • Ubicación del evento: Estrecho de Bab el-Mandeb (12.7855° N, 43.2391° E).

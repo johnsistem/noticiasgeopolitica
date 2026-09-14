@@ -87,7 +87,7 @@ const { Content } = await entry.render();
         <div class="absolute top-3 left-3 right-3 flex items-center justify-between font-mono text-xs z-20 pointer-events-none">
           <div class="bg-surface-container-lowest/90 px-3 py-1 rounded backdrop-blur-md border border-primary/30 text-primary font-bold flex items-center gap-2 shadow-lg">
             <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
-            <span>ZOOM TÁCTICO // COORDENADAS RECTIFICADAS</span>
+            <span>UBICACIÓN // COORDENADAS</span>
           </div>
           <div class="bg-surface-container-lowest/90 px-3 py-1 rounded backdrop-blur-md border border-secondary/40 text-secondary font-bold shadow-lg">
             <span>LAT {entry.data.coordinates.lat}° N // LON {entry.data.coordinates.lon}° E</span>
@@ -153,7 +153,7 @@ const { Content } = await entry.render();
     <footer class="mt-space-xl pt-space-md border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md">
       <a href="/informes" class="font-label-md text-label-md uppercase bg-surface-container hover:bg-surface-container-high text-primary px-space-md py-2 rounded font-bold transition-colors flex items-center gap-space-xs">
         <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-        VOLVER A INFORMES DE INTELIGENCIA
+        VOLVER A INFORMES
       </a>
       <button onclick="window.print()" class="font-label-md text-label-md uppercase border border-outline hover:border-primary text-on-surface px-space-md py-2 rounded font-bold transition-colors flex items-center gap-space-xs">
         <span class="material-symbols-outlined text-[18px]">print</span>

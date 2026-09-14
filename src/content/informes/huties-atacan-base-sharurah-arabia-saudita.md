@@ -26,6 +26,6 @@ El portavoz militar de los hutíes, **Yahya Saree**, ha confirmado un ataque con
 • Ubicación del impacto: Base militar de Sharurah, Arabia Saudita (17.48° N, 47.12° E).
 • Fuerzas involucradas: Hutíes de Yemen (ofensiva combinada misiles + drones).
 • Contexto de la operación: Respuesta declarada a la agresión saudí y advertencia de bloqueo del crudo hacia el Canal de Suez.
-• Cobertura de inteligencia: sensores de inteligencia interceptando comunicaciones hutíes, vigilancia geoespacial del teatro de operaciones.
+• Cobertura de inteligencia: sensores de inteligencia interceptando comunicaciones hutíes, vigilancia geoespacial del zona de conflicto.
 
 Los hutíes han advertido que si Riad no detiene su agresión, **bloquearán el flujo de crudo hacia el Canal de Suez**. Este ataque marca el fin de la tregua y eleva la crisis a un nivel sin precedentes recientes en la región.

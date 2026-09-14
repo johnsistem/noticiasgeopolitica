@@ -15,7 +15,7 @@ youtube_id: '8wRYvD9eIUY'
 source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
 ---
 
-### ALERTA: PÉRDIDA DE ACTIVO AUTÓNOMO CLASIFICADO
+### ALERTA: PÉRDIDA DE VEHÍCULO AUTÓNOMO SUBMARINO
 
 La guerra tecnológica entre Estados Unidos e Irán ha cruzado un nuevo umbral. La **Guardia Revolucionaria de Irán (IRGC)** ha publicado material visual de un sumergible no tripulado (UUV) de fabricación estadounidense, desarrollado por la empresa de defensa **Anduril**, capturado en aguas del Golfo Pérsico.
 
@@ -23,6 +23,6 @@ La guerra tecnológica entre Estados Unidos e Irán ha cruzado un nuevo umbral. 
 • Ubicación del incidente: Golfo Pérsico (26.5° N, 53.5° E aprox.).
 • Activo perdido: UUV de clase avanzada fabricado por Anduril Industries.
 • Fuerzas involucradas: IRGC (captura) vs. Activos de inteligencia naval de EE. UU.
-• Cobertura de inteligencia: Análisis OSINT de material visual publicado, vigilancia geoespacial del teatro de operaciones.
+• Cobertura de inteligencia: Análisis OSINT de material visual publicado, vigilancia geoespacial del zona de conflicto.
 
-La captura de este sumergible autónomo representa un golpe significativo para el Pentágono, exponiendo secretos tecnológicos de guerra naval no tripulada. Este incidente intensifica la confrontación directa en el **Chokepoint** de Ormuz y eleva el riesgo de represalias militares en la región.
+La captura de este sumergible autónomo representa un golpe significativo para el Pentágono, exponiendo secretos tecnológicos de guerra naval no tripulada. Este incidente intensifica la confrontación directa en el **Punto de estrangulamiento** de Ormuz y eleva el riesgo de represalias militares en la región.
