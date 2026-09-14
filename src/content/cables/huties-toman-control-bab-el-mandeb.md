@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
+tags: ['Hutíes', 'Bab el-Mandeb', 'Mar Rojo', 'Chokepoint', 'Yemen']
 coordinates: { lat: 12.7855, lon: 43.2391 }
 date: '2026-09-13T20:00:00Z'
 readingTime: '1 MIN READ'

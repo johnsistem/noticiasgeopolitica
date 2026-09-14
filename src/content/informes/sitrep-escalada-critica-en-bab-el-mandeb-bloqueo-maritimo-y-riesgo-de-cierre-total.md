@@ -3,6 +3,7 @@ title: '🚨 SITREP: ESCALADA CRÍTICA EN BAB EL-MANDEB – BLOQUEO MARÍTIMO Y 
 description: 'Fuerzas de Ansar Allah intensifican los ataques y bloqueos a barcos en el estrecho de Bab el-Mandeb contra buques saudíes e israelíes, poniendo en riesgo inminente el 9% del comercio petrolero mundial.'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
+tags: ['Bab el-Mandeb', 'Mar Rojo', 'Hutíes', 'Bloqueo', 'Chokepoint']
 coordinates: { lat: 12.5883, lon: 43.3333 }
 image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'
 date: '2026-09-13'

@@ -5,6 +5,7 @@ format: 'dossier'
 date: '2026-09-14'
 threat_level: 'Crítica'
 region: 'Arabia Saudita'
+tags: ['Hutíes', 'Sharurah', 'Arabia Saudita', 'Misiles', 'Drones']
 coordinates: { lat: 17.48, lon: 47.12 }
 category: 'INFORMES OSINT'
 defcon: 'DEFCON 2'

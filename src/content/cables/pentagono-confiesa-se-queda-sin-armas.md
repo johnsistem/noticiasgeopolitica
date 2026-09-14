@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Alta'
 region: 'Global'
+tags: ['Pentágono', 'Arsenal', 'Ucrania', 'Israel', 'Inventario']
 coordinates: { lat: 38.8977, lon: -77.0365 }
 date: '2026-09-13T23:00:00Z'
 readingTime: '1 MIN READ'

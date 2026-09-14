@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Golfo Pérsico'
+tags: ['Irán', 'Portaaviones', 'Misiles', 'Armada', 'EEUU']
 coordinates: { lat: 26.5, lon: 53.5 }
 date: '2026-09-13T14:00:00Z'
 readingTime: '1 MIN READ'

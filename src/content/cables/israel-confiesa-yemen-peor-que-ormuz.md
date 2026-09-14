@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
+tags: ['Israel', 'Hutíes', 'Yemen', 'Perim', 'Ormuz']
 coordinates: { lat: 12.6500, lon: 43.3500 }
 date: '2026-09-13T22:15:00Z'
 readingTime: '1 MIN READ'

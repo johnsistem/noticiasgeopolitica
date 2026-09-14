@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Alta'
 region: 'Golfo Pérsico'
+tags: ['Irán', 'Anduril', 'Submarino', 'Tecnología', 'Drones']
 coordinates: { lat: 26.5, lon: 53.5 }
 date: '2026-09-13T16:45:00Z'
 readingTime: '1 MIN READ'

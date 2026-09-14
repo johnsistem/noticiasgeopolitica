@@ -5,6 +5,7 @@ format: 'dossier'
 date: '2026-09-13'
 threat_level: 'Crítica'
 region: 'Mar Rojo'
+tags: ['Trump', 'Hutíes', 'Casa Blanca', 'Tregua', 'Diplomacia']
 coordinates: { lat: 38.8951, lon: -77.0364 }
 category: 'INFORMES OSINT'
 defcon: 'DEFCON 2'

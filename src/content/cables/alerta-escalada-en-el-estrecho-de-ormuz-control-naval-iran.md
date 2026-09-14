@@ -5,7 +5,8 @@ format: 'cable'
 flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
-region: 'Global'
+region: 'Estrecho de Ormuz'
+tags: ['Ormuz', 'Irán', 'Armada', 'Chokepoint', 'Persia']
 coordinates: { lat: 26.5667, lon: 56.2500 }
 date: '2026-09-13T08:00:00Z'
 readingTime: '1 MIN READ'

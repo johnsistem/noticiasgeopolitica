@@ -5,7 +5,8 @@ format: 'cable'
 flash: true
 urgency: 'FLASH'
 threat_level: 'Crítica'
-region: 'Global'
+region: 'Golfo Pérsico'
+tags: ['Irán', 'Kharg', 'Bombardeo', 'Petroleros', 'EEUU']
 coordinates: { lat: 29.2433, lon: 50.3061 }
 date: '2026-09-13T10:30:00Z'
 readingTime: '1 MIN READ'

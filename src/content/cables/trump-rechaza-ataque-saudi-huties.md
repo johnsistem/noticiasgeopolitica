@@ -6,6 +6,7 @@ flash: true
 urgency: 'FLASH'
 threat_level: 'Alta'
 region: 'Mar Rojo'
+tags: ['Trump', 'Hutíes', 'Arabia Saudita', 'Mar Rojo', 'MBS']
 coordinates: { lat: 38.8951, lon: -77.0364 }
 date: '2026-09-13T21:30:00Z'
 readingTime: '1 MIN READ'
