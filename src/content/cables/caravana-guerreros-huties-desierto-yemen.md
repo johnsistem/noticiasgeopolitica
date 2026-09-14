@@ -13,7 +13,7 @@ date: '2026-09-14T01:15:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'UCcRbD6krV0'
 image: '/caravana.jpeg'
-source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ALERTA: MOVILIZACIÓN MASIVA DE GUERREROS HUTÍES EN YEMEN
@@ -24,6 +24,6 @@ Un impactante video filtrado muestra la masiva movilización armada de la podero
 • Ubicación del evento: Desierto de Yemen (15.35° N, 44.2° E aprox.).
 • Fuerzas involucradas: Tribu Bani Hashish con artillería pesada y vehículos blindados.
 • Contexto de la operación: Movilización masiva como advertencia de invasión terrestre.
-• Cobertura de inteligencia: Análisis geoespacial de video filtrado, rastreo de convoyes por telemetría.
+• Cobertura de inteligencia: Análisis geoespacial de video filtrado, rastreo de convoyes por información.
 
 La escala de esta movilización sin precedentes sugiere una preparación para un conflicto terrestre a gran escala. La tensión regional está fuera de control y la posibilidad de una invasión terrestre directa contra Arabia Saudita se acerca cada vez más.

@@ -12,7 +12,7 @@ coordinates: { lat: 29.2433, lon: 50.3061 }
 date: '2026-09-13T10:30:00Z'
 readingTime: '1 MIN READ'
 youtube_id: '1gb53cnALbM'
-source_channel: 'RED DE MONITOREO CENTCOM & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ALERTA: ATAQUE FRONTAL DE CENTCOM EN EL GOLFO PÉRSICO

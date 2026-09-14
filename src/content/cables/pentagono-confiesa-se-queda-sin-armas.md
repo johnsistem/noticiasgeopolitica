@@ -12,7 +12,7 @@ coordinates: { lat: 38.8977, lon: -77.0365 }
 date: '2026-09-13T23:00:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'vMsY4Qx8bYY'
-source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ALERTA: ESCANDALO EN LOS ARSENALES DE WASHINGTON

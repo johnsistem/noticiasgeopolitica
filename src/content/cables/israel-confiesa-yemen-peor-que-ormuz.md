@@ -12,7 +12,7 @@ coordinates: { lat: 12.6500, lon: 43.3500 }
 date: '2026-09-13T22:15:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'r4xNPgNi4vk'
-source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ANÁLISIS: CRISIS EN EL punto de estrangulamiento DEL MAR ROJO

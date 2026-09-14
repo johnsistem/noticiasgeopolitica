@@ -8,10 +8,10 @@ region: 'Arabia Saudita'
 tags: ['Hutíes', 'Sharurah', 'Arabia Saudita', 'Misiles', 'Drones']
 verification: 'CONFIRMADO'
 coordinates: { lat: 17.48, lon: 47.12 }
-category: 'INFORMES OSINT'
+category: 'INFORMES'
 defcon: 'NIVEL DE ALERTA ALTO'
 hotspots: ['Arabia Saudita', 'Yemen', 'Sharurah']
-author: 'Comando OSINT'
+author: 'Equipo de Análisis'
 readingTime: '8 MIN READ'
 image: '/card-misiles-sharurah.svg'
 youtube_id: 'OEEKmSWt0J4'

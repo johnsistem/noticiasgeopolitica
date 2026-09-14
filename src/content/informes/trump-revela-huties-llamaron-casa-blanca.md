@@ -8,10 +8,10 @@ region: 'Mar Rojo'
 tags: ['Trump', 'Hutíes', 'Casa Blanca', 'Tregua', 'Diplomacia']
 verification: 'REPORTADO'
 coordinates: { lat: 38.8951, lon: -77.0364 }
-category: 'INFORMES OSINT'
+category: 'INFORMES'
 defcon: 'NIVEL DE ALERTA ALTO'
 hotspots: ['Mar Rojo', 'Bab el-Mandeb', 'Yemen']
-author: 'Comando OSINT'
+author: 'Equipo de Análisis'
 readingTime: '8 MIN READ'
 youtube_id: 'zirvUwn4ZMI'
 chapters: []

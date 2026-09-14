@@ -10,7 +10,7 @@ verification: 'ANÁLISIS'
 category: 'GEOCONOMÍA GLOBAL'
 defcon: 'NIVEL DE ALERTA'
 hotspots: ['Dólar', 'Deuda EE.UU.', 'Oro', 'Desdolarización']
-author: 'Comando OSINT'
+author: 'Equipo de Análisis'
 readingTime: '10 MIN READ'
 image: '/card-dolar-dashboard.svg'
 chapters:
@@ -27,7 +27,7 @@ El **dólar estadounidense** mantiene su estatus de moneda de reserva global, pe
 
 ---
 
-[TELEMETRÍA DE FUENTES PRIMARIAS]
+[DATOS VERIFICADOS]
 • Deuda pública de EE. UU.: **$40,05 billones** (US Treasury Fiscal Data, 10-sep-2026; deuda en manos del público $32,36 B + tenencias intra-gubernamentales $7,68 B).
 • Compras de oro de bancos centrales: **863 t en 2025** y **~345 t en H1-2026** (World Gold Council, Gold Demand Trends Q2-2026).
 • Tenencias de bonos del Tesoro por China: **$633,4 mil millones** al cierre de junio 2026 (US Treasury TIC, Table 5) — desde el pico de ~$1,32 billones.
@@ -135,4 +135,4 @@ El fenómeno no es un fin inmediato del dólar, sino una **erosión gradual de s
 - **Atlantic Council CBDC Tracker** — Estados del programa CBDC (may-2026). Disponible: [atlanticcouncil.org/cbdctracker](https://www.atlanticcouncil.org/cbdctracker/)
 - **Kitco** — Precio spot del oro en vivo (sep-2026). Disponible: [kitco.com](https://www.kitco.com/)
 
-> **Clasificación:** OSINT PUBLIC / UNCLAS. Los datos provienen de fuentes oficiales y reportajes verificados; las proyecciones son análisis de escenarios, no certezas. Cifras verificadas a septiembre de 2026.
+> **Clasificación:** INFORMACIÓN PÚBLICA. Los datos provienen de fuentes oficiales y reportajes verificados; las proyecciones son análisis de escenarios, no certezas. Cifras verificadas a septiembre de 2026.

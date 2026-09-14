@@ -11,7 +11,7 @@ Somos un medio independiente de análisis geopolítico con estética de centro d
 | A2/AD | zona de exclusión |
 | VLCC | superpetrolero |
 | UAV / drones MALE | drones |
-| AShM | misiles antibuque |
+| misiles antibuque | misiles antibuque |
 | UNCLOS | Convención del Mar |
 | C-130 | aviones de transporte |
 | teatro de operaciones | zona de conflicto |
@@ -25,7 +25,7 @@ Somos un medio independiente de análisis geopolítico con estética de centro d
 | potencia adversaria | enemigo |
 | hostil | enemigo |
 | bélico | de conflicto |
-| telemetría | datos / información |
+| descripción |
 | GEOINT | imágenes satelitales |
 | SIGINT | comunicaciones interceptadas |
 | SITREP | situación actual |
@@ -39,7 +39,7 @@ Somos un medio independiente de análisis geopolítico con estética de centro d
 | HOTSPOTS | zonas de interés |
 | REPOSITORIO | archivo |
 | SENTINEL | análisis semanal |
-| RADAR SWEEP | monitoreo activo |
+| MONITOREO GLOBAL |
 | TERMINAL | centro de análisis |
 | DISPATCH | publicación |
 | CLASSIFICADO | público |
@@ -87,7 +87,7 @@ region: '[Región]'
 tags: ['tag1', 'tag2', 'tag3']
 category: '[Categoría en español]'
 defcon: '[NIVEL DE ALERTA]'
-author: 'Equipo de Análisis OSINT'
+author: 'Equipo de Análisis'
 readingTime: '[X] MIN READ'
 image: '[/ruta/imagen.svg]'
 verification: '[CONFIRMADO|REPORTADO|OSINT|ANÁLISIS]'

@@ -12,7 +12,7 @@ coordinates: { lat: 38.8951, lon: -77.0364 }
 date: '2026-09-13T21:30:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'MC7UsvbopYw'
-source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ALERTA: FRENADO DIPLOMÁTICO EN LA CRISIS DEL MAR ROJO

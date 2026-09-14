@@ -12,7 +12,7 @@ coordinates: { lat: 12.7855, lon: 43.2391 }
 date: '2026-09-13T20:00:00Z'
 readingTime: '1 MIN READ'
 youtube_id: 'WDBLAm4rvb8'
-source_channel: 'RED DE MONITOREO TÁCTICO & OSINT'
+source_channel: 'FUENTES ABIERTAS'
 ---
 
 ### ALERTA: HUTÍES AVANZAN SOBRE EL ESTRECHO DE BAB EL-MANDEB
