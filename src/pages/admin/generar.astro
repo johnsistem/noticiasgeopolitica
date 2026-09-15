@@ -1,0 +1,221 @@
+---
+import TopNavLayout from '../../layouts/TopNavLayout.astro'
+---
+
+<TopNavLayout title="Generador de Contenido | Admin" description="Panel de administración para generar contenido con IA">
+<div class="min-h-screen bg-background py-12 px-4">
+  <div class="max-w-5xl mx-auto flex flex-col gap-8">
+
+    <!-- Header -->
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase">
+        <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+        <span>PANEL DE GENERACIÓN</span>
+      </div>
+      <h1 class="font-headline-xl text-headline-xl text-on-surface uppercase">GENERADOR DE CONTENIDO IA</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant">Pega una URL o texto y genera cualquier tipo de contenido para el sitio.</p>
+    </div>
+
+    <!-- Formulario -->
+    <form id="gen-form" class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-6 shadow-lg">
+
+      <!-- URL / Texto -->
+      <div class="flex flex-col gap-2">
+        <label class="font-label-sm text-label-sm text-outline uppercase">URL de la noticia (o pega el texto abajo)</label>
+        <input id="gen-url" type="url" placeholder="https://ejemplo.com/noticia-geopolitica" class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline" />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="font-label-sm text-label-sm text-outline uppercase">Texto alternativo (si no hay URL)</label>
+        <textarea id="gen-text" rows="4" placeholder="Pega aquí el texto de la noticia..." class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline resize-y"></textarea>
+      </div>
+
+      <!-- Tipo de contenido -->
+      <div class="flex flex-col gap-2">
+        <label class="font-label-sm text-label-sm text-outline uppercase">Tipo de contenido</label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <button type="button" data-type="cable" class="gen-type-btn bg-primary text-on-primary border-primary">
+            <span class="text-lg">⚡</span> Cable Flash
+          </button>
+          <button type="button" data-type="informe" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">📄</span> Informe
+          </button>
+          <button type="button" data-type="perfil" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">👤</span> Perfil País
+          </button>
+          <button type="button" data-type="comparativo" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">📊</span> Comparativo
+          </button>
+          <button type="button" data-type="timeline" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">📅</span> Timeline
+          </button>
+          <button type="button" data-type="resumen" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">📰</span> Resumen Semanal
+          </button>
+          <button type="button" data-type="post" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">📱</span> Post Redes
+          </button>
+          <button type="button" data-type="geoespacial" class="gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest">
+            <span class="text-lg">🗺️</span> Geoespacial
+          </button>
+        </div>
+      </div>
+
+      <!-- Botón generar -->
+      <button id="gen-btn" type="submit" class="w-full bg-primary text-on-primary font-label-lg text-label-lg uppercase py-4 rounded font-bold hover:bg-primary-fixed transition-all flex items-center justify-center gap-2 shadow-md">
+        <span class="material-symbols-outlined text-[20px]">radar</span>
+        <span>GENERAR CONTENIDO</span>
+      </button>
+    </form>
+
+    <!-- Loading -->
+    <div id="gen-loading" class="hidden bg-surface-container-low p-8 rounded-xl flex flex-col items-center gap-4">
+      <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <span class="font-label-md text-label-md text-on-surface-variant">Generando contenido con IA...</span>
+    </div>
+
+    <!-- Preview -->
+    <div id="gen-preview" class="hidden bg-surface-container-low p-6 rounded-xl flex flex-col gap-4 shadow-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase">
+          <span class="material-symbols-outlined text-[18px]">preview</span>
+          <span>PREVIEW</span>
+        </div>
+        <div class="flex gap-2">
+          <button id="btn-copy" type="button" class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-[16px]">content_copy</span>
+            Copiar
+          </button>
+          <button id="btn-save" type="button" class="bg-primary text-on-primary font-label-sm text-label-sm uppercase px-4 py-2 rounded font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">save</span>
+            Guardar en Repo
+          </button>
+        </div>
+      </div>
+
+      <!-- Slug preview -->
+      <div class="bg-surface-container p-3 rounded flex items-center gap-2">
+        <span class="font-label-sm text-label-sm text-outline">ARCHIVO:</span>
+        <span id="gen-slug" class="font-label-md text-label-md text-primary font-mono"></span>
+      </div>
+
+      <!-- Markdown preview -->
+      <pre id="gen-markdown" class="bg-surface-container-lowest p-4 rounded overflow-auto max-h-[500px] font-mono text-sm text-on-surface-variant whitespace-pre-wrap"></pre>
+    </div>
+
+    <!-- Estado del guardado -->
+    <div id="gen-status" class="hidden bg-surface-container-low p-4 rounded-xl flex items-center gap-3"></div>
+
+  </div>
+</div>
+
+<style>
+  .gen-type-btn {
+    @apply px-4 py-3 rounded-lg font-label-sm text-label-sm uppercase font-bold border-2 cursor-pointer transition-all text-center flex flex-col items-center gap-1;
+  }
+</style>
+
+<script is:inline>
+(function() {
+  let selectedType = 'cable'
+  let generatedMarkdown = ''
+  let generatedSlug = ''
+
+  // Type buttons
+  document.querySelectorAll('.gen-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedType = btn.dataset.type
+      document.querySelectorAll('.gen-type-btn').forEach(b => {
+        b.className = 'gen-type-btn bg-surface-container-high text-on-surface border-surface-container-highest'
+      })
+      btn.className = 'gen-type-btn bg-primary text-on-primary border-primary'
+    })
+  })
+
+  // Form submit
+  document.getElementById('gen-form').addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const url = document.getElementById('gen-url').value.trim()
+    const text = document.getElementById('gen-text').value.trim()
+
+    if (!url && !text) {
+      alert('Pega una URL o texto')
+      return
+    }
+
+    const loading = document.getElementById('gen-loading')
+    const preview = document.getElementById('gen-preview')
+    const status = document.getElementById('gen-status')
+    loading.classList.remove('hidden')
+    preview.classList.add('hidden')
+    status.classList.add('hidden')
+
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url || text, type: selectedType }),
+      })
+      const data = await res.json()
+
+      if (data.error) throw new Error(data.error)
+
+      generatedMarkdown = data.markdown
+      generatedSlug = data.slug
+
+      const collection = ['cable'].includes(selectedType) ? 'cables' : 'informes'
+      document.getElementById('gen-slug').textContent = `src/content/${collection}/${generatedSlug}.md`
+      document.getElementById('gen-markdown').textContent = generatedMarkdown
+
+      loading.classList.add('hidden')
+      preview.classList.remove('hidden')
+    } catch (err) {
+      loading.classList.add('hidden')
+      status.innerHTML = `<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ${err.message}</span>`
+      status.classList.remove('hidden')
+    }
+  })
+
+  // Copy
+  document.getElementById('btn-copy').addEventListener('click', () => {
+    navigator.clipboard.writeText(generatedMarkdown)
+    const btn = document.getElementById('btn-copy')
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Copiado'
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span> Copiar'
+    }, 2000)
+  })
+
+  // Save
+  document.getElementById('btn-save').addEventListener('click', async () => {
+    const collection = ['cable'].includes(selectedType) ? 'cables' : 'informes'
+    const path = `src/content/${collection}/${generatedSlug}.md`
+    const btn = document.getElementById('btn-save')
+    const status = document.getElementById('gen-status')
+
+    btn.disabled = true
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Guardando...'
+
+    try {
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path, content: generatedMarkdown }),
+      })
+      const data = await res.json()
+
+      if (data.error) throw new Error(data.error)
+
+      status.innerHTML = `<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="font-label-md text-label-md text-primary">Guardado en ${path} — Vercel hará deploy automáticamente</span>`
+      status.classList.remove('hidden')
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Guardado'
+    } catch (err) {
+      status.innerHTML = `<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ${err.message}</span>`
+      status.classList.remove('hidden')
+      btn.disabled = false
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Guardar en Repo'
+    }
+  })
+})()
+</script>
+</TopNavLayout>
