@@ -9,9 +9,6 @@ const countOriente = informesCollection.filter(i => ['Mar Rojo', 'Oriente Medio'
 const countAsiaPac = informesCollection.filter(i => ['Indo-Pacífico', 'Asia-Pacífico', 'Estrecho de Taiwán'].includes(i.data.region)).length;
 const countEuropa = informesCollection.filter(i => ['Europa Oriental', 'Báltico', 'Mar Negro'].includes(i.data.region)).length;
 const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].includes(i.data.region)).length;
-
-const supabaseUrl = import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 ---
 
 <TopNavLayout
@@ -679,7 +676,7 @@ const supabaseKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 <span>SUSCRIBIRME</span>
 </button>
 </form>
-<script is:inline define:vars={{ supabaseUrl, supabaseKey }}>
+<script is:inline>
 document.getElementById('newsletter-form-informes')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -694,7 +691,7 @@ document.getElementById('newsletter-form-informes')?.addEventListener('submit', 
       throw new Error('Correo inválido');
     }
     const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const supabase = createClient('https://nawotqgqijksqdroeboy.supabase.co', 'sb_publishable_asJvAHFi2YdOIPJObAGM8A_3ianCsCZ');
     const { error } = await supabase.from('subscribers').upsert({ email, cadence: 'weekly' }, { onConflict: 'email' });
     if (error) throw error;
     const alert = document.createElement('div');
