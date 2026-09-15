@@ -1,6 +1,6 @@
 ---
 title: 'EL FIN DE LA ERA DEL DÓLAR: DEUDA, ORO Y LA BÚSQUEDA DE UNA NUEVA MONEDA DE RESERVA'
-description: 'Análisis: cómo la deuda explosiva de EE. UU., el deshacimiento de los bonos del Tesoro por parte de los bancos centrales y la acumulación récord de oro anticipan un reordenamiento del sistema monetario global.'
+description: 'Análisis: cómo la deuda explosiva de EE. UU., la venta de bonos del Tesoro por parte de los bancos centrales y la acumulación récord de oro anticipan un reordenamiento del sistema monetario global.'
 format: 'dossier'
 date: '2026-09-14'
 threat_level: 'Alta'

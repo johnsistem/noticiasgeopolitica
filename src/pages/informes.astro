@@ -38,7 +38,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="material-symbols-outlined text-[18px]">terminal</span>
 <span>CENTRO DE ANÁLISIS</span>
 </div>
-<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface uppercase tracking-tight">INFORMES DE ANÁLISIS GEOPOLÍTICO</h1>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface uppercase tracking-tight">INFORMES</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Investigaciones de análisis geopolítico de largo formato, desgloses audiovisuales y transcripciones técnicas procesadas con IA para indexación global y análisis predictivo.</p>
 </div>
 <div class="flex items-center gap-space-sm">
@@ -132,10 +132,10 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <div class="flex flex-wrap items-center gap-2">
 <span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-0.5 rounded font-bold uppercase flex items-center gap-1">
 <span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
-                CHOKEPOINT CRÍTICO
+                PUNTO ESTRATÉGICO
               </span>
-<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">MAPA UBICACIÓN: 12.5883°N, 43.3333°E</span>
-<span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-2 py-0.5 rounded font-bold">ALERTA NAVAL NIVEL 4</span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">UBICACIÓN: 12.5883°N, 43.3333°E</span>
+<span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary px-2 py-0.5 rounded font-bold">ALERTA MARÍTIMA</span>
 </div>
 <h2 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight mt-1 leading-tight">
               Análisis Exhaustivo: ¿Por qué la Isla de Perim define el futuro del comercio entre Asia y Europa?
@@ -144,7 +144,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <!-- Quick Metrics Bar -->
 <div class="flex items-center gap-space-md bg-surface-container-low px-space-md py-2.5 rounded shrink-0">
 <div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline">TEATRO</span>
+<span class="font-label-sm text-label-sm text-outline">ZONA</span>
 <span class="font-label-md text-label-md text-primary font-bold">MAR ROJO</span>
 </div>
 <div class="w-px h-8 bg-surface-container-highest"></div>
@@ -208,7 +208,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
     </div>
     <div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
       <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm">
-        <span>CAPAS: RUTAS MARÍTIMAS · ALCANCE A2/AD (EST.)</span>
+        <span>CAPAS: RUTAS MARÍTIMAS · ZONA DE EXCLUSIÓN (EST.)</span>
       </div>
       <div class="bg-surface-container-lowest/85 px-2 py-1 rounded backdrop-blur-sm text-primary">
         <span>● MAPA INTERACTIVO · PANTALLA COMPLETA</span>
@@ -247,14 +247,14 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
       L.marker([12.6534, 43.4182], { icon: pulse }).addTo(m).bindPopup('ISLA DE PERIM (MAYYUN) — Batería de Misiles & Pista Táctica');
       L.marker([12.7821, 43.5109], { icon: square }).addTo(m).bindPopup('Puesto de Radar Costero');
       L.marker([12.6102, 43.3411], { icon: square }).addTo(m).bindPopup('Canal Bab Iskander (2.9 Nmi)');
-      L.marker([12.821, 43.284], { icon: square }).addTo(m).bindPopup('Fondeadero VLCC (EST.)');
+      L.marker([12.821, 43.284], { icon: square }).addTo(m).bindPopup('Fondeadero de petroleros (estimado)');
 
       // Rutas AIS estimadas
       [[[13.20, 43.05], [12.65, 43.42], [12.10, 43.75]], [[13.45, 42.95], [12.90, 43.30], [12.30, 43.95]]].forEach((pts, idx) => {
         L.polyline(pts, { color: idx === 0 ? '#10b981' : '#38bdf8', weight: 2, opacity: 0.8, dashArray: idx === 0 ? null : '6 8' }).addTo(m);
       });
 
-      // Cobertura A2/AD teórica
+      // Cobertura de zona de exclusión teórica
       L.circle([12.6534, 43.4182], { radius: 300000, color: '#ef4444', weight: 1.5, dashArray: '5 6', fill: true, fillColor: '#ef4444', fillOpacity: 0.05, opacity: 0.5 }).addTo(m);
     }
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -282,7 +282,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 </a>
 <a href="/mapas#bab-el-mandeb" class="bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-2 font-bold transition-colors shadow-sm">
 <span class="material-symbols-outlined text-[16px]">public</span>
-<span>VER TEATRO EN MAPAS</span>
+<span>VER ZONA EN MAPAS</span>
 </a>
 <button class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-3 py-2 rounded flex items-center gap-1.5 transition-colors" onclick="window.print()">
 <span class="material-symbols-outlined text-[16px] text-tertiary">print</span>
@@ -347,7 +347,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <div class="flex items-center justify-between bg-surface-container-lowest px-space-md py-2.5 rounded shadow-inner">
 <div class="flex items-center gap-2 flex-1">
 <span class="material-symbols-outlined text-outline text-[18px]">find_in_page</span>
-<input class="w-full bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none placeholder:text-outline" placeholder="Buscar entidades en el texto (ej: Bab-el-Mandeb, Maersk, A2/AD, Harpoon)..." type="text"/>
+<input class="w-full bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none placeholder:text-outline" placeholder="Buscar entidades en el texto (ej: Bab-el-Mandeb, Maersk, petróleo)..." type="text"/>
 </div>
 <span class="font-label-sm text-label-sm text-outline shrink-0 ml-2">BÚSQUEDA EN TRANSCRIPCIÓN</span>
 </div>
@@ -380,7 +380,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="material-symbols-outlined text-[14px]">play_circle</span>
 <span>04:30 - 11:15</span>
 </button>
-<span class="font-label-md text-label-md text-on-surface font-bold">2. Desglose satelital: Pista aérea y fortificación militar en Perim</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">2. Imágenes satelitales: Pista y construcciones en Perim</span>
 </div>
 <span class="font-label-sm text-label-sm text-primary font-bold">CAPÍTULO SELECCIONADO</span>
 </div>
@@ -401,13 +401,13 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="material-symbols-outlined text-[14px]">play_circle</span>
 <span>11:15 - 18:40</span>
 </button>
-<span class="font-label-md text-label-md text-on-surface font-bold">3. Doctrina A2/AD y vectores antibuque en el teatro costero</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">3. Estrategia de exclusión y defensa costera</span>
 </div>
 <span class="font-label-sm text-label-sm text-outline">FUENTE: ABIERTA</span>
 </div>
 <div class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex flex-col gap-2">
 <p>
-                  El emplazamiento de baterías costeras dotadas de vectores antibuque derivados del modelo C-801/C-802 (como el misil <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Al-Mandab 1</strong> y el supersónico <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Noor</strong>) modifica radicalmente el cálculo táctico. Bajo una doctrina de <strong class="text-tertiary font-bold">Anti-Access/Area Denial (A2/AD)</strong>, una fuerza que controle la elevación orográfica de la isla puede paralizar el tráfico de petroleros clase <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">VLCC (Very Large Crude Carrier)</strong> con un gasto logístico ínfimo en comparación con el despliegue de escoltas navales tipo Aegis de destructores Arleigh Burke de la US Navy.
+                  El emplazamiento de baterías costeras dotadas de misiles antibuque derivados del modelo C-801/C-802 (como el misil <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Al-Mandab 1</strong> y el supersónico <strong class="text-on-surface font-bold bg-surface-container-highest px-1 rounded">Noor</strong>) modifica radicalmente el cálculo táctico. Bajo una doctrina de <strong class="text-tertiary font-bold">zona de exclusión (A2/AD)</strong>, una fuerza que controle la elevación orográfica de la isla puede paralizar el tráfico de petroleros de gran tonelaje con un gasto logístico ínfimo en comparación con el despliegue de escoltas navales con sistemas de defensa como los destructores de la US Navy.
                 </p>
 </div>
 </div>
@@ -419,7 +419,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="material-symbols-outlined text-[14px]">play_circle</span>
 <span>18:40 - 24:15</span>
 </button>
-<span class="font-label-md text-label-md text-on-surface font-bold">4. Proyecciones geoeconómicas: Fletes y el shock en el Brent</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">4. Impacto económico: Fletes y precio del petróleo</span>
 </div>
 <span class="font-label-sm text-label-sm text-outline">FUENTE: ABIERTA</span>
 </div>
@@ -471,11 +471,11 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <!-- Term 3 -->
 <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
 <div class="flex items-center justify-between">
-<span class="font-label-md text-label-md text-primary font-bold">A2/AD</span>
-<span class="font-label-sm text-label-sm text-outline">CONCEPTO MILITAR</span>
+<span class="font-label-md text-label-md text-primary font-bold">Zona de Exclusión (A2/AD)</span>
+<span class="font-label-sm text-label-sm text-outline">CONCEPTO</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-<em>Anti-Access / Area Denial</em>. Estrategia militar para impedir que barcos o aviones enemigos entren o se muevan libremente en una zona. Incluye misiles, minas y radares.
+<em>Anti-Access / Area Denial</em>. Estrategia para impedir que barcos o aviones enemigos entren o se muevan libremente en una zona. Incluye misiles, minas y radares.
 </p>
 </div>
 <!-- Term 4 -->
@@ -491,11 +491,11 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <!-- Term 5 -->
 <div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1">
 <div class="flex items-center justify-between">
-<span class="font-label-md text-label-md text-primary font-bold">Buques VLCC</span>
+<span class="font-label-md text-label-md text-primary font-bold">Petroleros de gran tonelaje</span>
 <span class="font-label-sm text-label-sm text-outline">COMERCIO</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-<em>Very Large Crude Carrier</em>. Los barcos más grandes que transportan petróleo. Cargan entre 200.000 y 320.000 toneladas y son esenciales para que el mundo tenga combustible.
+<em>Very Large Crude Carrier</em>. Los barcos más grandes que transportan petróleo. Cargan entre 200.000 y 320.000 toneladas y son esenciales para el comercio mundial de crudo.
 </p>
 </div>
 </div>
@@ -541,7 +541,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <div class="flex flex-col gap-space-xs">
 <div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider">
 <span class="material-symbols-outlined text-[18px]">dynamic_feed</span>
-<span>INFORMES CORRELACIONADOS &amp; TRANSMISIONES RECIENTES</span>
+<span>INFORMES RELACIONADOS</span>
 </div>
 <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">INFORMES RELACIONADOS</h3>
 </div>
@@ -630,10 +630,10 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="font-label-sm text-label-sm uppercase text-primary font-bold">BOLETÍN SEMANAL</span>
 </div>
 <h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface uppercase tracking-tight leading-tight">
-              RECIBE LOS INFORMES ANTES DE SU PUBLICACIÓN EN REDES SOCIALES
+              RECIBE LOS INFORMES ANTES DE SU PUBLICACIÓN
             </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
-              Únase a la red de analistas, profesionales de riesgo geopolítico y corresponsales internacionales. Cada lunes a las 06:00Z recibirá el dossier completo con modelos predictivos, transcripciones íntegras y datasets GIS.
+              Únase a la red de lectores interesados en geopolítica. Cada lunes recibirá un resumen con los análisis más relevantes de la semana.
             </p>
 <div class="flex flex-wrap items-center gap-space-lg text-on-surface font-label-sm text-label-sm pt-space-xs">
 <div class="flex items-center gap-2">
@@ -641,8 +641,8 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span>SIN SPAM NI CLICKBAIT</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
-<span>CANAL TELEGRAM CIFRADO DISPONIBLE</span>
+<span class="material-symbols-outlined text-primary text-[18px]">mail</span>
+            <span>CANAL DE DIFUSIÓN DISPONIBLE</span>
 </div>
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-[18px]">file_download</span>
@@ -653,31 +653,31 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <!-- Subscription Action Box (5 cols) -->
 <div class="lg:col-span-5 bg-surface-container p-space-lg rounded-xl shadow-lg flex flex-col gap-space-md">
 <div class="flex items-center justify-between">
-<span class="font-label-md text-label-md uppercase text-on-surface font-bold">ALTA DE ANALISTA // ACCESO LIBRE</span>
+<span class="font-label-md text-label-md uppercase text-on-surface font-bold">SUSCRIPCIÓN</span>
 <span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">FUENTES ABIERTAS</span>
 </div>
 <form class="flex flex-col gap-space-sm" method="POST">
 <div class="flex flex-col gap-1">
 <label class="font-label-sm text-label-sm text-outline uppercase">Correo Electrónico Institucional o Personal:</label>
-<input name="email" class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="analista@instituto-defensa.org" required="" type="email"/>
+<input name="email" class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="correo@ejemplo.com" required="" type="email"/>
 </div>
 <div class="flex flex-col gap-1">
 <label class="font-label-sm text-label-sm text-outline uppercase">Área de Interés Principal:</label>
 <select class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none cursor-pointer shadow-inner">
 <option>Oriente Medio &amp; Seguridad Energética</option>
-<option>Indo-Pacífico &amp; Disuasión Taiwán</option>
-<option>Europa Oriental &amp; Doctrina Báltica</option>
-<option>Guerra de Drones &amp; Balística Hipersónica</option>
-<option>Todos los Teatros (Dossier Global)</option>
+<option>Indo-Pacífico</option>
+<option>Europa Oriental</option>
+<option>Seguridad Energética</option>
+<option>Todas las zonas</option>
 </select>
 </div>
 <button class="w-full bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md uppercase font-bold py-3 rounded mt-2 transition-all shadow-[0_0_16px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2" type="submit">
 <span class="material-symbols-outlined text-[18px]">send</span>
-<span>SUSCRIBIRME AL INFORME ESTRATÉGICO</span>
+<span>SUSCRIBIRME</span>
 </button>
 </form>
 <p class="font-label-sm text-label-sm text-outline text-center">
-              Protocolo de privacidad conforme al RGPD militar. Cero cesión de datos a redes publicitarias.
+              Protocolo de privacidad conforme al RGPD. Cero cesión de datos a redes publicitarias.
             </p>
 </div>
 </div>

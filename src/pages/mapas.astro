@@ -42,16 +42,16 @@ const catalog = theaters.slice(1);
 <span>Módulo de Reconocimiento Estratégico Multiespectral</span>
 </div>
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface tracking-tight uppercase">
-            Centro Cartográfico de Teatros de Conflicto
+            Mapas de Zonas de Conflicto
           </h1>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-1">
             Explora interactivamente fronteras en disputa, rutas marítimas estratégicas, puntos de estrangulamiento y análisis geopolítico basado en fuentes abiertas.
           </p>
 </div>
-<!-- NIVEL DE ALERTA / Session Badge -->
+<!-- Estado del mapa / Session Badge -->
 <div class="flex items-center gap-space-sm bg-surface-container px-space-md py-2 rounded self-start lg:self-auto">
 <div class="flex flex-col text-right">
-<span class="font-label-sm text-label-sm text-outline">POSTURA OPERATIVA</span>
+<span class="font-label-sm text-label-sm text-outline">ESTADO</span>
 <span class="font-label-md text-label-md text-tertiary font-bold">VIGILANCIA ELEVADA</span>
 </div>
 <div class="w-2 h-8 bg-tertiary rounded-full"></div>
@@ -157,7 +157,7 @@ const catalog = theaters.slice(1);
 <input checked="" class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkRutas"/>
 </label>
 <label class="flex items-center justify-between cursor-pointer py-0.5 px-1 hover:bg-surface-container rounded">
-<span class="text-on-surface-variant">Alcance A2/AD (TEÓRICO)</span>
+<span class="text-on-surface-variant">Zona de exclusión (estimada)</span>
 <input class="accent-primary rounded cursor-pointer" type="checkbox" id="visorChkMissile"/>
 </label>
 </div>
@@ -166,10 +166,10 @@ const catalog = theaters.slice(1);
 <div class="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between bg-surface-container-low/85 backdrop-blur px-space-md py-1.5 rounded">
 <div class="flex items-center gap-space-md font-label-sm text-label-sm">
 <div class="flex items-center gap-1 text-on-surface">
-<span class="text-outline">POSICIÓN RETÍCULA:</span>
+<span class="text-outline">COORDENADAS:</span>
 <span class="text-primary font-mono font-bold" id="coordDisplay">12.6534°N 43.4182°E</span>
 </div>
-<div class="text-outline font-mono">ALTURA SAT: 480 KM</div>
+<div class="text-outline font-mono">VISTA GLOBAL</div>
 </div>
 <!-- Nautical Scale Widget -->
 <div class="flex items-center gap-2 font-label-sm text-label-sm text-outline">
@@ -531,7 +531,7 @@ const catalog = theaters.slice(1);
         </p>
 </div>
 <div class="mt-space-sm md:mt-0 flex items-center gap-2">
-<span class="font-label-sm text-label-sm text-outline uppercase">TEATROS DISPONIBLES · FUENTE ABIERTA</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">ZONAS DISPONIBLES · FUENTES ABIERTAS</span>
 </div>
 </div>
 <!-- Catálogo dinámico de teatros -->
