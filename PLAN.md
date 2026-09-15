@@ -69,7 +69,7 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 
 1. ~~**Newsletter sin backend**~~ ✅ RESUELTO — Formularios conectados a Supabase con `SUPABASE_PUBLISHABLE_KEY`. Tabla `subscribers` activa con RLS.
 
-2. **Sitemap no configurado** — `@astrojs/sitemap` está en `package.json` pero NO está registrado en `astro.config.mjs` (solo `tailwind` y `mdx`). No se genera sitemap.
+2. ~~**Sitemap no configurado**~~ ✅ RESUELTO — `@astrojs/sitemap` registrado en `astro.config.mjs`. Genera `sitemap-index.xml`.
 
 3. ~~**Dependencia muerta: `@supabase/supabase-js`**~~ ✅ RESUELTO — Ahora se usa para el newsletter.
 
@@ -77,11 +77,11 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 
 ### 🟡 MEDIA
 
-5. **Decap CMS sin colección `cables`** — Solo está configurada la colección `informes` en `config.yml`. Los cables se crean manualmente.
+5. ~~**Decap CMS sin colección `cables`**~~ ✅ RESUELTO — Colección cables agregada a `config.yml` con todos los campos del schema.
 
 7. ~~**Número hardcodeado "4 ZONAS MONITORIZADAS"**~~ ✅ RESUELTO — Ahora usa `{totalTeatros}` dinámico.
 
-8. **Directorio `public/uploads/` no existe** — Decap CMS lo referencia para media pero no está creado.
+8. ~~**Directorio `public/uploads/` no existe**~~ ✅ RESUELTO — Creado.
 
 ### 🟢 BAJA
 
@@ -91,7 +91,7 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 
 11. **Más contenido** — 9 cables y 5 informes es poco para un medio activo. Necesita generación continua de artículos.
 
-12. **Generación de artículos con IA** — Hay un script `agente-osint.js` con dependencias (`@google/genai`, `axios`, `cheerio`). El usuario necesita una API key de Google Gemini configurada.
+12. **Generación de artículos con IA** — Panel `/admin/generar` funcional con Gemini API.
 
 ---
 
@@ -101,9 +101,9 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 |-----------|--------|
 | Newsletter con Supabase | ✅ Funcionando |
 | `@supabase/supabase-js` integrado | ✅ Usado en index.astro e informes.astro |
-| Sitemap configurado | ❌ Pendiente |
-| Decap CMS colección cables | ❌ Pendiente |
-| Directorio `public/uploads/` | ❌ Pendiente |
+| Sitemap configurado | ✅ Funcionando |
+| Decap CMS colección cables | ✅ Configurada |
+| Directorio `public/uploads/` | ✅ Creado |
 | Teatros sin zones/bases | ❌ Pendiente |
 
 ---

@@ -9,6 +9,26 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
+  - name: "cables"
+    label: "Cables Relámpago"
+    folder: "src/content/cables"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Título del Cable", name: "title", widget: "string" }
+      - { label: "Descripción Breve", name: "description", widget: "text" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Nivel de Amenaza", name: "threat_level", widget: "select", options: ["Crítica", "Alta", "Media", "Baja"] }
+      - { label: "Región", name: "region", widget: "string" }
+      - { label: "Categoría", name: "category", widget: "string", default: "CABLES RELÁMPAGO" }
+      - { label: "Nivel DEFCON", name: "defcon", widget: "select", options: ["DEFCON 1", "DEFCON 2", "DEFCON 3", "DEFCON 4", "DEFCON 5"] }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Verificación", name: "verification", widget: "select", options: ["CONFIRMADO", "REPORTADO", "OSINT", "NO VERIFICADO"] }
+      - { label: "Cuerpo del Cable", name: "body", widget: "markdown" }
+
   - name: "informes"
     label: "Informes OSINT"
     folder: "src/content/informes"
