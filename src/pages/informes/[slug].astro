@@ -80,6 +80,13 @@ const related = allInformes
       </div>
     ) : null}
 
+    <!-- Hero Image (always show if exists) -->
+    {entry.data.image && (
+      <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl">
+        <img src={entry.data.image} alt={entry.data.title} class="w-full max-h-[500px] object-cover" onerror="this.parentElement.style.display='none'" />
+      </div>
+    )}
+
     <!-- Live Leaflet Map (shows after video if coordinates exist) -->
     {entry.data.coordinates && (
       <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl bg-[#0b0e14] relative group">

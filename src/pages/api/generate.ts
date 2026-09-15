@@ -42,19 +42,28 @@ async function scrapeArticle(url: string) {
 }
 
 function getSystemPrompt(type: string): string {
-  const base = `Eres un Analista Senior de Inteligencia Geoespacial y Fuentes Abiertas (OSINT). Transforma el texto en contenido para un portal web geopolítico.
+  const base = `Eres un redactor periodístico de un medio de noticias geopolítico profesional. Transforma el texto en contenido para el sitio web.
 
 REGLAS:
-1. Lenguaje directo, periodístico, sin tecnicismos innecesarios
-2. Usar términos: chokepoint, A2/AD, GEOINT, SIGINT si aplica
-3. Coordenadas reales en decimal
-4. Español natural
+1. Lenguaje directo, periodístico, SIN tecnicismos militares
+2. Coordenadas reales en decimal
+3. Español natural, profesional
 
-VOCABULARIO:
-- chokepoint → punto de estrangulamiento
-- A2/AD → zona de exclusión
-- VLCC → superpetrolero
-- SITREP → situación actual`
+PROHIBIDO usar abreviaturas o términos militares en inglés. Siempre usar español:
+- En vez de SITREP: "situación actual" o "reporte"
+- En vez de DEFCON: "nivel de alerta"
+- En vez de WAR ROOM: "centro de análisis"
+- En vez de CHOKEPOINT: "punto de estrangulamiento"
+- En vez de A2/AD: "zona de exclusión"
+- En vez de VLCC: "superpetrolero"
+- En vez de GEOINT: "imágenes satélite"
+- En vez de SIGINT: "inteligencia de señales"
+- En vez de TEATRO: "zona" o "región"
+- En vez de ZULU TIME: "hora local"
+- En vez de TÁCTICO: "interactivo"
+- En vez de RECON: "búsqueda" o "monitoreo"
+
+NUNCA escribir siglas militares. Solo español.`
 
   if (type === 'cable') {
     return `${base}
@@ -70,13 +79,15 @@ urgency: 'FLASH'
 threat_level: '[Crítica|Alta|Media]'
 region: '[Región]'
 tags: ['tag1', 'tag2', 'tag3']
-coordinates: { lat: 0.0, lon: 0.0 }
+coordinates: { lat: [COORDENADA REAL del lugar], lon: [COORDENADA REAL del lugar] }
 date: '${new Date().toISOString()}'
 readingTime: '1 MIN READ'
 verification: '[CONFIRMADO|REPORTADO|OSINT|ANÁLISIS]'
 source_channel: '[FUENTE]'
 image: '[URL imagen]'
 ---
+
+IMPORTANTE: coordinates debe ser las coordenadas REALES del lugar mencionado en decimal (ej: Bab el-Mandeb = lat: 12.7855, lon: 43.2391). NUNCA usar 0.0, 0.0.
 
 ### [TÍTULO]
 
@@ -268,14 +279,16 @@ category: '[Análisis Geopolítico|Seguridad Energética|Conflicto Regional|Econ
 threat_level: '[Crítica|Alta|Media]'
 region: '[Región]'
 tags: ['tag1', 'tag2', 'tag3']
-coordinates: { lat: 0.0, lon: 0.0 }
+coordinates: { lat: [COORDENADA REAL del lugar], lon: [COORDENADA REAL del lugar] }
 date: '${new Date().toISOString().split('T')[0]}'
 readingTime: '[X] MIN READ'
-verification: '[CONFIRMADO|REPORTADO|OSINT|ANÁLISIS]'
-defcon: '[NIVEL 1|NIVEL 2|NIVEL 3]'
+verification: '[CONFIRMADO|REPORTADO|ANÁLISIS]'
+defcon: '[Nivel 1: Crítico|Nivel 2: Elevado|Nivel 3: Moderado|Nivel 4: Bajo|Nivel 5: Normal]'
 author: 'Equipo de Análisis'
 image: '[URL imagen]'
 ---
+
+IMPORTANTE: coordinates debe ser las coordenadas REALES del lugar mencionado en decimal. NUNCA usar 0.0, 0.0.
 
 ### [SUBTÍTULO]
 
@@ -284,7 +297,7 @@ image: '[URL imagen]'
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { url, type } = await request.json()
+    const { url, type, withMap, customImage } = await request.json()
 
     if (!url || !type) {
       return new Response(JSON.stringify({ error: 'Falta url o type' }), {
@@ -303,7 +316,7 @@ export const POST: APIRoute = async ({ request }) => {
       ? `Título: ${scrapedData.title}\n\nTexto:\n${scrapedData.bodyText}`
       : `Genera contenido basado en esta URL: ${url}`
 
-    const modelsToTry = ['gemini-3.6-flash', 'gemini-2.5-flash', 'gemini-2.0-flash']
+    const modelsToTry = ['gemini-2.5-flash', 'gemini-3.5-flash', 'gemini-2.0-flash']
     let markdown = ''
     let lastError = ''
 
@@ -344,8 +357,18 @@ export const POST: APIRoute = async ({ request }) => {
       .replace(/\s*```$/, '')
       .trim()
 
-    if (scrapedData.imageUrl && !markdown.includes('image:')) {
-      markdown = markdown.replace(/^---\s*\n/, `---\nimage: '${scrapedData.imageUrl}'\n`)
+    // Remove coordinates if user doesn't want a map
+    if (!withMap) {
+      markdown = markdown.replace(/^coordinates:.*$/gm, '')
+    }
+
+    // Priority: customImage > scraped image > nothing
+    const finalImage = customImage || scrapedData.imageUrl
+    if (finalImage) {
+      markdown = markdown.replace(/^image:.*$/gm, `image: '${finalImage}'`)
+      if (!markdown.includes('image:')) {
+        markdown = markdown.replace(/^---\s*\n/, `---\nimage: '${finalImage}'\n`)
+      }
     }
 
     const titleMatch = markdown.match(/title:\s*['"]?([^'"\n]+)['"]?/)

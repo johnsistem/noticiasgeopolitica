@@ -61,6 +61,25 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
         </div>
       </div>
 
+      <!-- Opciones -->
+      <div class="flex flex-wrap items-center gap-4">
+        <label class="flex items-center gap-2 cursor-pointer select-none">
+          <input type="checkbox" id="gen-map" class="sr-only peer" />
+          <div class="w-10 h-6 bg-surface-container-highest rounded-full peer-checked:bg-primary transition-colors relative">
+            <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-on-surface rounded-full transition-transform peer-checked:translate-x-4"></div>
+          </div>
+          <span class="font-label-md text-label-md text-on-surface-variant">Incluir mapa</span>
+        </label>
+        <div class="flex items-center gap-2 flex-1 min-w-[250px]">
+          <input id="gen-image-url" type="url" placeholder="URL de imagen (opcional)" class="flex-1 bg-surface-container-lowest text-on-surface px-3 py-2 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline" />
+          <label for="gen-image-file" id="gen-image-btn" class="cursor-pointer bg-surface-container-high hover:bg-surface-container-highest px-3 py-2 rounded transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-[18px] text-primary">attach_file</span>
+            <span id="gen-image-label" class="font-label-sm text-label-sm text-on-surface-variant">Imagen</span>
+          </label>
+          <input id="gen-image-file" type="file" accept="image/*" class="hidden" />
+        </div>
+      </div>
+
       <!-- Botón generar -->
       <button id="gen-btn" type="submit" class="w-full bg-primary text-on-primary font-label-lg text-label-lg uppercase py-4 rounded font-bold hover:bg-primary-fixed transition-all flex items-center justify-center gap-2 shadow-md">
         <span class="material-symbols-outlined text-[20px]">radar</span>
@@ -146,6 +165,22 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
   let lastUrl = ''
   let lastText = ''
   let activeTab = 'md'
+  let attachedImageBase64 = ''
+  let attachedImageName = ''
+
+  // File upload
+  document.getElementById('gen-image-file').addEventListener('change', function(e) {
+    var file = e.target.files[0]
+    if (!file) return
+    attachedImageName = 'uploads/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+    document.getElementById('gen-image-label').textContent = file.name.substring(0, 20)
+    document.getElementById('gen-image-btn').className = 'cursor-pointer bg-primary/20 border border-primary px-3 py-2 rounded transition-colors flex items-center gap-1'
+    var reader = new FileReader()
+    reader.onload = function(ev) {
+      attachedImageBase64 = ev.target.result
+    }
+    reader.readAsDataURL(file)
+  })
 
   // Type buttons
   document.querySelectorAll('.gen-type-btn').forEach(btn => {
@@ -184,8 +219,16 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
       document.getElementById('gen-rendered').innerHTML = '<p class="text-on-surface-variant">Genera contenido primero.</p>'
       return
     }
+    // Extract image from frontmatter before removing it
+    var heroImg = ''
+    var fmMatch = md.match(/^---\s*\n([\s\S]*?)\n---/)
+    if (fmMatch) {
+      var imgField = fmMatch[1].match(/image:\s*['"]?([^'"\n]+)['"]?/)
+      if (imgField && (imgField[1].startsWith('http') || imgField[1].startsWith('data:image'))) heroImg = imgField[1]
+    }
     md = md.replace(/^---[\s\S]*?---\n*/m, '')
-    document.getElementById('gen-rendered').innerHTML = parseMd(md)
+    var hero = heroImg ? '<img src="' + heroImg + '" alt="Imagen destacada" class="w-full rounded-xl mb-6 max-h-[400px] object-cover" onerror="this.style.display=\'none\'" />' : ''
+    document.getElementById('gen-rendered').innerHTML = hero + parseMd(md)
   }
 
   function parseMd(md) {
@@ -275,6 +318,8 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
   async function generate() {
     var url = document.getElementById('gen-url').value.trim()
     var text = document.getElementById('gen-text').value.trim()
+    var withMap = document.getElementById('gen-map').checked
+    var customImage = document.getElementById('gen-image-url').value.trim() || attachedImageBase64 || ''
     lastUrl = url
     lastText = text
     if (!url && !text) { alert('Pega una URL o texto'); return }
@@ -290,7 +335,7 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
       var res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: url || text, type: selectedType }),
+        body: JSON.stringify({ url: url || text, type: selectedType, withMap: withMap, customImage: customImage }),
       })
       var data = await res.json()
       if (data.error) throw new Error(data.error)
@@ -330,10 +375,25 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
     btn.disabled = true
     btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Guardando...'
     try {
+      // If there's an attached base64 image, upload it first
+      var contentToSave = generatedMarkdown
+      if (attachedImageBase64 && attachedImageName) {
+        var imgRes = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: 'public/' + attachedImageName, content: attachedImageBase64 }),
+        })
+        var imgData = await imgRes.json()
+        if (imgData.error) throw new Error(imgData.error)
+        contentToSave = contentToSave.replace(/^image:.*$/gm, "image: '/" + attachedImageName + "'")
+        if (!contentToSave.includes('image:')) {
+          contentToSave = contentToSave.replace(/^---\s*\n/, "---\nimage: '/" + attachedImageName + "'\n")
+        }
+      }
       var res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path: path, content: generatedMarkdown }),
+        body: JSON.stringify({ path: path, content: contentToSave }),
       })
       var data = await res.json()
       if (data.error) throw new Error(data.error)

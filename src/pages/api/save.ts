@@ -24,7 +24,13 @@ export const POST: APIRoute = async ({ request }) => {
       })
     }
 
-    const encodedContent = Buffer.from(content).toString('base64')
+    let encodedContent: string
+    if (content.startsWith('data:image/')) {
+      // Base64 data URL from file upload — extract raw base64
+      encodedContent = content.split(',')[1]
+    } else {
+      encodedContent = Buffer.from(content).toString('base64')
+    }
 
     const existing = await fetch(
       `https://api.github.com/repos/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`,
