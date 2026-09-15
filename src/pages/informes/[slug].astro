@@ -6,16 +6,21 @@ export async function getStaticPaths() {
   const informes = await getCollection('informes');
   return informes.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry },
+    props: { entry, allInformes: informes },
   }));
 }
 
 type Props = {
   entry: CollectionEntry<'informes'>;
+  allInformes: CollectionEntry<'informes'>[];
 };
 
-const { entry } = Astro.props;
+const { entry, allInformes } = Astro.props;
 const { Content } = await entry.render();
+
+const related = allInformes
+  .filter(i => i.slug !== entry.slug && (i.data.region === entry.data.region || i.data.tags?.some(t => entry.data.tags?.includes(t))))
+  .slice(0, 3);
 ---
 
 <TopNavLayout 
@@ -148,6 +153,30 @@ const { Content } = await entry.render();
     <div class="prose prose-invert max-w-none font-body-md text-on-surface-variant leading-relaxed space-y-space-md">
       <Content />
     </div>
+
+    <!-- Otras Noticias Relacionadas -->
+    {related.length > 0 && (
+      <section class="mt-space-xl pt-space-lg border-t border-surface-container-high">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase mb-space-md">OTRAS NOTICIAS RELACIONADAS</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+          {related.map((rel) => (
+            <a href={`/informes/${rel.slug}`} class="bg-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col group border border-primary/10">
+              <div class="p-space-md flex flex-col gap-space-xs flex-1">
+                <div class="flex items-center gap-2 font-label-sm text-label-sm">
+                  <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-bold uppercase">{rel.data.category}</span>
+                  <span class="text-outline">{rel.data.date}</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-3">{rel.data.title}</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-auto">{rel.data.description}</p>
+              </div>
+              <div class="px-space-md pb-space-md">
+                <span class="font-label-sm text-label-sm text-primary font-bold flex items-center gap-1">LEER MÁS <span class="material-symbols-outlined text-[14px]">arrow_forward</span></span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- Footer Action -->
     <footer class="mt-space-xl pt-space-md border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md">
