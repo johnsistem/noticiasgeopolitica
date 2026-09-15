@@ -3,7 +3,6 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
 ---
 
 <TopNavLayout title="Generador de Contenido | Admin" description="Panel de administración para generar contenido con IA">
-<script is:inline src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <div class="min-h-screen bg-background py-12 px-4">
   <div class="max-w-5xl mx-auto flex flex-col gap-8">
 
@@ -146,6 +145,7 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
   let generatedSlug = ''
   let lastUrl = ''
   let lastText = ''
+  let activeTab = 'md'
 
   // Type buttons
   document.querySelectorAll('.gen-type-btn').forEach(btn => {
@@ -158,8 +158,8 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
     })
   })
 
-  // Tab buttons
   function switchTab(active) {
+    activeTab = active
     document.querySelectorAll('.tab-btn').forEach(b => {
       b.className = 'tab-btn bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded font-label-sm text-label-sm'
     })
@@ -167,60 +167,139 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
     document.getElementById('tab-' + active).className = 'tab-btn bg-primary text-on-primary px-4 py-1.5 rounded font-label-sm text-label-sm font-bold'
     document.getElementById('panel-' + active).classList.remove('hidden')
   }
+
   document.getElementById('tab-md').addEventListener('click', () => switchTab('md'))
   document.getElementById('tab-rendered').addEventListener('click', () => {
-    renderMarkdown()
     switchTab('rendered')
+    doRender()
   })
   document.getElementById('tab-edit').addEventListener('click', () => {
     document.getElementById('gen-editor').value = generatedMarkdown
     switchTab('edit')
   })
 
-  // Simple markdown to HTML using marked CDN
-  function renderMarkdown() {
-    const editorEl = document.getElementById('gen-editor')
-    let md = (editorEl && !editorEl.classList.contains('hidden')) ? editorEl.value : generatedMarkdown
-    if (!md) { document.getElementById('gen-rendered').innerHTML = '<p class="text-outline">Sin contenido</p>'; return }
-    // Remove frontmatter
-    md = md.replace(/^---[\s\S]*?---\n*/m, '')
-    if (typeof window.marked !== 'undefined') {
-      document.getElementById('gen-rendered').innerHTML = window.marked.parse(md)
-    } else {
-      document.getElementById('gen-rendered').innerHTML = '<pre class="whitespace-pre-wrap text-sm">' + md.replace(/</g, '&lt;') + '</pre>'
+  function doRender() {
+    var md = generatedMarkdown
+    if (!md) {
+      document.getElementById('gen-rendered').innerHTML = '<p class="text-on-surface-variant">Genera contenido primero.</p>'
+      return
     }
+    md = md.replace(/^---[\s\S]*?---\n*/m, '')
+    document.getElementById('gen-rendered').innerHTML = parseMd(md)
   }
+
+  function parseMd(md) {
+    var html = ''
+    var lines = md.split('\n')
+    var inList = false
+    var inTable = false
+    var tableRows = []
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i]
+      var trim = line.trim()
+      if (!trim) {
+        if (inList) { html += '</ul>'; inList = false }
+        if (inTable) { html += buildTable(tableRows); tableRows = []; inTable = false }
+        continue
+      }
+      // frontmatter
+      if (trim === '---') continue
+      // table row
+      if (trim.startsWith('|') && trim.endsWith('|')) {
+        if (/^\|[\s\-:|]+\|$/.test(trim)) continue
+        if (!inTable) inTable = true
+        var cells = trim.split('|').slice(1, -1).map(function(c) { return c.trim() })
+        tableRows.push(cells)
+        continue
+      } else if (inTable) {
+        html += buildTable(tableRows)
+        tableRows = []
+        inTable = false
+      }
+      // headers
+      if (trim.startsWith('#### ')) { html += '<h4 class="text-base font-semibold text-on-surface mt-3 mb-1">' + inline(trim.slice(5)) + '</h4>'; continue }
+      if (trim.startsWith('### ')) { html += '<h3 class="text-lg font-bold text-on-surface mt-4 mb-2">' + inline(trim.slice(4)) + '</h3>'; continue }
+      if (trim.startsWith('## ')) { html += '<h2 class="text-xl font-bold text-on-surface mt-5 mb-2">' + inline(trim.slice(3)) + '</h2>'; continue }
+      if (trim.startsWith('# ')) { html += '<h1 class="text-2xl font-bold text-on-surface mt-6 mb-3">' + inline(trim.slice(2)) + '</h1>'; continue }
+      // image
+      if (/^!\[.*?\]\(.*?\)$/.test(trim)) {
+        var m = trim.match(/!\[([^\]]*)\]\(([^)]+)\)/)
+        if (m) html += '<img src="' + esc(m[2]) + '" alt="' + esc(m[1]) + '" class="w-full rounded-lg my-4" />'
+        continue
+      }
+      // unordered list
+      if (trim.startsWith('- ')) {
+        if (!inList) { html += '<ul class="list-disc ml-5 mb-3 text-on-surface-variant space-y-1">'; inList = true }
+        html += '<li>' + inline(trim.slice(2)) + '</li>'
+        continue
+      }
+      // ordered list
+      if (/^\d+\.\s/.test(trim)) {
+        if (!inList) { html += '<ol class="list-decimal ml-5 mb-3 text-on-surface-variant space-y-1">'; inList = true }
+        html += '<li>' + inline(trim.replace(/^\d+\.\s/, '')) + '</li>'
+        continue
+      }
+      // paragraph
+      html += '<p class="text-on-surface-variant mb-3 leading-relaxed">' + inline(trim) + '</p>'
+    }
+    if (inList) html += '</ul>'
+    if (inTable) html += buildTable(tableRows)
+    return html || '<p class="text-on-surface-variant">Sin contenido</p>'
+  }
+
+  function buildTable(rows) {
+    if (!rows.length) return ''
+    var h = '<div class="overflow-x-auto my-4"><table class="w-full text-sm border-collapse">'
+    h += '<thead><tr>' + rows[0].map(function(c) { return '<th class="px-3 py-2 text-left bg-surface-container-high border border-surface-container-highest text-on-surface font-bold">' + inline(c) + '</th>' }).join('') + '</tr></thead>'
+    h += '<tbody>'
+    for (var r = 1; r < rows.length; r++) {
+      h += '<tr>' + rows[r].map(function(c) { return '<td class="px-3 py-2 border border-surface-container-highest text-on-surface-variant">' + inline(c) + '</td>' }).join('') + '</tr>'
+    }
+    h += '</tbody></table></div>'
+    return h
+  }
+
+  function inline(s) {
+    return s
+      .replace(/\*\*(.+?)\*\*/g, '<strong class="text-on-surface font-bold">$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em class="text-on-surface-variant">$1</em>')
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="max-h-40 rounded my-2" />')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline" target="_blank">$1</a>')
+      .replace(/`([^`]+)`/g, '<code class="bg-surface-container-highest px-1.5 py-0.5 rounded text-sm text-primary">$1</code>')
+  }
+
+  function esc(s) { return s.replace(/"/g, '&quot;').replace(/</g, '&lt;') }
 
   // Generate content
   async function generate() {
-    const url = document.getElementById('gen-url').value.trim()
-    const text = document.getElementById('gen-text').value.trim()
+    var url = document.getElementById('gen-url').value.trim()
+    var text = document.getElementById('gen-text').value.trim()
     lastUrl = url
     lastText = text
-
     if (!url && !text) { alert('Pega una URL o texto'); return }
 
-    const loading = document.getElementById('gen-loading')
-    const preview = document.getElementById('gen-preview')
-    const status = document.getElementById('gen-status')
+    var loading = document.getElementById('gen-loading')
+    var preview = document.getElementById('gen-preview')
+    var status = document.getElementById('gen-status')
     loading.classList.remove('hidden')
     preview.classList.add('hidden')
     status.classList.add('hidden')
 
     try {
-      const res = await fetch('/api/generate', {
+      var res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: url || text, type: selectedType }),
       })
-      const data = await res.json()
+      var data = await res.json()
       if (data.error) throw new Error(data.error)
 
       generatedMarkdown = data.markdown
       generatedSlug = data.slug
 
-      const collection = ['cable'].includes(selectedType) ? 'cables' : 'informes'
-      document.getElementById('gen-slug').textContent = `src/content/${collection}/${generatedSlug}.md`
+      var collection = selectedType === 'cable' ? 'cables' : 'informes'
+      document.getElementById('gen-slug').textContent = 'src/content/' + collection + '/' + generatedSlug + '.md'
       document.getElementById('gen-markdown').textContent = generatedMarkdown
 
       loading.classList.add('hidden')
@@ -233,42 +312,31 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
     }
   }
 
-  document.getElementById('gen-form').addEventListener('submit', (e) => { e.preventDefault(); generate() })
-
-  // Regenerate
+  document.getElementById('gen-form').addEventListener('submit', function(e) { e.preventDefault(); generate() })
   document.getElementById('btn-regenerate').addEventListener('click', generate)
 
-  // Copy (from editor if available)
-  document.getElementById('btn-copy').addEventListener('click', () => {
-    const editor = document.getElementById('gen-editor')
-    const content = editor.classList.contains('hidden') ? generatedMarkdown : editor.value
-    navigator.clipboard.writeText(content)
-    const btn = document.getElementById('btn-copy')
+  document.getElementById('btn-copy').addEventListener('click', function() {
+    navigator.clipboard.writeText(generatedMarkdown)
+    var btn = document.getElementById('btn-copy')
     btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Copiado'
-    setTimeout(() => { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span> Copiar' }, 2000)
+    setTimeout(function() { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span> Copiar' }, 2000)
   })
 
-  // Save (from editor if available)
-  document.getElementById('btn-save').addEventListener('click', async () => {
-    const editor = document.getElementById('gen-editor')
-    const content = editor.classList.contains('hidden') ? generatedMarkdown : editor.value
-    const collection = ['cable'].includes(selectedType) ? 'cables' : 'informes'
-    const path = `src/content/${collection}/${generatedSlug}.md`
-    const btn = document.getElementById('btn-save')
-    const status = document.getElementById('gen-status')
-
+  document.getElementById('btn-save').addEventListener('click', async function() {
+    var collection = selectedType === 'cable' ? 'cables' : 'informes'
+    var path = 'src/content/' + collection + '/' + generatedSlug + '.md'
+    var btn = document.getElementById('btn-save')
+    var status = document.getElementById('gen-status')
     btn.disabled = true
     btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span> Guardando...'
-
     try {
-      const res = await fetch('/api/save', {
+      var res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path, content }),
+        body: JSON.stringify({ path: path, content: generatedMarkdown }),
       })
-      const data = await res.json()
+      var data = await res.json()
       if (data.error) throw new Error(data.error)
-
       status.innerHTML = '<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="font-label-md text-label-md text-primary">Guardado en ' + path + ' — Vercel hará deploy automáticamente</span>'
       status.classList.remove('hidden')
       btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Guardado'
