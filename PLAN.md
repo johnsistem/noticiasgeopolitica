@@ -3,7 +3,7 @@
 ## Qué es el sitio
 Medio independiente de noticias y análisis geopolítico. **NO** es una terminal de inteligencia ni agencia secreta. El diseño usa estética táctica/militar, pero el lenguaje debe ser el de un medio de comunicación profesional.
 
-**Stack:** Astro + Tailwind CSS + Leaflet (mapas) + Decap CMS + Supabase (pendiente)
+**Stack:** Astro + Tailwind CSS + Leaflet (mapas) + Decap CMS + Supabase ✅
 **Deploy:** Vercel → `https://noticiasgeopolitica.vercel.app`
 **Servidor local:** `localhost:4321` — `npm run dev`
 **Logo:** `public/logo2.jpg` (600x600 JPEG)
@@ -67,19 +67,19 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 
 ### 🔴 ALTA — Críticos
 
-1. **Newsletter sin backend** — Los formularios existen (homepage + informes) pero no tienen acción, no hay API route, no hay cliente Supabase, no hay `SUPABASE_URL` ni `SUPABASE_ANON_KEY` en `.env`. El submit no hace nada.
+1. ~~**Newsletter sin backend**~~ ✅ RESUELTO — Formularios conectados a Supabase con `SUPABASE_PUBLISHABLE_KEY`. Tabla `subscribers` activa con RLS.
 
 2. **Sitemap no configurado** — `@astrojs/sitemap` está en `package.json` pero NO está registrado en `astro.config.mjs` (solo `tailwind` y `mdx`). No se genera sitemap.
 
-3. **Dependencia muerta: `@supabase/supabase-js`** — Instalada pero nunca importada en ningún archivo. Código muerto.
+3. ~~**Dependencia muerta: `@supabase/supabase-js`**~~ ✅ RESUELTO — Ahora se usa para el newsletter.
 
-4. **API key expuesta en `.env`** — `GEMINI_API_KEY` está presente. Verificar que `.gitignore` la excluya.
+4. **API key expuesta en `.env`** — `GEMINI_API_KEY` está presente. `.gitignore` la excluye correctamente. ✅ OK
 
 ### 🟡 MEDIA
 
 5. **Decap CMS sin colección `cables`** — Solo está configurada la colección `informes` en `config.yml`. Los cables se crean manualmente.
 
-7. **Número hardcodeado "4 ZONAS MONITORIZADAS"** en homepage — Debería ser dinámico (`theaters.length`).
+7. ~~**Número hardcodeado "4 ZONAS MONITORIZADAS"**~~ ✅ RESUELTO — Ahora usa `{totalTeatros}` dinámico.
 
 8. **Directorio `public/uploads/` no existe** — Decap CMS lo referencia para media pero no está creado.
 
@@ -92,6 +92,19 @@ Medio independiente de noticias y análisis geopolítico. **NO** es una terminal
 11. **Más contenido** — 9 cables y 5 informes es poco para un medio activo. Necesita generación continua de artículos.
 
 12. **Generación de artículos con IA** — Hay un script `agente-osint.js` con dependencias (`@google/genai`, `axios`, `cheerio`). El usuario necesita una API key de Google Gemini configurada.
+
+---
+
+## Estado Actual (Sept 2026)
+
+| Pendiente | Estado |
+|-----------|--------|
+| Newsletter con Supabase | ✅ Funcionando |
+| `@supabase/supabase-js` integrado | ✅ Usado en index.astro e informes.astro |
+| Sitemap configurado | ❌ Pendiente |
+| Decap CMS colección cables | ❌ Pendiente |
+| Directorio `public/uploads/` | ❌ Pendiente |
+| Teatros sin zones/bases | ❌ Pendiente |
 
 ---
 

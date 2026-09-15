@@ -246,18 +246,31 @@ Debes devolver de forma obligatoria y exclusiva un string con formato de archivo
 ---
 title: '[Título de alto impacto en mayúsculas, conciso y con emojis de alerta]'
 description: '[Resumen ejecutivo de 1 o 2 líneas optimizado para SEO]'
+format: 'dossier'
+category: '[Categoría en español: Análisis Geopolítico|Seguridad Energética|Conflicto Regional|Economía Global|Defensa y Tecnología]'
 threat_level: 'Crítica' | 'Alta' | 'Media'
-region: 'Mar Rojo' | 'Indo-Pacífico' | 'Europa Oriental' | 'Latinoamérica' | 'Global'
+region: 'Mar Rojo' | 'Indo-Pacífico' | 'Europa Oriental' | 'Latinoamérica' | 'Global' | 'Oriente Medio' | 'Cáucaso Sur' | 'Ártico'
+tags: ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
 coordinates: { lat: [Número Latitud], lon: [Número Longitud] }
 date: '${new Date().toISOString().split('T')[0]}'
+readingTime: '[X] MIN READ'
+verification: 'CONFIRMADO' | 'REPORTADO' | 'OSINT' | 'ANÁLISIS'
+defcon: 'NIVEL 1' | 'NIVEL 2' | 'NIVEL 3'
+author: 'Equipo de Análisis'
 ---
+
 ### [SUBTÍTULO DE ANÁLISIS EN MAYÚSCULAS]
 [Cuerpo del reporte narrado con tono periodístico de urgencia, serio, grave y analítico. Divide la información en 3 o 4 bloques de párrafos concisos, ideales para lectura rápida. Si la noticia es terrestre, enfócate en fronteras y movimientos de tropas; si es naval, en rutas y comercio; si es tecnológica o económica, en cadenas de suministro e infraestructura crítica].
 
 REGLAS DE VOCABULARIO Y CONTROL DE CALIDAD (FILTRO ANTI-ABURRIMIENTO):
 1. EVITA tecnicismos jurídicos o académicos que entorpezcan la lectura rápida en redes sociales (ej. evita "interdicción", "paso inocente", o siglas de alianzas excesivamente oscuras como "Eje CRINK"). Reemplázalos por lenguaje directo y asimilable: "bloqueos", "ataques", "paso libre de fronteras/buques", o nombra directamente a los países involucrados (como "el apoyo de Irán y Rusia").
 2. MANTÉN términos técnicos globales que aporten autoridad al informe y beneficien el SEO: "Chokepoint" (si aplica), "A2/AD" (zonas de exclusión militar), "GEOINT" (inteligencia satelital), "SIGINT" (inteligencia de radares/señales), o unidades de medida reales según el contexto (Nmi/millas náuticas, kilómetros, barriles de crudo, toneladas métricas, superpetroleros VLCC).
-3. REGLA DE GEOLOCALIZACIÓN REQUISITO CRÍTICO: Identifica el epicentro geográfico de la noticia (ya sea una base militar, una isla, una ciudad fronteriza, un estrecho o la capital del país afectado). Busca en tu base de datos geográfica interna sus coordenadas geográficas reales aproximadas en sistema decimal (latitud y longitud) e inyéctalas numéricamente en el objeto 'coordinates' del Frontmatter. Nunca dejes las coordenadas en cero ni uses texto; deben ser números puros.`;
+3. REGLA DE GEOLOCALIZACIÓN REQUISITO CRÍTICO: Identifica el epicentro geográfico de la noticia (ya sea una base militar, una isla, una ciudad fronteriza, un estrecho o la capital del país afectado). Busca en tu base de datos geográfica interna sus coordenadas geográficas reales aproximadas en sistema decimal (latitud y longitud) e inyéctalas numéricamente en el objeto 'coordinates' del Frontmatter. Nunca dejes las coordenadas en cero ni uses texto; deben ser números puros.
+4. CATEGORÍA: Asigna una categoría según el tema: "Análisis Geopolítico" para análisis generales, "Seguridad Energética" para temas de petróleo/gas/energía, "Conflicto Regional" para guerras y enfrentamientos, "Economía Global" para temas económicos/geoeconómicos, "Defensa y Tecnología" para tecnología militar.
+5. TAGS: Genera entre 3 y 6 tags relevantes en español, separados por comas. Ejemplos: 'Arabia Saudita', 'Hutíes', 'Mar Rojo', 'Petróleo', 'Reino Unido', 'Bab el-Mandeb'.
+6. VERIFICACIÓN: Si la noticia viene de una fuente oficial o confirmada, usa "CONFIRMADO". Si es de medios pero no confirmada oficialmente, usa "REPORTADO". Si la info viene de redes sociales o fuentes abiertas no verificadas, usa "OSINT". Si es análisis propio, usa "ANÁLISIS".
+7. DEFCON: Asigna según urgencia: "NIVEL 1" para amenaza inminente/crítica, "NIVEL 2" para escalada seria, "NIVEL 3" para situación de monitoreo.
+8. READING TIME: Calcula aproximadamente 1 minuto por 150 palabras del cuerpo del informe.`;
 
     const userPrompt = `NOTICIA A PROCESAR:\n\nTítulo Original: ${scrapedData.title}\n\nTexto Completo de la Noticia:\n${scrapedData.bodyText}`;
 
