@@ -9,6 +9,9 @@ const countOriente = informesCollection.filter(i => ['Mar Rojo', 'Oriente Medio'
 const countAsiaPac = informesCollection.filter(i => ['Indo-Pacífico', 'Asia-Pacífico', 'Estrecho de Taiwán'].includes(i.data.region)).length;
 const countEuropa = informesCollection.filter(i => ['Europa Oriental', 'Báltico', 'Mar Negro'].includes(i.data.region)).length;
 const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].includes(i.data.region)).length;
+
+const supabaseUrl = import.meta.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 ---
 
 <TopNavLayout
@@ -656,7 +659,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="font-label-md text-label-md uppercase text-on-surface font-bold">SUSCRIPCIÓN</span>
 <span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">FUENTES ABIERTAS</span>
 </div>
-<form class="flex flex-col gap-space-sm" method="POST">
+<form class="flex flex-col gap-space-sm" id="newsletter-form-informes">
 <div class="flex flex-col gap-1">
 <label class="font-label-sm text-label-sm text-outline uppercase">Correo Electrónico Institucional o Personal:</label>
 <input name="email" class="w-full bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="correo@ejemplo.com" required="" type="email"/>
@@ -676,6 +679,34 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span>SUSCRIBIRME</span>
 </button>
 </form>
+<script is:inline define:vars={{ supabaseUrl, supabaseKey }}>
+document.getElementById('newsletter-form-informes')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>ENVIANDO...</span>';
+  try {
+    const formData = new FormData(form);
+    const email = formData.get('email');
+    if (!email || !email.includes('@')) {
+      throw new Error('Correo inválido');
+    }
+    const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const { error } = await supabase.from('subscribers').upsert({ email, cadence: 'weekly' }, { onConflict: 'email' });
+    if (error) throw error;
+    const alert = document.createElement('div');
+    alert.className = 'bg-primary-container text-on-primary-container p-space-sm rounded font-label-sm text-label-sm flex items-center gap-space-xs mt-2';
+    alert.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>SUSCRIPCIÓN REGISTRADA: Recibirás los informes en tu correo.</span>';
+    form.replaceWith(alert);
+  } catch (err) {
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">error</span><span>ERROR: ' + (err.message || 'Intenta de nuevo') + '</span>';
+    setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+  }
+});
+</script>
 <p class="font-label-sm text-label-sm text-outline text-center">
               Protocolo de privacidad conforme al RGPD. Cero cesión de datos a redes publicitarias.
             </p>
