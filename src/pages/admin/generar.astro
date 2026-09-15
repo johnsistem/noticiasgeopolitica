@@ -76,12 +76,16 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
 
     <!-- Preview -->
     <div id="gen-preview" class="hidden bg-surface-container-low p-6 rounded-xl flex flex-col gap-4 shadow-lg">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between flex-wrap gap-2">
         <div class="flex items-center gap-2 text-primary font-label-md text-label-md uppercase">
           <span class="material-symbols-outlined text-[18px]">preview</span>
           <span>PREVIEW</span>
         </div>
-        <div class="flex gap-2">
+        <div class="flex gap-2 flex-wrap">
+          <button id="btn-regenerate" type="button" class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">refresh</span>
+            Regenerar
+          </button>
           <button id="btn-copy" type="button" class="bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm uppercase px-4 py-2 rounded flex items-center gap-1 transition-colors">
             <span class="material-symbols-outlined text-[16px]">content_copy</span>
             Copiar
@@ -99,8 +103,27 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
         <span id="gen-slug" class="font-label-md text-label-md text-primary font-mono"></span>
       </div>
 
-      <!-- Markdown preview -->
-      <pre id="gen-markdown" class="bg-surface-container-lowest p-4 rounded overflow-auto max-h-[500px] font-mono text-sm text-on-surface-variant whitespace-pre-wrap"></pre>
+      <!-- Tabs: Markdown / Preview -->
+      <div class="flex gap-2 border-b border-surface-container-highest pb-2">
+        <button id="tab-md" class="tab-btn bg-primary text-on-primary px-4 py-1.5 rounded font-label-sm text-label-sm font-bold">Markdown</button>
+        <button id="tab-rendered" class="tab-btn bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded font-label-sm text-label-sm">Vista previa</button>
+        <button id="tab-edit" class="tab-btn bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded font-label-sm text-label-sm">Editar</button>
+      </div>
+
+      <!-- Tab content: Markdown -->
+      <div id="panel-md" class="tab-panel">
+        <pre id="gen-markdown" class="bg-surface-container-lowest p-4 rounded overflow-auto max-h-[500px] font-mono text-sm text-on-surface-variant whitespace-pre-wrap"></pre>
+      </div>
+
+      <!-- Tab content: Rendered -->
+      <div id="panel-rendered" class="tab-panel hidden">
+        <div id="gen-rendered" class="bg-surface-container-lowest p-6 rounded prose prose-invert max-w-none"></div>
+      </div>
+
+      <!-- Tab content: Edit -->
+      <div id="panel-edit" class="tab-panel hidden">
+        <textarea id="gen-editor" class="w-full bg-surface-container-lowest text-on-surface p-4 rounded font-mono text-sm min-h-[400px] resize-y focus:outline-none"></textarea>
+      </div>
     </div>
 
     <!-- Estado del guardado -->
@@ -120,6 +143,8 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
   let selectedType = 'cable'
   let generatedMarkdown = ''
   let generatedSlug = ''
+  let lastUrl = ''
+  let lastText = ''
 
   // Type buttons
   document.querySelectorAll('.gen-type-btn').forEach(btn => {
@@ -132,16 +157,73 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
     })
   })
 
-  // Form submit
-  document.getElementById('gen-form').addEventListener('submit', async (e) => {
-    e.preventDefault()
+  // Tab buttons
+  function switchTab(active) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.className = 'tab-btn bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded font-label-sm text-label-sm'
+    })
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'))
+    document.getElementById('tab-' + active).className = 'tab-btn bg-primary text-on-primary px-4 py-1.5 rounded font-label-sm text-label-sm font-bold'
+    document.getElementById('panel-' + active).classList.remove('hidden')
+  }
+  document.getElementById('tab-md').addEventListener('click', () => switchTab('md'))
+  document.getElementById('tab-rendered').addEventListener('click', () => {
+    renderMarkdown()
+    switchTab('rendered')
+  })
+  document.getElementById('tab-edit').addEventListener('click', () => {
+    document.getElementById('gen-editor').value = generatedMarkdown
+    switchTab('edit')
+  })
+
+  // Simple markdown to HTML
+  function renderMarkdown() {
+    const editorEl = document.getElementById('gen-editor')
+    let md = (editorEl && !editorEl.classList.contains('hidden')) ? editorEl.value : generatedMarkdown
+    if (!md) { document.getElementById('gen-rendered').innerHTML = '<p class="text-outline">Sin contenido</p>'; return }
+
+    let html = md
+    // Remove frontmatter
+    .replace(/^---[\s\S]*?---\n*/m, '')
+    // Headers
+    .replace(/^#### (.+)$/gm, '<h4 class="text-md font-semibold text-on-surface mt-3 mb-1">$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold text-on-surface mt-4 mb-2">$1</h3>')
+    // Bold and italic
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-on-surface font-bold">$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em class="text-on-surface-variant">$1</em>')
+    // Images
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="w-full rounded-lg my-4" />')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary underline">$1</a>')
+    // Lists
+    .replace(/^- (.+)$/gm, '<li class="ml-4 text-on-surface-variant">• $1</li>')
+    // Tables (basic)
+    .replace(/\|(.+)\|/g, (match) => {
+      if (match.includes('---')) return ''
+      const cells = match.split('|').filter(c => c.trim())
+      return '<tr>' + cells.map(c => '<td class="px-3 py-1 border border-surface-container-highest">' + c.trim() + '</td>').join('') + '</tr>'
+    })
+    // Paragraphs
+    .split('\n\n')
+    .map(p => p.trim())
+    .filter(p => p && !p.startsWith('<h') && !p.startsWith('<li') && !p.startsWith('<tr') && !p.startsWith('<img'))
+    .map(p => '<p class="text-on-surface-variant mb-3 leading-relaxed">' + p.replace(/\n/g, '<br/>') + '</p>')
+    .join('\n')
+
+    // Keep pre-existing HTML tags
+    html = html.replace(/<h([34]) class="[^"]*">/g, '<h$1 class="text-on-surface font-bold mt-4 mb-2">')
+
+    document.getElementById('gen-rendered').innerHTML = html || '<p class="text-outline">Sin contenido</p>'
+  }
+
+  // Generate content
+  async function generate() {
     const url = document.getElementById('gen-url').value.trim()
     const text = document.getElementById('gen-text').value.trim()
+    lastUrl = url
+    lastText = text
 
-    if (!url && !text) {
-      alert('Pega una URL o texto')
-      return
-    }
+    if (!url && !text) { alert('Pega una URL o texto'); return }
 
     const loading = document.getElementById('gen-loading')
     const preview = document.getElementById('gen-preview')
@@ -157,7 +239,6 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
         body: JSON.stringify({ url: url || text, type: selectedType }),
       })
       const data = await res.json()
-
       if (data.error) throw new Error(data.error)
 
       generatedMarkdown = data.markdown
@@ -169,25 +250,33 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
 
       loading.classList.add('hidden')
       preview.classList.remove('hidden')
+      switchTab('md')
     } catch (err) {
       loading.classList.add('hidden')
-      status.innerHTML = `<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ${err.message}</span>`
+      status.innerHTML = '<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ' + err.message + '</span>'
       status.classList.remove('hidden')
     }
-  })
+  }
 
-  // Copy
+  document.getElementById('gen-form').addEventListener('submit', (e) => { e.preventDefault(); generate() })
+
+  // Regenerate
+  document.getElementById('btn-regenerate').addEventListener('click', generate)
+
+  // Copy (from editor if available)
   document.getElementById('btn-copy').addEventListener('click', () => {
-    navigator.clipboard.writeText(generatedMarkdown)
+    const editor = document.getElementById('gen-editor')
+    const content = editor.classList.contains('hidden') ? generatedMarkdown : editor.value
+    navigator.clipboard.writeText(content)
     const btn = document.getElementById('btn-copy')
     btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Copiado'
-    setTimeout(() => {
-      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span> Copiar'
-    }, 2000)
+    setTimeout(() => { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">content_copy</span> Copiar' }, 2000)
   })
 
-  // Save
+  // Save (from editor if available)
   document.getElementById('btn-save').addEventListener('click', async () => {
+    const editor = document.getElementById('gen-editor')
+    const content = editor.classList.contains('hidden') ? generatedMarkdown : editor.value
     const collection = ['cable'].includes(selectedType) ? 'cables' : 'informes'
     const path = `src/content/${collection}/${generatedSlug}.md`
     const btn = document.getElementById('btn-save')
@@ -200,17 +289,16 @@ import TopNavLayout from '../../layouts/TopNavLayout.astro'
       const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path, content: generatedMarkdown }),
+        body: JSON.stringify({ path, content }),
       })
       const data = await res.json()
-
       if (data.error) throw new Error(data.error)
 
-      status.innerHTML = `<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="font-label-md text-label-md text-primary">Guardado en ${path} — Vercel hará deploy automáticamente</span>`
+      status.innerHTML = '<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="font-label-md text-label-md text-primary">Guardado en ' + path + ' — Vercel hará deploy automáticamente</span>'
       status.classList.remove('hidden')
       btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Guardado'
     } catch (err) {
-      status.innerHTML = `<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ${err.message}</span>`
+      status.innerHTML = '<span class="material-symbols-outlined text-error text-[20px]">error</span><span class="font-label-md text-label-md text-error">ERROR: ' + err.message + '</span>'
       status.classList.remove('hidden')
       btn.disabled = false
       btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">save</span> Guardar en Repo'

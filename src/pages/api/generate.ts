@@ -1,7 +1,6 @@
 export const prerender = false
 
 import type { APIRoute } from 'astro'
-import { createClient } from '@google/genai'
 
 const GEMINI_KEY = import.meta.env.GEMINI_API_KEY
 
@@ -299,22 +298,44 @@ export const POST: APIRoute = async ({ request }) => {
       scrapedData = await scrapeArticle(url)
     }
 
-    const ai = new createClient({ apiKey: GEMINI_KEY })
     const systemPrompt = getSystemPrompt(type)
     const userPrompt = scrapedData.bodyText
       ? `Título: ${scrapedData.title}\n\nTexto:\n${scrapedData.bodyText}`
       : `Genera contenido basado en esta URL: ${url}`
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: userPrompt,
-      config: {
-        systemInstruction: systemPrompt,
-        temperature: 0.2,
-      },
-    })
+    const modelsToTry = ['gemini-3.6-flash', 'gemini-2.5-flash', 'gemini-2.0-flash']
+    let markdown = ''
+    let lastError = ''
 
-    let markdown = response.text || ''
+    for (const model of modelsToTry) {
+      const geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: systemPrompt }] },
+            contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+            generationConfig: { temperature: 0.2 },
+          }),
+        }
+      )
+
+      if (geminiRes.ok) {
+        const geminiData = await geminiRes.json()
+        markdown = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || ''
+        if (markdown) break
+      } else {
+        lastError = `Gemini API: ${geminiRes.status}`
+      }
+    }
+
+    if (!markdown) {
+      return new Response(JSON.stringify({ error: `No se pudo generar contenido. ${lastError}` }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
 
     markdown = markdown
       .replace(/^```markdown\s*/i, '')
