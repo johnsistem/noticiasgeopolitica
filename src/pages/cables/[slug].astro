@@ -78,6 +78,25 @@ const related = allCables
           allowfullscreen>
         </iframe>
       </div>
+    ) : entry.data.video_url ? (
+      <div class="mb-space-lg w-full aspect-video rounded-2xl overflow-hidden border border-error/50 shadow-[0_0_30px_rgba(239,68,68,0.2)] bg-black relative">
+        {entry.data.video_url.includes('drive.google.com') ? (
+          <iframe 
+            src={entry.data.video_url} 
+            class="w-full h-full border-none overflow-hidden rounded-2xl" 
+            allow="autoplay; clipboard-write; encrypted-media" 
+            allowfullscreen>
+          </iframe>
+        ) : (
+          <video 
+            src={entry.data.video_url} 
+            class="w-full h-full object-cover" 
+            controls 
+            preload="metadata"
+            poster={entry.data.image || ''}
+          ></video>
+        )}
+      </div>
     ) : null}
 
     <!-- Live Map Telemetry (Compact Flash Version) -->

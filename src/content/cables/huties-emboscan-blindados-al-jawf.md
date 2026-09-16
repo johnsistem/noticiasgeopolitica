@@ -11,7 +11,7 @@ verification: 'REPORTADO'
 coordinates: { lat: 16.05, lon: 44.78 }
 date: '2026-09-16T12:00:00Z'
 readingTime: '1 MIN READ'
-youtube_id: 'pHD24SDauwE'
+video_url: 'https://drive.google.com/file/d/1ULs2hjYSDJWyCjYnwBclWMLvZ8-MC23Z/preview'
 source_channel: 'FUENTES ABIERTAS'
 ---
 

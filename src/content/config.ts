@@ -42,6 +42,7 @@ const cablesSchema = baseOsintSchema.extend({
   urgency: z.enum(['FLASH', 'IMMEDIATE', 'PRIORITY']).default('FLASH'),
   source_channel: z.string().default('CANAL DE ALERTA RÁPIDA OSINT'),
   audio_dispatch: z.string().optional(),
+  video_url: z.string().optional(),
 });
 
 export const collections = {
