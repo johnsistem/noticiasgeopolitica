@@ -77,9 +77,30 @@ const { title, description, image, article, publishedTime } = Astro.props;
   </aside>
 
   <div class="pl-0 lg:pl-72">
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[999] hidden lg:hidden">
+    <div id="menu-overlay" class="absolute inset-0 bg-black opacity-90"></div>
+    <div class="absolute left-0 top-0 bottom-0 w-72 bg-surface-container-lowest flex flex-col pt-20 px-6 shadow-2xl">
+      <button id="menu-close" class="absolute top-5 right-5 text-on-surface hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-[28px]">close</span>
+      </button>
+      <a href="/" class="flex items-center gap-space-sm mb-6">
+        <img alt="Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wider">GEOPOLÍTICA</span>
+        </div>
+      </a>
+      <nav class="flex flex-col gap-2">
+        <a href="/" class="font-label-md text-label-md uppercase px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all">Central de Operaciones</a>
+        <a href="/mapas" class="font-label-md text-label-md uppercase px-4 py-3 rounded bg-primary-container text-on-primary-container font-semibold">Mapas de Conflicto</a>
+        <a href="/informes" class="font-label-md text-label-md uppercase px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all">Informes</a>
+      </nav>
+    </div>
+  </div>
     <header class="fixed top-0 left-0 lg:left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-md lg:px-space-lg shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
       <div class="flex items-center gap-space-sm md:gap-space-md">
-        <button class="lg:hidden text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+        <button id="menu-toggle" class="lg:hidden text-on-surface hover:text-primary transition-colors flex items-center justify-center">
           <span class="material-symbols-outlined text-[24px]">menu</span>
         </button>
         <div class="flex items-center gap-space-xs font-label-sm text-label-sm">
@@ -98,9 +119,11 @@ const { title, description, image, article, publishedTime } = Astro.props;
           <input class="hidden sm:block bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-44" placeholder="BUSCAR INFORMES..." type="text" />
         </div>
         <a class="hidden sm:inline-flex font-label-sm text-label-sm uppercase bg-primary text-on-primary px-space-sm py-1.5 font-bold rounded shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:bg-primary-fixed" href="/">INICIO</a>
+        <!--
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </div>
+        -->
       </div>
     </header>
 
@@ -123,6 +146,17 @@ const { title, description, image, article, publishedTime } = Astro.props;
       tick();
       setInterval(tick, 1000);
     })();
+  </script>
+  <script is:inline>
+    document.getElementById('menu-toggle')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.remove('hidden');
+    });
+    document.getElementById('menu-close')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.add('hidden');
+    });
+    document.getElementById('menu-overlay')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.add('hidden');
+    });
   </script>
   <Analytics />
 </body>

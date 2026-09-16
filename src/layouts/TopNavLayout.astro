@@ -54,11 +54,13 @@ const { title, description, image, article, publishedTime } = Astro.props;
         <button id="menu-toggle" class="xl:hidden text-on-surface hover:text-primary transition-colors flex items-center justify-center">
           <span class="material-symbols-outlined text-[24px]">menu</span>
         </button>
-        <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
-        <div class="flex flex-col">
-          <span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface leading-none">NOTICIAS GEOPOLÍTICA</span>
-          <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">ANÁLISIS GEOPOLÍTICO INDEPENDIENTE</span>
-        </div>
+        <a href="/" class="flex items-center gap-space-sm md:gap-space-md">
+          <img alt="Noticias Geopolítica Tactical Logo" class="h-8 w-auto object-contain" src="/logo2.jpg" />
+          <div class="flex flex-col">
+            <span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface leading-none">NOTICIAS GEOPOLÍTICA</span>
+            <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-0.5">ANÁLISIS GEOPOLÍTICO INDEPENDIENTE</span>
+          </div>
+        </a>
       </div>
       <nav class="hidden xl:flex items-center gap-space-xs">
         <a class="uppercase px-3 py-2 transition-all bg-primary-container text-on-primary-container font-semibold rounded" href="/">Central de Operaciones</a>
@@ -70,9 +72,11 @@ const { title, description, image, article, publishedTime } = Astro.props;
           <span class="material-symbols-outlined text-outline text-[18px] mr-2">search</span>
           <input class="bg-transparent border-none text-on-surface placeholder:text-outline font-label-sm text-label-sm focus:outline-none w-48" placeholder="BUSCAR POR ZONA O TEMA..." type="text" />
         </div>
+        <!--
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </div>
+        -->
       </div>
     </div>
   </header>
