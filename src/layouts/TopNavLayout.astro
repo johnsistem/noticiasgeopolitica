@@ -78,8 +78,9 @@ const { title, description, image, article, publishedTime } = Astro.props;
   </header>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="fixed inset-0 z-40 hidden xl:hidden" style="background: rgba(0,0,0,0.85);">
-    <div class="absolute right-0 top-0 bottom-0 w-72 bg-surface-container-lowest shadow-2xl flex flex-col pt-20 px-6">
+  <div id="mobile-menu" class="fixed inset-0 z-[999] hidden xl:hidden">
+    <div id="menu-overlay" class="absolute inset-0 bg-black opacity-90"></div>
+    <div class="absolute left-0 top-0 bottom-0 w-72 bg-surface-container-lowest flex flex-col pt-20 px-6 shadow-2xl">
       <button id="menu-close" class="absolute top-5 right-5 text-on-surface hover:text-primary transition-colors">
         <span class="material-symbols-outlined text-[28px]">close</span>
       </button>
@@ -119,10 +120,8 @@ const { title, description, image, article, publishedTime } = Astro.props;
     document.getElementById('menu-close')?.addEventListener('click', () => {
       document.getElementById('mobile-menu')?.classList.add('hidden');
     });
-    document.getElementById('mobile-menu')?.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        e.currentTarget.classList.add('hidden');
-      }
+    document.getElementById('menu-overlay')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.add('hidden');
     });
   </script>
   <script is:inline>
