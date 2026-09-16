@@ -228,7 +228,7 @@ let message = '';
 <!-- Video YouTube embebido o imagen del cable -->
 {leadCable.data.youtube_id ? (
   <iframe
-    src={`https://www.youtube.com/embed/${leadCable.data.youtube_id}?autoplay=1&mute=1&loop=1&playlist=${leadCable.data.youtube_id}&controls=0&showinfo=0&rel=0&modestbranding=1`}
+    src={`https://www.youtube.com/embed/${leadCable.data.youtube_id}?autoplay=1&loop=1&playlist=${leadCable.data.youtube_id}&controls=1&showinfo=0&rel=0&modestbranding=1`}
     class="absolute inset-0 w-full h-full"
     allow="autoplay; encrypted-media"
     allowfullscreen
@@ -246,9 +246,9 @@ let message = '';
 <!-- Viñeta -->
 <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,0.6) 100%);"></div>
 <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
-<!-- Badge REC · LIVE -->
-<div class="absolute top-4 right-4 z-20 flex items-center gap-2 bg-error/90 text-on-error px-2.5 py-1 rounded font-label-sm text-label-sm font-bold uppercase shadow-lg backdrop-blur-sm">
-<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> REC · LIVE
+<!-- Badge de verificación -->
+<div class="absolute top-4 right-4 z-20 flex items-center gap-2 bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface px-2.5 py-1 rounded font-label-sm text-label-sm font-bold uppercase shadow-lg">
+  {leadCable.data.verification || 'REPORTADO'}
 </div>
 <!-- Floating Tactical Coordinates HUD on Image -->
 <div class="absolute top-4 left-4 flex flex-wrap items-center gap-space-xs">
