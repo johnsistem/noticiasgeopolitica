@@ -268,7 +268,7 @@ author: 'Equipo de Análisis'
 [Qué podría pasar]`
   }
 
-  // Default: informe/dossier
+  // Default: informe
   return `${base}
 
 GENERA UN INFORME/DOSSIER ANALÍTICO.
@@ -276,7 +276,7 @@ Frontmatter:
 ---
 title: '[TÍTULO EN MAYÚSCULAS SIN EMOJIS]'
 description: '[Resumen SEO 1-2 líneas]'
-format: 'dossier'
+format: 'informe'
 category: '[Análisis Geopolítico|Seguridad Energética|Conflicto Regional|Economía Global|Defensa y Tecnología]'
 threat_level: '[Crítica|Alta|Media]'
 region: '[Región]'

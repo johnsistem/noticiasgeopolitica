@@ -1,7 +1,7 @@
 ---
 title: 'REVELACIÓN DE TRUMP: EL DÍA QUE LOS HUTÍES LLAMARON EN SECRETO A LA CASA BLANCA'
 description: 'Trump confiesa que los rebeldes hutíes se comunicaron directamente con Washington para pedir tregua y exigir que EE. UU. no intervenga.'
-format: 'dossier'
+format: 'informe'
 date: '2026-09-13'
 threat_level: 'Crítica'
 region: 'Mar Rojo'

@@ -79,7 +79,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <div class="bg-surface-container p-space-md rounded-lg shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
 <div class="relative flex-1">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
-<input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="Filtrar por vector, tecnología balística, coordenadas o entidad..." type="text"/>
+<input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2.5 rounded font-label-md text-label-md focus:outline-none placeholder:text-outline shadow-inner" placeholder="Buscar por tema, región o palabra clave..." type="text"/>
 </div>
 <div class="flex flex-wrap items-center gap-space-sm">
 <div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded">
@@ -95,18 +95,16 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 <span class="font-label-sm text-label-sm text-outline uppercase mr-2">NIVEL:</span>
 <select class="bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none cursor-pointer">
 <option class="bg-surface-container-lowest">Todos los Niveles</option>
-<option class="bg-surface-container-lowest">Nivel 1: Noticias de Última Hora</option>
-<option class="bg-surface-container-lowest">Nivel 2: Análisis</option>
-<option class="bg-surface-container-lowest">Nivel 3: MAPA Dossier</option>
+<option class="bg-surface-container-lowest">Urgente</option>
+<option class="bg-surface-container-lowest">Análisis</option>
 </select>
 </div>
 <div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded">
 <span class="font-label-sm text-label-sm text-outline uppercase mr-2">FORMATO:</span>
 <select class="bg-transparent text-on-surface font-label-sm text-label-sm focus:outline-none cursor-pointer">
-<option class="bg-surface-container-lowest">Todos (Video, Audio, Texto)</option>
-<option class="bg-surface-container-lowest">Video + Transcripción IA</option>
-<option class="bg-surface-container-lowest">Solo Texto Técnico</option>
-<option class="bg-surface-container-lowest">Audio Broadcast / Podcast</option>
+<option class="bg-surface-container-lowest">Todos</option>
+<option class="bg-surface-container-lowest">Informes</option>
+<option class="bg-surface-container-lowest">Cables</option>
 </select>
 </div>
 </div>
@@ -182,7 +180,6 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 </div>
 </div>
 </div>
-<!-- TACTICAL IN-STREAM VIDEO PLAYER -->
 <div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-2xl flex flex-col gap-space-md">
 <!-- Aviso: vista previa de demostración -->
 <div class="flex items-center gap-2 bg-tertiary-container/20 border border-tertiary/40 px-3 py-1.5 rounded">
@@ -587,9 +584,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
         <span class={`${informe.data.verification === 'CONFIRMADO' ? 'bg-primary/90 text-on-primary' : informe.data.verification === 'ANÁLISIS' ? 'bg-tertiary/90 text-on-tertiary' : informe.data.verification === 'OSINT' ? 'bg-secondary/90 text-on-secondary' : 'bg-surface-container-lowest/90 text-on-surface'} font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold uppercase`}>
           {informe.data.verification || 'REPORTADO'}
         </span>
-        <span class="bg-surface-container-lowest/90 text-primary font-label-sm text-label-sm px-2 py-0.5 rounded backdrop-blur-sm font-bold">
-          {informe.data.defcon}
-        </span>
+
       </div>
     </div>
     <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
@@ -705,7 +700,7 @@ document.getElementById('newsletter-form-informes')?.addEventListener('submit', 
 });
 </script>
 <p class="font-label-sm text-label-sm text-outline text-center">
-              Protocolo de privacidad conforme al RGPD. Cero cesión de datos a redes publicitarias.
+              Tus datos se usan solo para enviarte los informes. No se comparten con nadie.
             </p>
 </div>
 </div>

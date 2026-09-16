@@ -10,7 +10,7 @@ const sortedCables = allCables.sort((a, b) => new Date(b.data.date).valueOf() - 
 
 // El cable más reciente será la noticia principal
 const leadCable = sortedCables[0];
-// El informe más reciente (para el dossier destacado)
+// El informe más reciente (para el informe destacado)
 const sortedInformes = [...allInformes].sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
 const featuredInforme = sortedInformes[0];
 // Todos los cables secundarios
@@ -770,14 +770,7 @@ let message = '';
 </div>
 </div>
 )}
-<!-- Security & Trust Microcopy -->
-<div class="flex flex-wrap items-center justify-between gap-space-xs font-label-sm text-label-sm text-outline pt-space-xs">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[16px] text-primary">key</span>
-<span>Cifrado de extremo a extremo. Cero spam, baja inmediata con un solo clic.</span>
-</div>
-<span class="text-on-surface-variant font-mono">HASH ID: 9f84a...c7b2</span>
-</div>
+<p class="text-outline text-center font-label-sm text-label-sm pt-space-xs">Sin spam. Solo análisis geopolítico. Cancela cuando quieras.</p>
 </form>
 </div>
 </div>

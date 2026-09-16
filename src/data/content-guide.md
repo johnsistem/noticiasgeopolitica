@@ -98,7 +98,7 @@ source_channel: '[FUENTE]'
 ---
 title: '[TÍTULO EN ESPAÑOL CLARO]'
 description: '[Descripción accesible]'
-format: 'dossier'
+format: 'informe'
 date: '[YYYY-MM-DD]'
 threat_level: '[Crítica|Alta|Media]'
 region: '[Región]'

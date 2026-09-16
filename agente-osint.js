@@ -246,7 +246,7 @@ Debes devolver de forma obligatoria y exclusiva un string con formato de archivo
 ---
 title: '[Título de alto impacto en mayúsculas, conciso y con emojis de alerta]'
 description: '[Resumen ejecutivo de 1 o 2 líneas optimizado para SEO]'
-format: 'dossier'
+format: 'informe'
 category: '[Categoría en español: Análisis Geopolítico|Seguridad Energética|Conflicto Regional|Economía Global|Defensa y Tecnología]'
 threat_level: 'Crítica' | 'Alta' | 'Media'
 region: 'Mar Rojo' | 'Indo-Pacífico' | 'Europa Oriental' | 'Latinoamérica' | 'Global' | 'Oriente Medio' | 'Cáucaso Sur' | 'Ártico'
@@ -307,7 +307,7 @@ REGLAS DE VOCABULARIO Y CONTROL DE CALIDAD (FILTRO ANTI-ABURRIMIENTO):
 
     // Formatear la etiqueta format en el frontmatter si no existe
     if (!markdownOutput.includes('format:')) {
-      const formatType = isCable ? 'cable' : 'dossier';
+      const formatType = isCable ? 'cable' : 'informe';
       markdownOutput = markdownOutput.replace(/^---\s*\n/, `---\nformat: '${formatType}'\n`);
     }
 

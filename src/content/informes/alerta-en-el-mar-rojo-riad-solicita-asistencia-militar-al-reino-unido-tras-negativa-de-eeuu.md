@@ -2,7 +2,7 @@
 image: 'https://mf.b37mrtl.ru/actualidad/public_images/2026.09/article/6aa87d5b59bf5b52712e0042.jpg'
 title: '🚨 ALERTA EN EL MAR ROJO: RIAD SOLICITA APOYO AL REINO UNIDO TRAS NEGATIVA DE EE.UU.'
 description: 'Arabia Saudita busca respaldo británico para contener la amenaza hutí en Bab el-Mandeb y proteger su infraestructura petrolera.'
-format: 'dossier'
+format: 'informe'
 category: 'Conflicto Regional'
 threat_level: 'Alta'
 region: 'Mar Rojo'

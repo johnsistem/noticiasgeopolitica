@@ -1,5 +1,5 @@
 ---
-format: 'dossier'
+format: 'informe'
 image: 'https://mf.b37mrtl.ru/actualidad/public_images/2026.09/article/6aa87d5b59bf5b52712e0042.jpg'
 title: '🚨 ALERTA EN EL MAR ROJO: RIAD SOLICITA APOYO MILITAR URGENTE A LONDRES TRAS RECHAZO DE EE.UU.'
 description: 'Arabia Saudita pide auxilio operativo a Reino Unido para proteger su infraestructura petrolera y defender el estrecho de Bab el-Mandeb ante la escalada hutí.'

@@ -25,7 +25,7 @@ const baseOsintSchema = z.object({
 
 // 2. Esquema Específico para Informes Deep-Dive (Formato Largo, In-Stream Videos > 3 min)
 const informesSchema = baseOsintSchema.extend({
-  format: z.literal('dossier').default('dossier'),
+  format: z.literal('informe').default('informe'),
   video_url: z.string().optional(),
   youtube_id: z.string().optional(),
   chapters: z.array(z.object({

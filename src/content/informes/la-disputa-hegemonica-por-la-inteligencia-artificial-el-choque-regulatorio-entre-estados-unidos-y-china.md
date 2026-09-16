@@ -1,7 +1,7 @@
 ---
 title: 'LA DISPUTA HEGEMÓNICA POR LA INTELIGENCIA ARTIFICIAL: EL CHOQUE REGULATORIO ENTRE ESTADOS UNIDOS Y CHINA'
 description: 'El control de la inteligencia artificial se consolida como el principal tablero de la competencia global, enfrentando la estrategia de contención de Washington con la diplomacia tecnológica de Pekín.'
-format: 'dossier'
+format: 'informe'
 category: 'Defensa y Tecnología'
 threat_level: 'Alta'
 region: 'Global'

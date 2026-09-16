@@ -1,7 +1,7 @@
 ---
 title: 'APOCALIPSIS EN ARABIA SAUDITA: LLUVIA DE MISILES BALÍSTICOS Y DRONES YEMENÍES'
 description: 'Los hutíes confirman ataque masivo con misiles balísticos y enjambres de drones contra la base militar de Sharurah en el corazón de Arabia Saudita.'
-format: 'dossier'
+format: 'informe'
 date: '2026-09-14'
 threat_level: 'Crítica'
 region: 'Arabia Saudita'
