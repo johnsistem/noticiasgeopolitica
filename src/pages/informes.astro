@@ -555,7 +555,7 @@ const countGlobal = informesCollection.filter(i => ['Global', 'Latinoamérica'].
 {informesCollection.map((informe) => (
   <article class="bg-surface-container rounded-xl overflow-hidden shadow-md flex flex-col group hover:shadow-xl transition-all border border-primary/20">
     <div class="relative w-full h-48 overflow-hidden">
-      {informe.data.coordinates && informe.data.image?.includes('images.unsplash.com') ? (
+      {informe.data.coordinates && (!informe.data.image || informe.data.image?.includes('images.unsplash.com')) ? (
         <div class="w-full h-full relative overflow-hidden">
           <img class="w-full h-full object-cover" src={`https://tile.openstreetmap.org/8/${Math.floor((informe.data.coordinates.lon + 180) / 360 * 256)}/${Math.floor((1 - Math.log(Math.tan(informe.data.coordinates.lat * Math.PI / 180) + 1 / Math.cos(informe.data.coordinates.lat * Math.PI / 180)) / Math.PI) / 2 * 256)}.png`} alt="" style="filter: invert(0.9) hue-rotate(180deg) saturate(0.3) brightness(0.6);" onerror="this.style.display='none'" />
           <div class="absolute inset-0 bg-gradient-to-t from-surface-container/80 via-transparent to-surface-container/40"></div>
