@@ -57,9 +57,9 @@ const related = allCables
       )}
     </div>
 
-    <!-- Embedded Vertical Video Player (Facebook Reel / YouTube Short 9:16) -->
+    <!-- Video Player Grande -->
     {entry.data.facebook_url ? (
-      <div class="mb-space-lg max-w-[360px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden border border-error/50 shadow-[0_0_30px_rgba(239,68,68,0.2)] bg-black relative">
+      <div class="mb-space-lg w-full aspect-video rounded-2xl overflow-hidden border border-error/50 shadow-[0_0_30px_rgba(239,68,68,0.2)] bg-black relative">
         <iframe 
           src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(entry.data.facebook_url)}&show_text=false&t=0`} 
           class="w-full h-full border-none overflow-hidden rounded-2xl" 
@@ -70,9 +70,9 @@ const related = allCables
         </iframe>
       </div>
     ) : entry.data.youtube_id ? (
-      <div class="mb-space-lg max-w-[360px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden border border-error/50 shadow-[0_0_30px_rgba(239,68,68,0.2)] bg-black relative">
+      <div class="mb-space-lg w-full aspect-video rounded-2xl overflow-hidden border border-error/50 shadow-[0_0_30px_rgba(239,68,68,0.2)] bg-black relative">
         <iframe 
-          src={`https://www.youtube.com/embed/${entry.data.youtube_id}`} 
+          src={`https://www.youtube.com/embed/${entry.data.youtube_id}?controls=1`} 
           class="w-full h-full border-none overflow-hidden rounded-2xl" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
