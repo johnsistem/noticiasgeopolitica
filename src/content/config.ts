@@ -15,7 +15,7 @@ const baseOsintSchema = z.object({
   defcon: z.string().default('NIVEL DE ALERTA'),
   hotspots: z.array(z.string()).default([]),
   tags: z.array(z.string()).default([]),
-  image: z.string().default('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'),
+  image: z.string().default(''),
   author: z.string().default('Comando OSINT'),
   readingTime: z.string().default('8 MIN READ'),
   verification: z.enum(['CONFIRMADO', 'REPORTADO', 'OSINT', 'NO VERIFICADO', 'ANÁLISIS']).default('REPORTADO'),

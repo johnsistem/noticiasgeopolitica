@@ -6,7 +6,7 @@ region: 'Mar Rojo'
 tags: ['Bab el-Mandeb', 'Mar Rojo', 'Hutíes', 'Bloqueo', 'Punto de estrangulamiento']
 verification: 'OSINT'
 coordinates: { lat: 12.5883, lon: 43.3333 }
-image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'
+image: ''
 date: '2026-09-13'
 ---
 ### INFORME DE INTELIGENCIA: CRISIS EN EL punto de estrangulamiento GLOBAL Y BLOQUEO AL COMERCIO

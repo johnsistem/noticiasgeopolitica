@@ -48,6 +48,8 @@ REGLAS:
 1. Lenguaje directo, periodístico, SIN tecnicismos militares
 2. Coordenadas reales en decimal
 3. Español natural, profesional
+4. NUNCA usar emojis en el campo title (ni 📄 ni 🚨 ni ninguno)
+5. SOLO usar los campos del frontmatter mostrados arriba. NUNCA agregar campos extra como defcon, hotspots, author, readingTime, youtube_id, chapters, format, category, etc.
 
 PROHIBIDO usar abreviaturas o términos militares en inglés. Siempre usar español:
 - En vez de SITREP: "situación actual" o "reporte"
@@ -71,7 +73,7 @@ NUNCA escribir siglas militares. Solo español.`
 GENERA UN CABLE FLASH (noticia breve).
 Frontmatter:
 ---
-title: '🚨 [TÍTULO EN MAYÚSCULAS]'
+title: '[TÍTULO EN MAYÚSCULAS SIN EMOJIS]'
 description: '[Resumen 1 línea]'
 format: 'cable'
 flash: true
@@ -272,7 +274,7 @@ author: 'Equipo de Análisis'
 GENERA UN INFORME/DOSSIER ANALÍTICO.
 Frontmatter:
 ---
-title: '📄 [TÍTULO EN MAYÚSCULAS]'
+title: '[TÍTULO EN MAYÚSCULAS SIN EMOJIS]'
 description: '[Resumen SEO 1-2 líneas]'
 format: 'dossier'
 category: '[Análisis Geopolítico|Seguridad Energética|Conflicto Regional|Economía Global|Defensa y Tecnología]'
@@ -361,6 +363,35 @@ export const POST: APIRoute = async ({ request }) => {
     if (!withMap) {
       markdown = markdown.replace(/^coordinates:.*$/gm, '')
     }
+
+    // Strip emojis from the title field
+    markdown = markdown.replace(/^(title:\s*['"]?)([\s\S]*?)(['"]?)$/m, (m, pre, val, post) => {
+      const clean = val.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{2700}-\u{27BF}]/gu, '').trim()
+      return pre + clean + post
+    })
+
+    // Remove any unexpected frontmatter fields (only allow standard ones)
+    const allowedFields = ['title', 'description', 'date', 'threat_level', 'region', 'tags', 'verification', 'coordinates', 'image']
+    const lines = markdown.split('\n')
+    const result: string[] = []
+    let inFrontmatter = false
+    for (const line of lines) {
+      if (line.trim() === '---') {
+        inFrontmatter = !inFrontmatter
+        result.push(line)
+        continue
+      }
+      if (inFrontmatter) {
+        const field = line.split(':')[0].trim()
+        if (allowedFields.includes(field)) {
+          result.push(line)
+        }
+        // Skip unexpected fields silently
+      } else {
+        result.push(line)
+      }
+    }
+    markdown = result.join('\n')
 
     // Priority: customImage > scraped image > nothing
     const finalImage = customImage || scrapedData.imageUrl

@@ -83,7 +83,7 @@ const related = allInformes
     <!-- Hero Image (always show if exists) -->
     {entry.data.image && (
       <div class="mb-space-xl rounded-xl overflow-hidden border border-primary/30 shadow-2xl">
-        <img src={entry.data.image} alt={entry.data.title} class="w-full max-h-[500px] object-cover" onerror="this.parentElement.style.display='none'" />
+        <img src={entry.data.image} alt={entry.data.title} class="w-full rounded-xl" onerror="this.parentElement.style.display='none'" />
       </div>
     )}
 
